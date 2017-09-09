@@ -1,0 +1,1 @@
+En el caso de uso N°5 solo se precisa una maqueta del display de la lista de articulos, es la misma que en el caso de uso N°6
