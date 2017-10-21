@@ -9,4 +9,5 @@ public class Cart {
     private User user;
     private boolean closed;
     private double subTotal;
+    private Card card;
 }

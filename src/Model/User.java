@@ -15,5 +15,14 @@ public class User {
     private ArrayList<Address> addressList;
     private boolean enabled, confirmed;
     private DocType doc;
+    private Cart cart;
+    private Product[] product;
 
+    public boolean validateLogin(){
+        return true;
+    }
+
+    public boolean addProduct(){
+        return true;
+    }
 }
