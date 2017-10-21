@@ -1,6 +1,6 @@
 package View;
 
 public class Border extends Screen{
-    int ID;
-    Screen screen;
+    private int ID;
+    private Screen screen;
 }
