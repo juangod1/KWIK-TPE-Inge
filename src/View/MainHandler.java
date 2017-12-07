@@ -39,6 +39,7 @@ public class MainHandler {
         run();
     }
     public void run(){
+
         searchPanel.getSearchBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

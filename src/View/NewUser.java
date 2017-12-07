@@ -1,6 +1,8 @@
 package View;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -36,6 +38,54 @@ public class NewUser {
 
     public NewUser() {
 
+        name.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                name.getText();
+            }
+        });
+        surname.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                surname.getText();
+            }
+        });
+        username.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                username.getText();
+            }
+        });
+        password.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                password.getPassword();
+            }
+        });
+        country.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                country.getText();
+            }
+        });
+        address.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                address.getText();
+            }
+        });
+        phone.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                phone.getText();
+            }
+        });
+        document.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                document.getText();
+            }
+        });
     }
 
     public JPanel getMainpanel() {
