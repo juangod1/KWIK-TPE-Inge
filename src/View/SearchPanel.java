@@ -11,7 +11,7 @@ public class SearchPanel {
     private JButton VISIONButton;
     private JButton EQUIPObutton;
     private JButton PERFILButton;
-    private JButton MENSAJESbutton;
+    private JButton CARRITObutton;
     private JPanel footnote;
     private JPanel header;
     private JTextField searchBox;
@@ -31,8 +31,8 @@ public class SearchPanel {
         return PERFILButton;
     }
 
-    public JButton getMENSAJESbutton() {
-        return MENSAJESbutton;
+    public JButton getCARRITObutton() {
+        return CARRITObutton;
     }
 
     public JTextField getSearchBox() {

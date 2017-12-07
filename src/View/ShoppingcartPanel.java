@@ -1,11 +1,13 @@
 package View;
 
 import javax.swing.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * Created by cderienzo on 12/7/2017.
  */
-public class NewUser {
+public class ShoppingcartPanel {
     private JPanel mainpanel;
     private JPanel header;
     private JButton VISIONButton;
@@ -13,29 +15,20 @@ public class NewUser {
     private JButton PERFILButton;
     private JLabel KWIKlabel;
     private JButton CARRITObutton;
-    private JPanel middle;
-    private JLabel registrationLabel;
-    private JPanel footnote;
-    private JTextField username;
-    private JTextField name;
-    private JPasswordField password;
-    private JTextField surname;
-    private JTextField country;
-    private JTextField address;
-    private JTextField phone;
-    private JTextField document;
-    private JLabel nameLabel;
-    private JLabel surnameLabel;
-    private JLabel usernameLabel;
-    private JLabel passwordLabel;
-    private JLabel countryLabel;
-    private JLabel addressLabel;
-    private JLabel phoneLabel;
-    private JLabel documentLabel;
     private JButton SEARCHbutton;
+    private JPanel footnote;
+    private JPanel middle;
+    private JButton cartLogo;
+    private JTextArea textArea;
 
-    public NewUser() {
 
+    public ShoppingcartPanel() {
+        mainpanel.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                super.componentShown(e);
+            }
+        });
     }
 
     public JPanel getMainpanel() {
@@ -62,4 +55,11 @@ public class NewUser {
         return EQUIPObutton;
     }
 
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+    public void write(String string){
+        System.out.println(string);
+        textArea.append(string);
+    }
 }

@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -16,6 +18,8 @@ public class MainHandler {
     TeamPanel teamPanel;
     NewUser newUser;
     ProfilePanel profilePanel;
+    ShoppingcartPanel shoppingcartPanel;
+    boolean loggedIn;
     public MainHandler(){
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
@@ -23,12 +27,15 @@ public class MainHandler {
         resultsPanel = new ResultsPanel();
         teamPanel = new TeamPanel();
         newUser = new NewUser();
+        shoppingcartPanel = new ShoppingcartPanel();
         profilePanel = new ProfilePanel();
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(teamPanel.getMainpanel(),"teamPanel");
         cards.add(newUser.getMainpanel(),"newUser");
         cards.add(profilePanel.getMainpanel(),"profilePanel");
+        cards.add(shoppingcartPanel.getMainpanel(),"shoppingcartPanel");
+        loggedIn = false;
         run();
     }
     public void run(){
@@ -47,6 +54,16 @@ public class MainHandler {
                 cardLayout.show(cards,"newUser");
             }
         });
+        profilePanel.getPassword().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                char[] ps =  profilePanel.getPassword().getPassword();
+                System.out.println(ps);
+                //Si se loggeo deberia setear loggedin en true
+                loggedIn=true;
+            }
+        });
+
         //EQUIPO
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
@@ -67,6 +84,18 @@ public class MainHandler {
             }
         });
         teamPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"teamPanel");
+            }
+        });
+        profilePanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"teamPanel");
+            }
+        });
+        shoppingcartPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"teamPanel");
@@ -98,13 +127,24 @@ public class MainHandler {
                 JOptionPane.showMessageDialog(null,"Vision under development");
             }
         });
+        profilePanel.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Vision under development");
+            }
+        });
+        shoppingcartPanel.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Vision under development");
+            }
+        });
 
         //PERFIL
         searchPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"profilePanel");
-
             }
         });
         teamPanel.getPERFILButton().addActionListener(new ActionListener() {
@@ -125,34 +165,78 @@ public class MainHandler {
                 cardLayout.show(cards,"profilePanel");
             }
         });
-
-        //MENSAJES
-        searchPanel.getMENSAJESbutton().addActionListener(new ActionListener() {
+        profilePanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Messages under development");
+                cardLayout.show(cards,"profilePanel");
+
 
             }
         });
-        teamPanel.getMENSAJESbutton().addActionListener(new ActionListener() {
+        shoppingcartPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Messages under development");
+                cardLayout.show(cards,"profilePanel");
+            }
+        });
+
+
+
+        //CARRITO
+        searchPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //JOptionPane.showMessageDialog(null,"Messages under development");
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(!loggedIn){
+                    shoppingcartPanel.write("Tu carrito esta vacío");
+                }
 
             }
         });
-        resultsPanel.getMENSAJESbutton().addActionListener(new ActionListener() {
+        teamPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Messages under development");
-
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(!loggedIn){
+                    shoppingcartPanel.write("Tu carrito esta vacío");
+                }
             }
         });
-        newUser.getMENSAJESbutton().addActionListener(new ActionListener() {
+        resultsPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Messages under development");
-
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(!loggedIn){
+                    shoppingcartPanel.write("Tu carrito esta vacío");
+                }
+            }
+        });
+        newUser.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(loggedIn){
+                    shoppingcartPanel.write("Tu carrito esta vacío");
+                }
+            }
+        });
+        profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(!loggedIn){
+                    shoppingcartPanel.write("Tu carrito esta vacío");
+                }
+            }
+        });
+        shoppingcartPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(!loggedIn){
+                    shoppingcartPanel.write("Tu carrito esta vacío");
+                }
             }
         });
 
@@ -176,6 +260,18 @@ public class MainHandler {
             }
         });
         searchPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        profilePanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        shoppingcartPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");

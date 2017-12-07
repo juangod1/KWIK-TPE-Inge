@@ -77,7 +77,7 @@
               <text value="KWIK"/>
             </properties>
           </component>
-          <component id="93e0e" class="javax.swing.JButton" binding="MENSAJESbutton">
+          <component id="93e0e" class="javax.swing.JButton" binding="CARRITObutton">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -85,8 +85,9 @@
               <borderPainted value="false"/>
               <contentAreaFilled value="false"/>
               <foreground color="-1"/>
-              <horizontalAlignment value="2"/>
-              <text value="MENSAJES"/>
+              <horizontalAlignment value="4"/>
+              <icon value="View/shoppingcart.png"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="1085e" class="javax.swing.JButton" binding="SEARCHbutton">

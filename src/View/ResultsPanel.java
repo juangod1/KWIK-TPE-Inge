@@ -12,7 +12,7 @@ public class ResultsPanel {
     private JButton EQUIPObutton;
     private JButton PERFILButton;
     private JLabel KWIKlabel;
-    private JButton MENSAJESbutton;
+    private JButton CARRITObutton;
     private JPanel footnote;
     private JPanel middle;
     private JLabel resultsLabel;
@@ -26,8 +26,8 @@ public class ResultsPanel {
         return SEARCHbutton;
     }
 
-    public JButton getMENSAJESbutton() {
-        return MENSAJESbutton;
+    public JButton getCARRITObutton() {
+        return CARRITObutton;
     }
 
     public JButton getPERFILButton() {

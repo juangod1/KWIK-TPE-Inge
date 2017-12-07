@@ -12,7 +12,7 @@ public class ProfilePanel {
     private JButton EQUIPObutton;
     private JButton PERFILButton;
     private JLabel KWIKlabel;
-    private JButton MENSAJESbutton;
+    private JButton CARRITObutton;
     private JButton SEARCHbutton;
     private JPanel footnote;
     private JPanel middle;
@@ -22,12 +22,17 @@ public class ProfilePanel {
     private JLabel passwordLabel;
     private JLabel nameLabel;
     private JButton registrationButton;
-    private JButton accessButton;
     private JLabel newUserLabel;
 
     public ProfilePanel() {
 
+
     }
+
+    public JPasswordField getPassword() {
+        return password;
+    }
+
     public JPanel getMainpanel() {
         return mainpanel;
     }
@@ -36,8 +41,8 @@ public class ProfilePanel {
         return SEARCHbutton;
     }
 
-    public JButton getMENSAJESbutton() {
-        return MENSAJESbutton;
+    public JButton getCARRITObutton() {
+        return CARRITObutton;
     }
 
     public JButton getPERFILButton() {
@@ -55,4 +60,6 @@ public class ProfilePanel {
     public JButton getRegistrationButton() {
         return registrationButton;
     }
+
+
 }
