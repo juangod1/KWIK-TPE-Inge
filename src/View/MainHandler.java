@@ -188,9 +188,6 @@ public class MainHandler {
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showMessageDialog(null,"Messages under development");
                 cardLayout.show(cards,"shoppingcartPanel");
-                if(!loggedIn){
-                    shoppingcartPanel.write("Tu carrito esta vacío");
-                }
 
             }
         });
@@ -198,45 +195,33 @@ public class MainHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-                if(!loggedIn){
-                    shoppingcartPanel.write("Tu carrito esta vacío");
-                }
             }
         });
         resultsPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-                if(!loggedIn){
-                    shoppingcartPanel.write("Tu carrito esta vacío");
-                }
             }
         });
         newUser.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-                if(loggedIn){
-                    shoppingcartPanel.write("Tu carrito esta vacío");
-                }
+
             }
         });
         profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-                if(!loggedIn){
-                    shoppingcartPanel.write("Tu carrito esta vacío");
-                }
+
             }
         });
         shoppingcartPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-                if(!loggedIn){
-                    shoppingcartPanel.write("Tu carrito esta vacío");
-                }
+
             }
         });
 

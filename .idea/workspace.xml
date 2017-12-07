@@ -4,16 +4,6 @@
     <list default="true" id="459ab360-964f-4307-b0d1-b54ba98d2f84" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/MainHandler.java" afterPath="$PROJECT_DIR$/src/View/MainHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/NewUser.form" afterPath="$PROJECT_DIR$/src/View/NewUser.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/NewUser.java" afterPath="$PROJECT_DIR$/src/View/NewUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/ProfilePanel.form" afterPath="$PROJECT_DIR$/src/View/ProfilePanel.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/ProfilePanel.java" afterPath="$PROJECT_DIR$/src/View/ProfilePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/ResultsPanel.form" afterPath="$PROJECT_DIR$/src/View/ResultsPanel.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/ResultsPanel.java" afterPath="$PROJECT_DIR$/src/View/ResultsPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/SearchPanel.form" afterPath="$PROJECT_DIR$/src/View/SearchPanel.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/SearchPanel.java" afterPath="$PROJECT_DIR$/src/View/SearchPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/TeamPanel.form" afterPath="$PROJECT_DIR$/src/View/TeamPanel.form" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/View/TeamPanel.java" afterPath="$PROJECT_DIR$/src/View/TeamPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +19,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="MainHandler.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/MainHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="236" column="20" lean-forward="false" selection-start-line="236" selection-start-column="20" selection-end-line="236" selection-end-column="20" />
+            <state relative-caret-position="261">
+              <caret line="223" column="16" lean-forward="false" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="16" />
               <folding>
                 <element signature="e#1982#2312#0" expanded="true" />
                 <element signature="e#2311#2312#0" expanded="true" />
@@ -66,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShoppingcartPanel.form" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShoppingcartPanel.form" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/ShoppingcartPanel.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
@@ -159,8 +149,8 @@
         <option value="$PROJECT_DIR$/src/View/ProfilePanel.form" />
         <option value="$PROJECT_DIR$/src/View/NewUser.form" />
         <option value="$PROJECT_DIR$/src/View/ShoppingcartPanel.java" />
-        <option value="$PROJECT_DIR$/src/View/MainHandler.java" />
         <option value="$PROJECT_DIR$/src/View/ShoppingcartPanel.form" />
+        <option value="$PROJECT_DIR$/src/View/MainHandler.java" />
       </list>
     </option>
   </component>
@@ -925,7 +915,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512651071974</updated>
-      <workItem from="1512665269698" duration="12645000" />
+      <workItem from="1512665269698" duration="12835000" />
     </task>
     <task id="LOCAL-00001" summary="View integration">
       <created>1512676385610</created>
@@ -941,11 +931,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512676398545</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="More view functionality">
+      <created>1512689702960</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1512689702960</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12645000" />
+    <option name="totallyTimeSpent" value="12835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -1021,7 +1018,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="View integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="View integration" />
+    <MESSAGE value="More view functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="More view functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1341,11 +1339,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ResultsPanel.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/ShoppingcartPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1360,10 +1353,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ShoppingcartPanel.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ResultsPanel.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/MainHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="236" column="20" lean-forward="false" selection-start-line="236" selection-start-column="20" selection-end-line="236" selection-end-column="20" />
+        <state relative-caret-position="261">
+          <caret line="223" column="16" lean-forward="false" selection-start-line="223" selection-start-column="16" selection-end-line="223" selection-end-column="16" />
           <folding>
             <element signature="e#1982#2312#0" expanded="true" />
             <element signature="e#2311#2312#0" expanded="true" />
@@ -1377,11 +1380,6 @@
             <element signature="e#6320#6321#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/View/ShoppingcartPanel.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
       </provider>
     </entry>
   </component>
