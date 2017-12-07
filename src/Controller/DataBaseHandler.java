@@ -3,30 +3,21 @@ package Controller;
 import Model.Card;
 import Model.Cart;
 import Model.Product;
-import Model.User;
+import Model.*;
 
 import java.util.ArrayList;
 
 public class DataBaseHandler {
     private String url;
     private User user;
-    private ArrayList<Cart> carts;
-    private ArrayList<Card> cards;
-    private ArrayList<Product> products;
+    private Model model;
 
-    public DataBaseHandler(){
-        carts = new ArrayList<>();
-        cards = new ArrayList<>();
-        products = new ArrayList<>();
+    public DataBaseHandler(Model model){
+        this.model = model;
     }
 
-    public void createProduct(int ID, String name, String description, double price, User user, String thumbnail, int stock){
-        Product newprod = new Product(ID, name, description, price, user, thumbnail, stock);
-        products.add(newprod);
-    }
-
-    public void deleteProduct(Product prod){
-        products.remove(prod);
+    public void initialize(){
+        //sacar todo de la bd
     }
 
     public void updateProduct(){
@@ -43,5 +34,10 @@ public class DataBaseHandler {
 
     public void updateCard(){
 
+    }
+
+    public boolean checkLogin(String username, String password){
+        //pedir de la bd
+        return true;
     }
 }

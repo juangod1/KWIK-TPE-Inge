@@ -27,4 +27,9 @@ public class Product {
         review = null;//instanciar
         picture = null;//instanciar
     }
+
+    @Override
+    public int hashCode() {
+        return 17*ID;
+    }
 }
