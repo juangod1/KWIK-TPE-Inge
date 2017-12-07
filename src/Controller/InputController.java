@@ -10,50 +10,75 @@ public class InputController {
     }
     public boolean checkAll(InputStruct inputStruct){
         ArrayList<FormEntry> formEntries=inputStruct.getFormEntries();
+        String password=null;
         for(FormEntry fe: formEntries){
             int code = fe.getCode();
             switch (code){
                 case 1:
-                    if(!checkUserDocument(fe.getString())) return false;
+                    if(!checkUserName(fe.getString())) return false;
                     break;
                 case 2:
-                    if(!checkUserEmail(fe.getString())) return false;
+                    if(!checkUserUserName(fe.getString())) return false;
                     break;
                 case 3:
                     if(!checkUserPassword(fe.getString())) return false;
+                    if(password==null) {
+                        password = fe.getString();
+                    }else{
+                        if(password!=fe.getString()) return false;
+                    }
                     break;
                 case 4:
-                    if(!checkUserAddress(fe.getString())) return false;
+                    if(!checkUserCountry(fe.getString())) return false;
                     break;
                 case 5:
-                    if(!checkUserBirthDate(fe.getString())) return false;
-                    break;
-                case 6:
-                    if(!checkUserDocumentType(fe.getString())) return false;
-                    break;
-                case 7:
                     if(!checkUserNeighbourhood(fe.getString())) return false;
                     break;
-                case 8:
+                case 6:
+                    if(!checkUserAddress(fe.getString())) return false;
+                    break;
+                case 7:
                     if(!checkUserPhoneNumber(fe.getString())) return false;
                     break;
+                case 8:
+                    if(!checkUserSurname(fe.getString())) return false;
+                    break;
                 case 9:
-                    if(!checkUserPostalCode(fe.getString())) return false;
+                    if(!checkUserEmail(fe.getString())) return false;
                     break;
                 case 10:
                     if(!checkUserState(fe.getString())) return false;
                     break;
                 case 11:
-                    if(!checkProductAmount(fe.getString())) return false;
+                    if(!checkUserDocumentType(fe.getString())) return false;
                     break;
                 case 12:
-                    if(!checkProductDescription(fe.getString())) return false;
+                    if(!checkUserDocument(fe.getString())) return false;
                     break;
                 case 13:
-                    if(!checkProductPrice(fe.getString())) return false;
+                    if(!checkUserBirthDate(fe.getString())) return false;
                     break;
                 case 14:
+                    if(!checkUserPostalCode(fe.getString())) return false;
+                    break;
+                case 15:
+                    if(!checkUserPassword(fe.getString())) return false;
+                    if(password==null) {
+                        password = fe.getString();
+                    }else{
+                        if(password!=fe.getString()) return false;
+                    }
+                case 21:
                     if(!checkProductTitle(fe.getString())) return false;
+                    break;
+                case 22:
+                    if(!checkProductAmount(fe.getString())) return false;
+                    break;
+                case 23:
+                    if(!checkProductPrice(fe.getString())) return false;
+                    break;
+                case 24:
+                    if(!checkProductDescription(fe.getString())) return false;
                     break;
                 default:
                     throw new NotImplementedException();
@@ -61,12 +86,27 @@ public class InputController {
         }
         return true;
     }
+
+    private boolean checkUserSurname(String surname) {
+        return !surname.isEmpty();
+    }
+
+    private boolean checkUserCountry(String country) {
+        return !country.isEmpty();
+    }
+
     private boolean isPositiveInteger(String str){
         for (char c : str.toCharArray())
         {
             if (!Character.isDigit(c)) return false;
         }
         return true;
+    }
+    public boolean checkUserName(String name){
+        return !name.isEmpty();
+    }
+    public boolean checkUserUserName(String username){
+        return !username.isEmpty();
     }
     public boolean checkUserDocument(String dni){
         if(dni.length()!=8) return false;
