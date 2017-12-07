@@ -22,4 +22,8 @@ public class Model {
     public void deleteProduct(Product prod){
         products.remove(prod);
     }
+
+    public ArrayList<Product> getProducts(){
+        return products;
+    }
 }

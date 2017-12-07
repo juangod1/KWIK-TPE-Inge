@@ -32,4 +32,8 @@ public class Product {
     public int hashCode() {
         return 17*ID;
     }
+
+    public String getName() {
+        return name;
+    }
 }
