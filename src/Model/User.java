@@ -21,6 +21,10 @@ public class User {
         }
     }
 
+    public User(){
+
+    }
+
     public User(int ID, int docNum, String username, String password, String name, String surname, String email, boolean enabled, boolean confirmed, DocType doc, Cart cart) {
         this.ID = ID;
         this.docNum = docNum;

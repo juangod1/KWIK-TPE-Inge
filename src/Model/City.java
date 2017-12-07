@@ -5,7 +5,7 @@ public class City {
     private String name;
     private Province province;
 
-    public City(int ID, String name, Model.Province province) {
+    public City(int ID, String name, Province province) {
         this.ID = ID;
         this.name = name;
         this.province = province;
