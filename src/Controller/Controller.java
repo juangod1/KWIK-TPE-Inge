@@ -19,6 +19,8 @@ public class Controller {
     public Controller(){
         dBH = new DataBaseHandler(model);
         dBH.initialize();
+
+        model = new Model();
     }
 
     public ArrayList<Product> productSearch(String search){
