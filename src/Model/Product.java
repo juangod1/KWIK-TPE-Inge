@@ -1,7 +1,7 @@
 package Model;
 
 public class Product {
-    private int ID;
+    private int id;
     private String name;
     private String description;
     private double price;
@@ -54,8 +54,8 @@ public class Product {
         return category;
     }
 
-    public Product(int ID, String name, String description, double price, User user, String thumbnail, int stock){
-        this.ID = ID;
+    public Product(int id, String name, String description, double price, User user, String thumbnail, int stock){
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -71,7 +71,7 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return 17*ID;
+        return 17*id;
     }
 
     public String getName() {

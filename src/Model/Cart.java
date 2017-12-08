@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 public class Cart {
     private HashMap<Product,Integer> products;
-    private int ID;
+    private int id;
     private User user;
     private boolean closed;
     private double subTotal;
     private Card card;
 
-    public Cart(int ID, User user){
+    public Cart(int id, User user){
         closed = false;
         card = null;
         this.user = user;
-        this.ID = ID;
+        this.id = id;
         subTotal = 0.0;
     }
 

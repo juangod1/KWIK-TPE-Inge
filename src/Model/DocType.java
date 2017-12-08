@@ -1,11 +1,11 @@
 package Model;
 
 public class DocType {
-    private int ID;
+    private int id;
     private String name;
 
-    public DocType(int ID, String name) {
-        this.ID = ID;
+    public DocType(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 }

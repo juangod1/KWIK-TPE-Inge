@@ -1,12 +1,12 @@
 package Model;
 
 public class City {
-    private int ID;
+    private int id;
     private String name;
     private Province province;
 
-    public City(int ID, String name, Province province) {
-        this.ID = ID;
+    public City(int id, String name, Province province) {
+        this.id = id;
         this.name = name;
         this.province = province;
     }

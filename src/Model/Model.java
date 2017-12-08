@@ -14,8 +14,8 @@ public class Model {
         products = new ArrayList<>();
     }
 
-    public void createProduct(int ID, String name, String description, double price, User user, String thumbnail, int stock){
-        Product newprod = new Product(ID, name, description, price, user, thumbnail, stock);
+    public void createProduct(int id, String name, String description, double price, User user, String thumbnail, int stock){
+        Product newprod = new Product(id, name, description, price, user, thumbnail, stock);
         products.add(newprod);
     }
 

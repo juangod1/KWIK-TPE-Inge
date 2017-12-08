@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 import Model.Product;
+import Service.DatabaseService;
 import View.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class Controller {
     public static void main(String[] args){
         View view = new View(getInstance());
         view.initialize(getInstance());
+        DatabaseService.getInstance().initializeDB();
+        //if(!DatabaseService.getInstance().initializeDB())
+        //    throw new RuntimeException("DB - Se fue todo a la chota");
     }
     public static Controller getInstance(){
         if(singleton==null){

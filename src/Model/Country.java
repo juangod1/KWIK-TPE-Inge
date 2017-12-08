@@ -1,11 +1,11 @@
 package Model;
 
 public class Country {
-    private int ID;
+    private int id;
     private String name;
 
-    public Country(int ID, String name) {
-        this.ID = ID;
+    public Country(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 }

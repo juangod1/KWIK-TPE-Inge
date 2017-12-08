@@ -1,7 +1,7 @@
 package Model;
 
 public class Card {
-    private int ID;
+    private int id;
     private User user;
     private String name;
     private String surname;
@@ -10,8 +10,8 @@ public class Card {
     private int month;
     private int code;
 
-    public Card(int ID, User user, String name, String surname, String number, int day, int month, int code) {
-        this.ID = ID;
+    public Card(int id, User user, String name, String surname, String number, int day, int month, int code) {
+        this.id = id;
         this.user = user;
         this.name = name;
         this.surname = surname;
