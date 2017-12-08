@@ -40,7 +40,7 @@ public class View {
         searchPanel = new SearchPanel();
         resultsPanel = new ResultsPanel();
         teamPanel = new TeamPanel();
-        newUser = new NewUser();
+        newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper);
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper);

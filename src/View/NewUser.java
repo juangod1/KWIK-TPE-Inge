@@ -1,6 +1,12 @@
 package View;
 
+import Controller.InputController;
+import Controller.UserCreationStruct;
+import jdk.internal.util.xml.impl.Input;
+
+import javax.naming.ldap.Control;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,6 +14,7 @@ import java.awt.event.ActionListener;
  * Created by cderienzo on 12/7/2017.
  */
 public class NewUser {
+    private InputController inputController;
     private JPanel mainpanel;
     private JPanel header;
     private JButton VISIONButton;
@@ -51,7 +58,8 @@ public class NewUser {
     private JTextField document;
     private JTextField province;
 
-    public NewUser() {
+    public NewUser(InputController inputController) {
+        this.inputController=inputController;
         name.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,6 +102,12 @@ public class NewUser {
                 email.getText();
             }
         });
+        province.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                province.getText();
+            }
+        });
         postalCode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,7 +118,17 @@ public class NewUser {
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
+                        country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
+                        email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
+                        document.getText(), secondaryPhone.getText());
+                System.out.println(inputController);
+                if(inputController.checkAll(userCreationStruct)){
+                    //mandar a BD y logear
+                }else{
+                    JOptionPane.showMessageDialog(null, "Input Mistake");
+                    //mensajito de error
+                }
             }
         });
     }

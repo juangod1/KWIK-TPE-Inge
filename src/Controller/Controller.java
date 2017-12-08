@@ -8,21 +8,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Controller {
+    private static Controller singleton;
     private DataBaseHandler dBH;
+    private InputController inputController;
     private Model model;
     private View view;
 
     public static void main(String[] args){
-        Controller controller = new Controller();
         View view = new View();
-        view.initialize(controller);
-
+        view.initialize(getInstance());
+    }
+    public static Controller getInstance(){
+        if(singleton==null){
+            singleton=new Controller();
+        }
+        return singleton;
     }
 
-    public Controller(){
+    private Controller(){
         dBH = new DataBaseHandler(model);
         dBH.initialize();
-
+        inputController= new InputController();
         model = new Model();
     }
 
@@ -45,5 +51,9 @@ public class Controller {
         Collections.shuffle(list);
 
         return list;
+    }
+
+    public InputController getInputController() {
+        return inputController;
     }
 }
