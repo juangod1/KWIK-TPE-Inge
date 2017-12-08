@@ -21,6 +21,7 @@ public class View {
     PaymentOptionsPanel paymentOptions;
     ProfilePanel profilePanel;
     ShoppingcartPanel shoppingcartPanel;
+    VisionPanel visionPanel;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
     Controller controller;
@@ -45,6 +46,7 @@ public class View {
         paymentOptions = new PaymentOptionsPanel(viewSwapper);
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper);
+        visionPanel = new VisionPanel();
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(teamPanel.getMainpanel(),"teamPanel");
@@ -52,6 +54,7 @@ public class View {
         cards.add(paymentOptions.getMainpanel(),"paymentOptionsPanel");
         cards.add(profilePanel.getMainpanel(),"profilePanel");
         cards.add(shoppingcartPanel.getMainpanel(),"shoppingcartPanel");
+        cards.add(visionPanel.getMainpanel(),"visionPanel");
         loggedIn = false;
         run();
     }
@@ -121,42 +124,54 @@ public class View {
                 cardLayout.show(cards,"teamPanel");
             }
         });
+        visionPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"teamPanel");
+            }
+        });
 
         //VISION
         searchPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                cardLayout.show(cards,"visionPanel");
             }
         });
         teamPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                cardLayout.show(cards,"visionPanel");
             }
         });
         resultsPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                cardLayout.show(cards,"visionPanel");
             }
         });
         newUser.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                cardLayout.show(cards,"visionPanel");
             }
         });
         profilePanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                cardLayout.show(cards,"visionPanel");
             }
         });
         shoppingcartPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                cardLayout.show(cards,"visionPanel");
+            }
+        });
+        visionPanel.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"visionPanel");
             }
         });
 
@@ -199,7 +214,12 @@ public class View {
                 cardLayout.show(cards,"profilePanel");
             }
         });
-
+        visionPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"profilePanel");
+            }
+        });
 
 
         //CARRITO
@@ -244,6 +264,12 @@ public class View {
 
             }
         });
+        visionPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+            }
+        });
 
         //SEARCH
         newUser.getSEARCHbutton().addActionListener(new ActionListener() {
@@ -277,6 +303,12 @@ public class View {
             }
         });
         shoppingcartPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        visionPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");

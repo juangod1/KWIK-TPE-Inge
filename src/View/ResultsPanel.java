@@ -6,6 +6,7 @@ import Model.User;
 
 import javax.swing.*;
 import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -77,7 +78,8 @@ public class ResultsPanel {
                         data[row][col] = prods.get(row).getPrice();
                         break;
                 }
-                            }
+
+            }
         }
     }
 }
