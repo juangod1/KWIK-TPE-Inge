@@ -17,6 +17,7 @@ public class ResultsPanel {
     private JPanel middle;
     private JLabel resultsLabel;
     private JButton SEARCHbutton;
+    private JTextArea textArea1;
 
     public JPanel getMainpanel() {
         return mainpanel;
@@ -40,5 +41,9 @@ public class ResultsPanel {
 
     public JButton getEQUIPObutton() {
         return EQUIPObutton;
+    }
+
+    public JTextArea getTextArea1(){
+        return textArea1;
     }
 }

@@ -10,10 +10,12 @@ import java.util.Collections;
 public class Controller {
     private DataBaseHandler dBH;
     private Model model;
+    private View view;
 
     public static void main(String[] args){
         Controller controller = new Controller();
-        View.MainHandler.initialize();
+        View view = new View();
+        view.initialize();
 
     }
 

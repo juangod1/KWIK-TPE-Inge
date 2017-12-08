@@ -4,13 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 /**
  * Created by cderienzo on 12/7/2017.
  */
-public class MainHandler {
+public class View {
     CardLayout cardLayout;
     JPanel cards;
     SearchPanel searchPanel;
@@ -20,7 +18,7 @@ public class MainHandler {
     ProfilePanel profilePanel;
     ShoppingcartPanel shoppingcartPanel;
     boolean loggedIn;
-    public MainHandler(){
+    public View(){
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
         searchPanel = new SearchPanel();
@@ -46,7 +44,11 @@ public class MainHandler {
                 //Mandar a realizar la busqueda con el input
                 String input = searchPanel.getSearchBox().getText();
                 cardLayout.show(cards,"resultsPanel");
+                searchPanel.getSearchBox().setText("");
 
+                // Write Searched Products
+
+                //resultsPanel.getTextArea1().append();
             }
         });
         profilePanel.getRegistrationButton().addActionListener(new ActionListener() {
@@ -265,9 +267,9 @@ public class MainHandler {
         });
     }
 
-    public static void initialize() {
+    public void initialize() {
         JFrame frame = new JFrame("KWIK");
-        frame.setContentPane(new MainHandler().cards);
+        frame.setContentPane(new View().cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
