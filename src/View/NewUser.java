@@ -35,9 +35,9 @@ public class NewUser {
     private JLabel phoneLabel;
     private JLabel documentLabel;
     private JButton SEARCHbutton;
+    private JButton crearButton;
 
     public NewUser() {
-
         name.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,10 +86,29 @@ public class NewUser {
                 document.getText();
             }
         });
+
+        crearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
     }
 
     public JPanel getMainpanel() {
         return mainpanel;
+    }
+
+    public void clearText(){
+        name.setText("");
+        username.setText("");
+        password.setText("");
+        country.setText("");
+        address.setText("");
+        phone.setText("");
+        document.setText("");
+        surname.setText("");
+
     }
 
     public JButton getSEARCHbutton() {

@@ -8,16 +8,29 @@ import java.awt.event.ActionListener;
 /**
  * Created by cderienzo on 12/7/2017.
  */
+
 public class View {
-    CardLayout cardLayout;
-    JPanel cards;
+     CardLayout cardLayout;
+     JPanel cards;
     SearchPanel searchPanel;
     ResultsPanel resultsPanel;
     TeamPanel teamPanel;
     NewUser newUser;
+    PaymentOptionsPanel paymentOptions;
     ProfilePanel profilePanel;
     ShoppingcartPanel shoppingcartPanel;
     boolean loggedIn;
+    ViewSwapper viewSwapper = new ViewSwapper();
+
+    public  class ViewSwapper {
+        public void changeView(String name) {
+            cardLayout.show(cards, name);
+            if(name == "newUser"){
+                newUser.clearText();
+            }
+        }
+    }
+
     public View(){
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
@@ -25,17 +38,20 @@ public class View {
         resultsPanel = new ResultsPanel();
         teamPanel = new TeamPanel();
         newUser = new NewUser();
-        shoppingcartPanel = new ShoppingcartPanel();
-        profilePanel = new ProfilePanel();
+        paymentOptions = new PaymentOptionsPanel(viewSwapper);
+        shoppingcartPanel = new ShoppingcartPanel(viewSwapper);
+        profilePanel = new ProfilePanel(viewSwapper);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(teamPanel.getMainpanel(),"teamPanel");
         cards.add(newUser.getMainpanel(),"newUser");
+        cards.add(paymentOptions.getMainpanel(),"paymentOptionsPanel");
         cards.add(profilePanel.getMainpanel(),"profilePanel");
         cards.add(shoppingcartPanel.getMainpanel(),"shoppingcartPanel");
         loggedIn = false;
         run();
     }
+
     public void run(){
 
         searchPanel.getSearchBox().addActionListener(new ActionListener() {
@@ -51,21 +67,21 @@ public class View {
                 //resultsPanel.getTextArea1().append();
             }
         });
-        profilePanel.getRegistrationButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"newUser");
-            }
-        });
-        profilePanel.getPassword().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                char[] ps =  profilePanel.getPassword().getPassword();
-                System.out.println(ps);
-                //Si se loggeo deberia setear loggedin en true
-                loggedIn=true;
-            }
-        });
+//        profilePanel.getRegistrationButton().addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                cardLayout.show(cards,"newUser");
+//            }
+//        });
+//        profilePanel.getPassword().addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                char[] ps =  profilePanel.getPassword().getPassword();
+//                System.out.println(ps);
+//                //Si se loggeo deberia setear loggedin en true
+//                loggedIn=true;
+//            }
+//        });
 
         //EQUIPO
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {

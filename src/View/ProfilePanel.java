@@ -1,6 +1,8 @@
 package View;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -23,10 +25,26 @@ public class ProfilePanel {
     private JLabel nameLabel;
     private JButton registrationButton;
     private JLabel newUserLabel;
+    private View.ViewSwapper vs;
 
-    public ProfilePanel() {
+    public ProfilePanel(final View.ViewSwapper vs) {
+        this.vs = vs;
 
-
+        registrationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vs.changeView("newUser");
+            }
+        });
+        password.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                char[] ps =  password.getPassword();
+                System.out.println(ps);
+                //Si se loggeo deberia setear loggedin en true
+                //loggedIn=true;
+            }
+        });
     }
 
     public JPasswordField getPassword() {

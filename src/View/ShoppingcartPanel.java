@@ -1,6 +1,8 @@
 package View;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -18,15 +20,41 @@ public class ShoppingcartPanel {
     private JButton SEARCHbutton;
     private JPanel footnote;
     private JPanel middle;
-    private JButton cartLogo;
+    private JTextArea subtotalText;
+    private JButton checkoutButton;
+    private JList cartList;
     private JTextArea textArea;
+    private View.ViewSwapper vs;
 
 
-    public ShoppingcartPanel() {
+    public ShoppingcartPanel(final View.ViewSwapper vs) {
+        this.vs = vs;
+
         mainpanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 super.componentShown(e);
+            }
+        });
+        checkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] options = {"Pagar con tarjeta",
+                        "Reservar",
+                        "Cancelar"};
+                int n = JOptionPane.showOptionDialog(mainpanel,
+                        "como desea proceder?",
+                        "",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[2]);
+                if( n == JOptionPane.YES_OPTION){
+                    vs.changeView("paymentOptionsPanel");
+                }
+
+
             }
         });
     }
