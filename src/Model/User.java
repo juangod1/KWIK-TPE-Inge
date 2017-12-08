@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class User implements Persistent{
 
     private int id;
-    private String username, password, name, surname, email, docNum;
+    private String username, password, name, surname, email, doc;
     private boolean enabled, confirmed, admin;
-    private DocType doc;
+    private DocType docType;
     private Cart cart;
     private Country country;
     private City city;
@@ -18,11 +18,11 @@ public class User implements Persistent{
 
     private User(){}
 
-    private User(int id, String docNum, String username, String password, String name, String surname, String email, boolean enabled,
-                boolean confirmed, boolean admin, DocType doc, Cart cart, Country country, City city, Province province, String adress,
+    private User(int id, String doc, String username, String password, String name, String surname, String email, boolean enabled,
+                boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String adress,
                  String postalCode, String phone, String phone2) {
         this.id = id;
-        this.docNum = docNum;
+        this.doc = doc;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -30,7 +30,7 @@ public class User implements Persistent{
         this.email = email;
         this.enabled = enabled;
         this.confirmed = confirmed;
-        this.doc = doc;
+        this.docType = docType;
         this.cart = cart;
         this.country = country;
         this.city = city;
@@ -41,11 +41,11 @@ public class User implements Persistent{
         this.admin = admin;
     }
 
-    public static User create(String docNum, String username, String password, String name, String surname, String email, boolean enabled,
-                              boolean confirmed, boolean admin, DocType doc, Cart cart, Country country, City city, Province province, String adress,
+    public static User create(String doc, String username, String password, String name, String surname, String email, boolean enabled,
+                              boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String adress,
                               String postalCode, String phone, String phone2) { //Factory :wink:
 
-        return new User(0, docNum, username, password, name, surname, email, enabled, confirmed, admin, doc, cart, country, city,
+        return new User(0, doc, username, password, name, surname, email, enabled, confirmed, admin, docType, cart, country, city,
                         province, adress, postalCode, phone,phone2);
     }
 
@@ -75,12 +75,12 @@ public class User implements Persistent{
         return id;
     }
 
-    public String getDocNum() {
-        return docNum;
+    public String getdoc() {
+        return doc;
     }
 
-    public void setDocNum(String docNum) {
-        this.docNum = docNum;
+    public void setdoc(String doc) {
+        this.doc = doc;
     }
 
     public String getUsername() {
@@ -147,12 +147,12 @@ public class User implements Persistent{
         this.admin = admin;
     }
 
-    public DocType getDoc() {
-        return doc;
+    public DocType getDocType() {
+        return docType;
     }
 
-    public void setDoc(DocType doc) {
-        this.doc = doc;
+    public void setDocType(DocType docType) {
+        this.docType = docType;
     }
 
     public Cart getCart() {

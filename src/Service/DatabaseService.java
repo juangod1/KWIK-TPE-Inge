@@ -98,7 +98,7 @@ public class DatabaseService {
             "  surname VARCHAR(255) NOT NULL,\n" +
             "  email VARCHAR(255) NOT NULL,\n" +
             "  idDocType INT NOT NULL REFERENCES DocType(id),\n" +
-            "  docNum INT NOT NULL,\n" +
+            "  doc VARCHAR(255) NOT NULL,\n" +
             "  idCountry INT NOT NULL REFERENCES Country(id),\n" +
             "  idProvince INT NOT NULL REFERENCES Province(id),\n" +
             "  idCity INT NOT NULL REFERENCES City(id),\n" +
@@ -110,7 +110,7 @@ public class DatabaseService {
             "  enabled BOOL NOT NULL,\n" +
             "  confirmed BOOL NOT NULL,\n" +
             "  admin BOOL NOT NULL,\n" +
-            "  UNIQUE (idDocType, docNum)\n" +
+            "  UNIQUE (idDocType, doc)\n" +
             ");";
 
     private static final String docTypeTable = "CREATE TABLE IF NOT EXISTS DocType (\n" +
