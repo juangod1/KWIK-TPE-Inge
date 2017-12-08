@@ -58,7 +58,7 @@ public class NewUser {
     private JTextField document;
     private JTextField province;
 
-    public NewUser(InputController inputController) {
+    public NewUser(final InputController inputController) {
         this.inputController=inputController;
         name.addActionListener(new ActionListener() {
             @Override

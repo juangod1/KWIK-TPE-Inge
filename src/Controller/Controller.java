@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Model;
+import Model.*;
 import Model.Product;
 import View.*;
 
@@ -33,7 +33,7 @@ public class Controller {
     }
 
     public ArrayList<Product> productSearch(String search){
-        ArrayList<Product> list = new ArrayList<>();
+        /*ArrayList<Product> list = new ArrayList<>();
 
         search = search.toLowerCase();
 
@@ -51,6 +51,8 @@ public class Controller {
         Collections.shuffle(list);
 
         return list;
+        */
+        return null;
     }
 
     public InputController getInputController() {

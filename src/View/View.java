@@ -39,7 +39,7 @@ public class View {
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
         searchPanel = new SearchPanel();
-        resultsPanel = new ResultsPanel();
+        resultsPanel = new ResultsPanel(controller);
         teamPanel = new TeamPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper);
@@ -64,8 +64,8 @@ public class View {
                 //Mandar a realizar la busqueda con el input
                 String input = searchPanel.getSearchBox().getText();
                 cardLayout.show(cards,"resultsPanel");
+                resultsPanel.printResults(searchPanel.getSearchBox().getText());
                 searchPanel.getSearchBox().setText("");
-                resultsPanel.printResults();
             }
         });
 //        profilePanel.getRegistrationButton().addActionListener(new ActionListener() {

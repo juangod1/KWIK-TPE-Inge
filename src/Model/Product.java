@@ -12,6 +12,47 @@ public class Product {
     private int sold;
     private Review review;
     private Picture picture;
+    private String category;
+
+    public int getID() {
+        return ID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public int getVisits() {
+        return visits;
+    }
+
+    public int getSold() {
+        return sold;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public String getCategory() {
+        return category;
+    }
 
     public Product(int ID, String name, String description, double price, User user, String thumbnail, int stock){
         this.ID = ID;
