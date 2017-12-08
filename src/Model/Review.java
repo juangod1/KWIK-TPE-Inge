@@ -12,4 +12,6 @@ public class Review {
         this.comment = comment;
         this.rating = rating;
     }
+
+
 }

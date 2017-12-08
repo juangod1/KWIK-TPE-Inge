@@ -61,12 +61,12 @@ public class User implements Persistent{
 
     @Override
     public boolean save() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean delete() {
-        return false;
+        return true;
     }
 
     public boolean validateLogin(){

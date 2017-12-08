@@ -18,7 +18,7 @@ public class Controller {
     public static void main(String[] args){
         View view = new View(getInstance());
         view.initialize(getInstance());
-        DatabaseService.getInstance().initializeDB();
+        //DatabaseService.getInstance().initializeDB();
         //if(!DatabaseService.getInstance().initializeDB())
         //    throw new RuntimeException("DB - Se fue todo a la chota");
     }
