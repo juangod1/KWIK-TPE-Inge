@@ -15,7 +15,7 @@ public class Controller {
     public static void main(String[] args){
         Controller controller = new Controller();
         View view = new View();
-        view.initialize();
+        view.initialize(controller);
 
     }
 

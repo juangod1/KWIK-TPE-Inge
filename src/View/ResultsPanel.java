@@ -14,10 +14,9 @@ public class ResultsPanel {
     private JLabel KWIKlabel;
     private JButton CARRITObutton;
     private JPanel footnote;
-    private JPanel middle;
     private JLabel resultsLabel;
     private JButton SEARCHbutton;
-    private JTextArea textArea1;
+    private JTable table1;
 
     public JPanel getMainpanel() {
         return mainpanel;
@@ -43,7 +42,11 @@ public class ResultsPanel {
         return EQUIPObutton;
     }
 
-    public JTextArea getTextArea1(){
-        return textArea1;
+    public ResultsPanel(){
+        table1 = new JTable(6,5);
+    }
+
+    public void printResults(){
+
     }
 }

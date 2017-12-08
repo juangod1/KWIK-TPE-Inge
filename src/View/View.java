@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +23,7 @@ public class View {
     ShoppingcartPanel shoppingcartPanel;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
+    Controller controller;
 
     public  class ViewSwapper {
         public void changeView(String name) {
@@ -61,10 +64,7 @@ public class View {
                 String input = searchPanel.getSearchBox().getText();
                 cardLayout.show(cards,"resultsPanel");
                 searchPanel.getSearchBox().setText("");
-
-                // Write Searched Products
-
-                //resultsPanel.getTextArea1().append();
+                resultsPanel.printResults();
             }
         });
 //        profilePanel.getRegistrationButton().addActionListener(new ActionListener() {
@@ -283,11 +283,12 @@ public class View {
         });
     }
 
-    public void initialize() {
+    public void initialize(Controller controller) {
         JFrame frame = new JFrame("KWIK");
         frame.setContentPane(new View().cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        this.controller = controller;
     }
 }
