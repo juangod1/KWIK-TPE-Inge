@@ -18,24 +18,38 @@ public class NewUser {
     private JPanel middle;
     private JLabel registrationLabel;
     private JPanel footnote;
-    private JTextField username;
-    private JTextField name;
-    private JPasswordField password;
-    private JTextField surname;
-    private JTextField country;
-    private JTextField address;
-    private JTextField phone;
-    private JTextField document;
     private JLabel nameLabel;
     private JLabel surnameLabel;
     private JLabel usernameLabel;
-    private JLabel passwordLabel;
-    private JLabel countryLabel;
     private JLabel addressLabel;
-    private JLabel phoneLabel;
-    private JLabel documentLabel;
     private JButton SEARCHbutton;
     private JButton crearButton;
+    private JLabel mainPhoneLabel;
+    private JLabel secondaryPhoneLabel;
+    private JLabel documentLabel;
+    private JLabel postalCodeLabel;
+    private JLabel docTypeLabel;
+    private JLabel passwordLabel;
+    private JLabel confirmedPasswordLabel;
+    private JLabel emailLabel;
+    private JLabel ProvinceLabel;
+    private JLabel CountryLabel;
+    private JLabel NeighbourhoodLabel;
+    private JTextField username;
+    private JTextField name;
+    private JTextField password;
+    private JTextField surname;
+    private JTextField country;
+    private JTextField address;
+    private JTextField email;
+    private JTextField postalCode;
+    private JTextField Province;
+    private JTextField neighborhood;
+    private JTextField secondaryPhone;
+    private JTextField mainPhone;
+    private JTextField docType;
+    private JTextField confirmedPassword;
+    private JTextField document;
 
     public NewUser() {
         name.addActionListener(new ActionListener() {
@@ -59,7 +73,7 @@ public class NewUser {
         password.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                password.getPassword();
+                password.getText();
             }
         });
         country.addActionListener(new ActionListener() {
@@ -74,16 +88,16 @@ public class NewUser {
                 address.getText();
             }
         });
-        phone.addActionListener(new ActionListener() {
+        email.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                phone.getText();
+                email.getText();
             }
         });
-        document.addActionListener(new ActionListener() {
+        postalCode.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                document.getText();
+                postalCode.getText();
             }
         });
 
@@ -105,8 +119,8 @@ public class NewUser {
         password.setText("");
         country.setText("");
         address.setText("");
-        phone.setText("");
-        document.setText("");
+        email.setText("");
+        postalCode.setText("");
         surname.setText("");
 
     }
