@@ -20,7 +20,7 @@ public class Cart implements Persistent {
     }
 
     public static Cart create(User user) {
-        return new Cart();
+        return new Cart(0, user, false, 0, null);
     }
 
     public static Cart get(int id) {

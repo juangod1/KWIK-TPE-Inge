@@ -18,7 +18,7 @@ public class Review implements Persistent{
     }
 
     public static Review create(Product product, String comment, int rating) {
-        return new Review();
+        return new Review(0, product, comment, rating);
     }
 
     public static Review get(int id) {

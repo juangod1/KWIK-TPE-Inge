@@ -16,7 +16,7 @@ public class Picture implements Persistent{
     }
 
     public static Picture create(Product product, String path) {
-        return new Picture();
+        return new Picture(0, product, path);
     }
 
     public static Picture get(int id) {

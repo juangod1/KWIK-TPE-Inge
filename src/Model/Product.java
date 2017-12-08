@@ -29,7 +29,7 @@ public class Product implements Persistent{
     }
 
     public static Product create(String name, String description, double price, User user, String thumbnail, int stock) {
-        return new Product();
+        return new Product(0, name, description, price, user, thumbnail, stock);
     }
 
     public static Product get(int id) {
