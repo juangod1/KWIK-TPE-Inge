@@ -59,9 +59,9 @@ public class ResultsPanel {
         String[] columns = {"Artículo", "Categoría", "Precio", "Dias Restantes", "Fecha"};
         Object[][] data = new Object[3][5];
         ArrayList<Product> prods = new ArrayList<>();
-        prods.add(new Product(1,"Manzana","esta medio podrida", 666.0, new User(), "thumbnail", 4));
-        prods.add(new Product(1,"Tornillo","lo encontre en mi cajon", 5.0, new User(), "thumbnail", 7));
-        prods.add(new Product(1,"Tornillo","lo encontre en mi cajon", 5.0, new User(), "thumbnail", 7));
+        prods.add(new Product(1,"Manzana","esta medio podrida", 666.0, User.get(0), "thumbnail", 4));
+        prods.add(new Product(1,"Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
+        prods.add(new Product(1,"Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
 
         int row,col;
         for (row=0;row<3;row++){

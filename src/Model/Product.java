@@ -14,8 +14,8 @@ public class Product {
     private Picture picture;
     private String category;
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public String getDescription() {
