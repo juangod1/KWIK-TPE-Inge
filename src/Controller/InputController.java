@@ -1,8 +1,10 @@
 package Controller;
 
+import Model.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.ArrayList;
+import java.text.Normalizer;
+import java.util.*;
 import java.util.concurrent.SynchronousQueue;
 
 public class InputController {
@@ -10,82 +12,105 @@ public class InputController {
 
     }
     public int checkAll(InputStruct inputStruct){
-        ArrayList<FormEntry> formEntries=inputStruct.getFormEntries();
+        Set<Map.Entry<Integer, FormEntry>> formEntries=inputStruct.getFormEntries().entrySet();
         String password=null;
-        for(FormEntry fe: formEntries){
-            int code = fe.getCode();
+        for(Map.Entry<Integer,FormEntry> fe: formEntries){
+            int code = fe.getValue().getCode();
             switch (code){
                 case 1:
-                    if(!checkUserName(fe.getString())) return 1;
+                    if(!checkUserName(fe.getValue().getString())) return 1;
                     break;
                 case 2:
-                    if(!checkUserUserName(fe.getString())) return 2;
+                    if(!checkUserUserName(fe.getValue().getString())) return 2;
                     break;
                 case 3:
-                    if(!checkUserPassword(fe.getString())) return 3;
+                    if(!checkUserPassword(fe.getValue().getString())) return 3;
                     if(password==null) {
-                        password = fe.getString();
+                        password = fe.getValue().getString();
                     }else{
-                        if(!password.equals(fe.getString())) return 3;
+                        if(!password.equals(fe.getValue().getString())) return 3;
                     }
                     break;
                 case 4:
-                    if(!checkUserCountry(fe.getString())) return 4;
+                    if(!checkUserCountry(fe.getValue().getString())) return 4;
                     break;
                 case 5:
-                    if(!checkUserNeighbourhood(fe.getString())) return 5;
+                    if(!checkUserNeighbourhood(fe.getValue().getString())) return 5;
                     break;
                 case 6:
-                    if(!checkUserAddress(fe.getString())) return 6;
+                    if(!checkUserAddress(fe.getValue().getString())) return 6;
                     break;
                 case 7:
-                    if(!checkUserPhoneNumber(fe.getString())) return 7;
+                    if(!checkUserPhoneNumber(fe.getValue().getString())) return 7;
                     break;
                 case 8:
-                    if(!checkUserSurname(fe.getString())) return 8;
+                    if(!checkUserSurname(fe.getValue().getString())) return 8;
                     break;
                 case 9:
-                    if(!checkUserEmail(fe.getString())) return 9;
+                    if(!checkUserEmail(fe.getValue().getString())) return 9;
                     break;
                 case 10:
-                    if(!checkUserState(fe.getString())) return 10;
+                    if(!checkUserState(fe.getValue().getString())) return 10;
                     break;
                 case 11:
-                    if(!checkUserDocumentType(fe.getString())) return 11;
+                    if(!checkUserDocumentType(fe.getValue().getString())) return 11;
                     break;
                 case 12:
-                    if(!checkUserDocument(fe.getString())) return 12;
+                    if(!checkUserDocument(fe.getValue().getString())) return 12;
                     break;
                 case 13:
-                    if(!checkUserBirthDate(fe.getString())) return 13;
+                    if(!checkUserBirthDate(fe.getValue().getString())) return 13;
                     break;
                 case 14:
-                    if(!checkUserPostalCode(fe.getString())) return 14;
+                    if(!checkUserPostalCode(fe.getValue().getString())) return 14;
                     break;
                 case 15:
-                    if(!checkUserPassword(fe.getString())) return 15;
+                    if(!checkUserPassword(fe.getValue().getString())) return 15;
                     if(password==null) {
-                        password = fe.getString();
+                        password = fe.getValue().getString();
                     }else{
-                        if(!password.equals(fe.getString())) return 15;
+                        if(!password.equals(fe.getValue().getString())) return 15;
                     }
                 case 21:
-                    if(!checkProductTitle(fe.getString())) return 21;
+                    if(!checkProductTitle(fe.getValue().getString())) return 21;
                     break;
                 case 22:
-                    if(!checkProductAmount(fe.getString())) return 22;
+                    if(!checkProductAmount(fe.getValue().getString())) return 22;
                     break;
                 case 23:
-                    if(!checkProductPrice(fe.getString())) return 23;
+                    if(!checkProductPrice(fe.getValue().getString())) return 23;
                     break;
                 case 24:
-                    if(!checkProductDescription(fe.getString())) return 24;
+                    if(!checkProductDescription(fe.getValue().getString())) return 24;
                     break;
                 default:
                     throw new NotImplementedException();
             }
         }
         return 0;
+    }
+    public User addUser(UserCreationStruct userCreationStruct){
+        String name= userCreationStruct.getFormEntries().get(1).getString();
+        String userName= userCreationStruct.getFormEntries().get(2).getString();
+        String password = userCreationStruct.getFormEntries().get(3).getString();
+        Country country = null;// Country country = new Country(userCreationStruct.getFormEntries().get(4);
+        City city = null;// City city = userCreationStruct.getFormEntries().get(5);
+        String address = userCreationStruct.getFormEntries().get(6).getString();
+        String phoneNumber = userCreationStruct.getFormEntries().get(7).getString();
+        String surname = userCreationStruct.getFormEntries().get(8).getString();
+        String email = userCreationStruct.getFormEntries().get(9).getString();
+        Province province = null;// Province province= userCreationStruct.getFormEntries().get(10);
+        DocType doctype = null;// DocType doctype = userCreationStruct.getFormEntries().get(11);
+        String docNumber = userCreationStruct.getFormEntries().get(12).getString();
+        String postalcode = userCreationStruct.getFormEntries().get(14).getString();
+        String telephone2 = userCreationStruct.getFormEntries().get(16).getString();
+        boolean enabled = true;
+        boolean confirmado = true;
+        boolean admin = false;
+        Cart cart = null;
+        return User.create(docNumber,userName,password,name,surname,email,enabled,confirmado,admin,doctype,cart,country,
+                city,province,address,postalcode,phoneNumber,telephone2);
+
     }
 
     private boolean checkUserSurname(String surname) {

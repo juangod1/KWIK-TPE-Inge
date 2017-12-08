@@ -5,22 +5,22 @@ import java.util.ArrayList;
 
 public class User implements Persistent{
 
-    private int id, docNum, streetNum;
-    private String username, password, name, surname, email;
+    private int id;
+    private String username, password, name, surname, email, docNum;
     private boolean enabled, confirmed, admin;
     private DocType doc;
     private Cart cart;
     private Country country;
     private City city;
     private Province province;
-    private String street, apartment, postalCode, phone;
+    private String adress,  postalCode, phone;
 
 
     private User(){}
 
-    private User(int id, int docNum, String username, String password, String name, String surname, String email, boolean enabled,
-                boolean confirmed, boolean admin, DocType doc, Cart cart, Country country, City city, Province province, String street,
-                int streetNum, String apartment, String postalCode, String phone) {
+    private User(int id, String docNum, String username, String password, String name, String surname, String email, boolean enabled,
+                boolean confirmed, boolean admin, DocType doc, Cart cart, Country country, City city, Province province, String adress,
+                 String postalCode, String phone, String phone2) {
         this.id = id;
         this.docNum = docNum;
         this.username = username;
@@ -35,20 +35,18 @@ public class User implements Persistent{
         this.country = country;
         this.city = city;
         this.province = province;
-        this.street = street;
-        this.streetNum = streetNum;
-        this.apartment = apartment;
+        this.adress=adress;
         this.postalCode = postalCode;
         this.phone = phone;
         this.admin = admin;
     }
 
-    public static User create(int docNum, String username, String password, String name, String surname, String email, boolean enabled,
-                              boolean confirmed, boolean admin, DocType doc, Cart cart, Country country, City city, Province province, String street,
-                              int streetNum, String apartment, String postalCode, String phone) { //Factory :wink:
+    public static User create(String docNum, String username, String password, String name, String surname, String email, boolean enabled,
+                              boolean confirmed, boolean admin, DocType doc, Cart cart, Country country, City city, Province province, String adress,
+                              String postalCode, String phone, String phone2) { //Factory :wink:
 
         return new User(0, docNum, username, password, name, surname, email, enabled, confirmed, admin, doc, cart, country, city,
-                        province, street, streetNum, apartment, postalCode, phone);
+                        province, adress, postalCode, phone,phone2);
     }
 
     public static User get(int id) {
@@ -61,12 +59,12 @@ public class User implements Persistent{
 
     @Override
     public boolean save() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean delete() {
-        return true;
+        return false;
     }
 
     public boolean validateLogin(){
@@ -77,20 +75,12 @@ public class User implements Persistent{
         return id;
     }
 
-    public int getDocNum() {
+    public String getDocNum() {
         return docNum;
     }
 
-    public void setDocNum(int docNum) {
+    public void setDocNum(String docNum) {
         this.docNum = docNum;
-    }
-
-    public int getStreetNum() {
-        return streetNum;
-    }
-
-    public void setStreetNum(int streetNum) {
-        this.streetNum = streetNum;
     }
 
     public String getUsername() {
@@ -205,21 +195,9 @@ public class User implements Persistent{
         this.province = province;
     }
 
-    public String getStreet() {
-        return street;
-    }
+    public void setAdress(String adress){ this.adress=adress;}
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getApartment() {
-        return apartment;
-    }
-
-    public void setApartment(String apartment) {
-        this.apartment = apartment;
-    }
+    public String getAdress(){return  adress;}
 
     public String getPostalCode() {
         return postalCode;

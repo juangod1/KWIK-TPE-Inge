@@ -125,7 +125,8 @@ public class NewUser {
                         document.getText(), secondaryPhone.getText());
                 int errorcode=inputController.checkAll(userCreationStruct);
                 if(errorcode==0){
-                    //mandar a BD y logear
+                    inputController.addUser(userCreationStruct);
+                    JOptionPane.showMessageDialog(null, "User Created Successfully!");
                 }else{
                     createUserErrorMessage(errorcode);
                 }

@@ -1,21 +1,24 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class InputStruct {
-    protected ArrayList<FormEntry> formEntries;
+    protected Map<Integer,FormEntry> formEntries;
     public InputStruct(){
-        formEntries= new ArrayList<>();
+        formEntries= new HashMap<Integer,FormEntry>();
     }
 
-    public ArrayList<FormEntry> getFormEntries() {
+    public Map<Integer,FormEntry> getFormEntries() {
         return formEntries;
     }
     @Override
     public String toString(){
         String ret = new String();
-        for(FormEntry fe: formEntries){
-            ret+=(fe.getCode()+": "+fe.getString()+" ");
+
+        for(Integer i: formEntries.keySet()){
+            ret+=(formEntries.get(i).getCode()+": "+formEntries.get(i).getString()+" ");
         }
         return ret;
     }
