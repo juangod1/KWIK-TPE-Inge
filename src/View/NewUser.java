@@ -43,13 +43,13 @@ public class NewUser {
     private JTextField address;
     private JTextField email;
     private JTextField postalCode;
-    private JTextField Province;
     private JTextField neighborhood;
     private JTextField secondaryPhone;
     private JTextField mainPhone;
     private JTextField docType;
     private JTextField confirmedPassword;
     private JTextField document;
+    private JTextField province;
 
     public NewUser() {
         name.addActionListener(new ActionListener() {
