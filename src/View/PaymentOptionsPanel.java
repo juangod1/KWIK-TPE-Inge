@@ -91,24 +91,31 @@ public class PaymentOptionsPanel {
     }
 
     private static void displayCardCreator() {
-        String[] items = {"One", "Two", "Three", "Four", "Five"};
-        JComboBox<String> combo = new JComboBox<>(items);
-        JTextField id = new JTextField();
-        JTextField user = new JTextField();
-        JTextField sad = new JTextField();
+        JTextField name = new JTextField();
+        JTextField surname = new JTextField();
+        JTextField number = new JTextField();
+        JTextField day = new JTextField();
+        JTextField month = new JTextField();
+        JTextField code = new JTextField();
+
         JPanel panel = new JPanel(new GridLayout(0, 1));
-        panel.add(combo);
-        panel.add(new JLabel("Field 1:"));
-        panel.add(id);
-        panel.add(new JLabel("Field 2:"));
-        panel.add(user);
+        panel.add(new JLabel("Name:"));
+        panel.add(name);
+        panel.add(new JLabel("Surname:"));
+        panel.add(surname);
+        panel.add(new JLabel("Expiration day:"));
+        panel.add(day);
+        panel.add(new JLabel("Expiration month:"));
+        panel.add(month);
+        panel.add(new JLabel("Credit card number:"));
+        panel.add(number);
+        panel.add(new JLabel("security Code:"));
+        panel.add(code);
         int result = JOptionPane.showConfirmDialog(null, panel, "nueva tarjeta",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (result == JOptionPane.OK_OPTION) {
-            System.out.println(combo.getSelectedItem()
-                    + " " + id.getText()
-                    + " " + user.getText());
+            //retrieve fields and send to model
         } else {
             System.out.println("Cancelled");
         }
