@@ -34,13 +34,14 @@ public class View {
         }
     }
 
-    public View(){
+    public View(Controller controller){
+        this.controller=controller;
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
         searchPanel = new SearchPanel();
         resultsPanel = new ResultsPanel();
         teamPanel = new TeamPanel();
-        newUser = new NewUser();
+        newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper);
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper);
@@ -285,7 +286,7 @@ public class View {
 
     public void initialize(Controller controller) {
         JFrame frame = new JFrame("KWIK");
-        frame.setContentPane(new View().cards);
+        frame.setContentPane(new View(controller).cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

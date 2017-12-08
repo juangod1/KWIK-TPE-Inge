@@ -17,7 +17,7 @@ public class DataBaseHandler {
     }
 
     public void initialize(){
-        //sacar todo de la bd
+        //sacar to-do de la bd
     }
 
     public void updateProduct(){
