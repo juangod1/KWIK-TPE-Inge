@@ -122,7 +122,6 @@ public class NewUser {
                         country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
                         email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
                         document.getText(), secondaryPhone.getText());
-                System.out.println(inputController);
                 if(inputController.checkAll(userCreationStruct)){
                     //mandar a BD y logear
                 }else{

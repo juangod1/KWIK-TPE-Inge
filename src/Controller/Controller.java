@@ -15,7 +15,7 @@ public class Controller {
     private View view;
 
     public static void main(String[] args){
-        View view = new View();
+        View view = new View(getInstance());
         view.initialize(getInstance());
     }
     public static Controller getInstance(){
