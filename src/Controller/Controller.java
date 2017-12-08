@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Model;
 import Model.Product;
+import View.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,11 +11,11 @@ public class Controller {
     private DataBaseHandler dBH;
     private Model model;
 
-    //public static void main(String[] args){
-      //  Controller controller = new Controller();
+    public static void main(String[] args){
+        Controller controller = new Controller();
+        View.MainHandler.initialize();
 
-        
-//    }
+    }
 
     public Controller(){
         dBH = new DataBaseHandler(model);

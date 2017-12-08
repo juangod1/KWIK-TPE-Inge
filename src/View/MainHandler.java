@@ -265,7 +265,7 @@ public class MainHandler {
         });
     }
 
-    public static void main(String[] args) {
+    public static void initialize() {
         JFrame frame = new JFrame("KWIK");
         frame.setContentPane(new MainHandler().cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
