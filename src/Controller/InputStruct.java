@@ -11,4 +11,12 @@ public abstract class InputStruct {
     public ArrayList<FormEntry> getFormEntries() {
         return formEntries;
     }
+    @Override
+    public String toString(){
+        String ret = new String();
+        for(FormEntry fe: formEntries){
+            ret+=(fe.getCode()+": "+fe.getString()+" ");
+        }
+        return ret;
+    }
 }
