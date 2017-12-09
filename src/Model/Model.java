@@ -27,4 +27,8 @@ public class Model {
     public ArrayList<Product> getProducts(){
         return products;
     }
+
+    public User getUser() {
+        return user;
+    }
 }

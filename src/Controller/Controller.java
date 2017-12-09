@@ -62,4 +62,8 @@ public class Controller {
     public InputController getInputController() {
         return inputController;
     }
+
+    public Model getModel(){
+        return model;
+    }
 }
