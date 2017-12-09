@@ -95,7 +95,17 @@ public class NewUser {
     ActionListener modifyListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO: usar el modifiaction struct y meterlo en la BD
+            UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
+                    country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
+                    email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
+                    document.getText(), secondaryPhone.getText());
+            int errorcode=inputController.checkAll(userCreationStruct);
+            if(errorcode==0){
+                inputController.addUser(userCreationStruct);
+                JOptionPane.showMessageDialog(null, "User Modified Successfully!");
+            }else{
+                createUserErrorMessage(errorcode);
+            }
         }
     };
 
