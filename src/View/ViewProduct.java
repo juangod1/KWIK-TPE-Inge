@@ -51,14 +51,12 @@ public class ViewProduct {
     public void printProduct(Product product){
         cleanProduct();
         name.setText(product.getName());
-        thumbnail.setText(product.getThumbnail());
         precio.setText("$" + ((Double)product.getPrice()).toString());
         description.setText(product.getDescription());
     }
 
     public void cleanProduct(){
         name.setText("");
-        thumbnail.setText("");
         precio.setText("");
         description.setText("");
     }

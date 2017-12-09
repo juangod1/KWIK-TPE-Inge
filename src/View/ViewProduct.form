@@ -174,17 +174,6 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="f8e65" class="javax.swing.JTextField" binding="thumbnail">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-1"/>
-              <font style="1"/>
-            </properties>
-          </component>
           <component id="93f30" class="javax.swing.JTextField" binding="precio">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
