@@ -13,7 +13,6 @@ public class User implements Persistent{
     private String username, password, name, surname, email, doc;
     private boolean enabled, confirmed, admin;
     private DocType docType;
-    private Cart cart;
     private Country country;
     private City city;
     private Province province;
@@ -208,11 +207,7 @@ public class User implements Persistent{
     }
 
     public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+        return Cart.getUserCart(this);
     }
 
     public ArrayList<Product> getProducts() {

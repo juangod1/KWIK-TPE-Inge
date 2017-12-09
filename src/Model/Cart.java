@@ -170,8 +170,10 @@ public class Cart implements Persistent {
         return closed;
     }
 
-    public void close(){
-        closed = true;
+    public boolean close(){
+        if(card != null)
+            closed = true;
+        return closed;
     }
 
     public double getSubTotal() {
