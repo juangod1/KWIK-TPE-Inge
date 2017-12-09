@@ -99,7 +99,7 @@ public class Product implements Persistent{
         return listByCriteria("WHERE name ILIKE '%"+text+"%'");
     }
 
-    private static Product fromResultSet(ResultSet rs) {
+    public static Product fromResultSet(ResultSet rs) {
         try {
             return new Product(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
                     rs.getDouble("price"), rs.getInt("idClient"), rs.getString("thumbnail"),
