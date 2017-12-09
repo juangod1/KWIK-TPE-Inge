@@ -33,7 +33,7 @@ public class Controller {
     private Controller(){
         dBH = new DataBaseHandler(model);
         dBH.initialize();
-        inputController= new InputController();
+        inputController= new InputController(this);
         model = new Model();
     }
 
@@ -77,5 +77,9 @@ public class Controller {
 
     public static boolean setUser(User user){
         return model.setUser(user);
+    }
+
+    public User getCurrentUser() {
+        return model.getUser();
     }
 }

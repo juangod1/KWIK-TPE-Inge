@@ -2,6 +2,7 @@ package View;
 
 import Controller.InputController;
 import Controller.UserCreationStruct;
+import Model.User;
 import jdk.internal.util.xml.impl.Input;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -69,10 +70,30 @@ public class NewUser {
 
         }
         else{
+            setPreviousValues();
             crearButton.setText("modificar");
             crearButton.removeActionListener(createListener);
             crearButton.addActionListener(modifyListener);
         }
+    }
+
+    private void setPreviousValues() {
+        User currentUser = inputController.getController().getCurrentUser();
+        username.setText(currentUser.getUsername());
+        name.setText(currentUser.getName());
+        password.setText(currentUser.getPassword());
+        surname.setText(currentUser.getSurname());
+        country.setText(currentUser.getCountry().getName());
+        address.setText(currentUser.getaddress());
+        email.setText(currentUser.getEmail());
+        postalCode.setText(currentUser.getPostCode());
+        neighborhood.setText(currentUser.getCity().getName());
+        secondaryPhone.setText(currentUser.getPhone2());
+        mainPhone.setText(currentUser.getPhone());
+        docType.setText(currentUser.getDocType().getName());
+        confirmedPassword.setText(currentUser.getPassword());
+        document.setText(currentUser.getdoc());
+        province.setText(currentUser.getProvince().getName());
     }
 
     ActionListener createListener = new ActionListener() {

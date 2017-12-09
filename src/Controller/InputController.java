@@ -8,8 +8,12 @@ import java.util.*;
 import java.util.concurrent.SynchronousQueue;
 
 public class InputController {
-    public InputController(){
-
+    private Controller controller;
+    public InputController(Controller controller){
+        this.controller=controller;
+    }
+    public Controller getController(){
+        return controller;
     }
     public int checkAll(InputStruct inputStruct){
         Set<Map.Entry<Integer, FormEntry>> formEntries=inputStruct.getFormEntries().entrySet();
