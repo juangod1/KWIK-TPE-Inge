@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainpanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="10655" height="400"/>
+      <xy x="20" y="20" width="10655" height="433"/>
     </constraints>
     <properties>
       <preferredSize width="600" height="480"/>
@@ -154,7 +154,7 @@
             <properties>
               <editable value="false"/>
               <font style="1"/>
-              <text value="What the fuck did you just fucking say &#10;about me, you little bitch? I’ll have you know I gr&#10;aduated top of my class in the Navy Seal&#10;s, and I’ve been involved in numerous secret raids on&#10; Al-Quaeda, and I have over 300 confirmed kills.  I a&#10;m trained in gorilla warfare and I’m the top sniper in&#10; the entire US armed forces. You are nothing to me but jus&#10;t another target. I will wipe you the fuck&#10; out with precision the likes of which has never been se&#10;en before on this Earth, mark my fucking words.  You think you &#10;can get away with saying that shit to me over the &#10;? Think again, fucker. As we speak I am contacting my secret network of spie&#10;s across the USA and your IP is being traced right now so&#10;you better prepare for the storm, maggot. The storm that&#10; wipes out the pathetic little thing you call your life. ."/>
+              <text value="Kwik tiene la filosofía de ser el vínculo entre las personas. "/>
             </properties>
           </component>
         </children>
