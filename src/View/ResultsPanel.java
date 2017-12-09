@@ -73,7 +73,7 @@ public class ResultsPanel {
 
     public void printResults(String query){
 
-        ArrayList<Product> prods = Product.search(query);
+        final ArrayList<Product> prods = Product.search(query);
 
         if(prods.size()>=1)
         textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
