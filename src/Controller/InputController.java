@@ -84,6 +84,9 @@ public class InputController {
                 case 23:
                     if(!checkProductPrice(fe.getValue().getString())) return 23;
                     break;
+                case 24:
+                    if(!checkProductDescription(fe.getValue().getString())) return 24;
+                    break;
                 case 31:
                     if(!checkCardName(fe.getValue().getString())) return 31;
                     break;
@@ -282,21 +285,16 @@ public class InputController {
         {
             a=Double.parseDouble(price);
         }
-        catch(NumberFormatException e)
-        {
-            System.out.println(false);
+        catch(NumberFormatException e){
             return false;
         }
-        System.out.println(a>=0);
         return a>=0;
     }
     public boolean checkProductAmount(String amount){
-        if(isPositiveInteger(amount)){
-            System.out.println(false);
+        if(!isPositiveInteger(amount)){
             return false;
         }
         int i = Integer.parseInt(amount);
-        System.out.println(i>0);
         return i>0;
     }
     public boolean checkProductDescription(String email){

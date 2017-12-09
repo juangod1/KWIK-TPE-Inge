@@ -63,6 +63,7 @@ public class NewUser {
 
     public void setCreating(boolean creating) {
         isCreating = creating;
+        System.out.println("Creating is: "+creating);
         if(creating){
             crearButton.setText("Crear");
             crearButton.removeActionListener(modifyListener);

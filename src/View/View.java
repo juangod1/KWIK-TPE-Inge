@@ -66,7 +66,7 @@ public class View {
         profilePanel = new ProfilePanel(viewSwapper, controller);
         visionPanel = new VisionPanel();
         viewProduct = new ViewProduct();
-        addProductPanel = new AddProductPanel(viewSwapper);
+        addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
         profileMenuPanel = new ProfileMenuPanel(viewSwapper);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
