@@ -49,27 +49,35 @@ public class User implements Persistent{
     }
 
     public static User create(String doc, String username, String password, String name, String surname, String email, boolean enabled,
-                              boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
-                              String postCode, String phone, String phone2) { //Factory :wink:
+                              boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province,
+                              String address, String postCode, String phone, String phone2) { //Factory :wink:
 
-        return new User(0, doc, username, password, name, surname, email, enabled, confirmed, admin, docType, cart, country, city,
-                        province, address, postCode, phone, phone2);
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO client (username, password, name, surname," +
+                    " email, iddoctype, idcountry, idprovince, idcity, postcode, phone, enabled, confirmed, admin, doc, phone2, address) " +
+                    "VALUES ('"+username+"', '"+password+"', '"+name+"', '"+surname+"', '"+email+"', "+docType.getId()+", "+country.getId()+
+                    ", "+province.getId()+", "+city.getId()+", '"+postCode+"', '"+phone+"', "+enabled+", "+confirmed+", "+admin+", '"+doc+
+                    "', '"+phone2+"', '"+address+"') RETURNING id");
+
+            if(rs.next())
+                return new User(rs.getInt(1), doc, username, password, name, surname, email, enabled, confirmed, admin, docType,
+                        cart, country, city, province, address, postCode, phone, phone2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static User get(int id) {
         try {
-            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery( select +
-                    "WHERE u.id = "+ id);
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery( select + "WHERE u.id = "+ id);
             if(rs.next()) {
                 return fromResultSet(rs);
             }
-            else {
-                return null;
-            }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            return null;
         }
+        return null;
     }
 
     public static User login(String username, String password) {
@@ -79,13 +87,23 @@ public class User implements Persistent{
             if(rs.next()) {
                 return fromResultSet(rs);
             }
-            else {
-                return null;
-            }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-            return null;
         }
+        return null;
+    }
+    
+    public static ArrayList<User> list() {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select);
+            while (rs.next()) {
+                users.add(fromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     private static User fromResultSet(ResultSet rs) {
