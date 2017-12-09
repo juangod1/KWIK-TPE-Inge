@@ -13,12 +13,13 @@ import java.util.ArrayList;
     }
 
     public boolean setUser(User user){
-        if(user == null){
+        if(this.user == null){
             this.user = user;
             return true;
         }
-        else
+        else {
             return false;
+        }
     }
 
     public Model(){
