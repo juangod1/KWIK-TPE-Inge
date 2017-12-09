@@ -35,6 +35,11 @@ public class ResultsPanel {
     private JButton button3;
     private JButton button4;
     private JButton button5;
+    private JButton viewButton;
+    private JButton viewButton1;
+    private JButton viewButton2;
+    private JButton viewButton3;
+    private JButton viewButton4;
     private JTable table1;
     private Controller controller;
 
@@ -68,7 +73,7 @@ public class ResultsPanel {
 
     public void printResults(String query){
 
-        ArrayList<Product> prods = new ArrayList<>();
+        final ArrayList<Product> prods = new ArrayList<>();
         prods.add(Product.create("Manzana","esta medio podrida", 666.0, User.get(0), "thumbnail", 4));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
@@ -114,5 +119,40 @@ public class ResultsPanel {
                 System.out.println("add item to cart");
             }
         });
+
+
+
+        viewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("go to product "+prods.get(0).getName());
+            }
+        });
+        viewButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("go to product "+prods.get(1).getName());
+            }
+        });
+        viewButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("go to product "+prods.get(2).getName());
+            }
+        });
+        viewButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("go to product "+prods.get(3).getName());
+            }
+        });
+        viewButton4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("go to product "+prods.get(4).getName());
+            }
+        });
+
+
      }
 }
