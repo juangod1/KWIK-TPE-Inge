@@ -31,6 +31,10 @@ public class ShoppingcartPanel {
     private JTextArea textArea2;
     private JTextArea textArea3;
     private JTextArea textArea4;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
     private JTextArea textArea;
     private View.ViewSwapper vs;
     private Controller controller;
@@ -110,25 +114,62 @@ public class ShoppingcartPanel {
 
     public void writeCart(){
         if(controller.getCurrentUser()!=null) {
+
             this.cart = Cart.getUserCart(controller.getCurrentUser());
+            cleanCart();
+
             if (cart != null) {
-                if (cart.getProducts().size() >= 1)
+
+                if (cart.getProducts().size() >= 1) {
                     textArea1.setText(cart.getProducts().get(0).getName());
+                    button1.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            cart.removeProduct(cart.getProducts().get(0));
+                            writeCart();
+                        }
+                    });
+                }
                 else
                     textArea1.setText("");
 
-                if (cart.getProducts().size() >= 2)
+                if (cart.getProducts().size() >= 2) {
                     textArea2.setText(cart.getProducts().get(1).getName());
+                    button2.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            cart.removeProduct(cart.getProducts().get(1));
+                            writeCart();
+                        }
+                    });
+                }
+
                 else
                     textArea2.setText("");
 
-                if (cart.getProducts().size() >= 3)
+                if (cart.getProducts().size() >= 3) {
                     textArea3.setText(cart.getProducts().get(2).getName());
+                    button3.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            cart.removeProduct(cart.getProducts().get(2));
+                            writeCart();
+                        }
+                    });
+                }
                 else
                     textArea3.setText("");
 
-                if (cart.getProducts().size() >= 4)
+                if (cart.getProducts().size() >= 4) {
                     textArea4.setText(cart.getProducts().get(3).getName());
+                    button4.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            cart.removeProduct(cart.getProducts().get(3));
+                            writeCart();
+                        }
+                    });
+                }
                 else
                     textArea4.setText("");
 
@@ -142,5 +183,22 @@ public class ShoppingcartPanel {
         }
         else
             total.setText("There is no cart");
+    }
+
+    public void cleanCart(){
+        textArea1.setText("");
+        textArea2.setText("");
+        textArea3.setText("");
+        textArea4.setText("");
+        total.setText("");
+
+        if(button1.getActionListeners().length>0)
+        button1.removeActionListener(button1.getActionListeners()[0]);
+        if(button2.getActionListeners().length>0)
+        button2.removeActionListener(button2.getActionListeners()[0]);
+        if(button3.getActionListeners().length>0)
+        button3.removeActionListener(button3.getActionListeners()[0]);
+        if(button4.getActionListeners().length>0)
+        button4.removeActionListener(button4.getActionListeners()[0]);
     }
 }
