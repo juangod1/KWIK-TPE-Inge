@@ -34,7 +34,7 @@ public class Card implements Persistent{
         return new Card();
     }
 
-    public static ArrayList<Card> getUserCards(User user) {
+    public static ArrayList<Card> getByUser(User user) {
         return new ArrayList<>();
     }
 

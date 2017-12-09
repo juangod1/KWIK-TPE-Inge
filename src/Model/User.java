@@ -133,11 +133,6 @@ public class User implements Persistent{
         return doc;
     }
 
-    // TODO: Agregar a la base de datos
-    public boolean addCard(Card card){
-        return cards.add(card);
-    }
-
     public void setdoc(String doc) {
         this.doc = doc;
     }
@@ -223,11 +218,11 @@ public class User implements Persistent{
     }
 
     public ArrayList<Product> getProducts() {
-        return new ArrayList<Product>();
+        return Product.getByUser(this);
     }
 
     public ArrayList<Card> getCards() {
-        return new ArrayList<Card>();
+        return Card.getByUser(this);
     }
 
     public Country getCountry() {

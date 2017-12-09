@@ -22,8 +22,6 @@ public class Controller {
         DatabaseService.getInstance().initializeDB();
         User user = User.login("admin", "admin");
         System.out.println("User: " + (user != null));
-        //if(!DatabaseService.getInstance().initializeDB())
-        //    throw new RuntimeException("DB - Se fue todo a la chota");
     }
     public static Controller getInstance(){
         if(singleton==null){
@@ -65,9 +63,7 @@ public class Controller {
     public InputController getInputController() {
         return inputController;
     }
-    public void addCard(Card card){
-        model.getUser().addCard(card);
-    }
+
 
     public Model getModel(){
         return model;

@@ -1,5 +1,9 @@
 package Model;
 
+import Service.DatabaseService;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Product implements Persistent{
@@ -13,6 +17,8 @@ public class Product implements Persistent{
     private int visits;
     private int sold;
 
+    private int userId;
+
     private Product() {}
 
     private Product(int id, String name, String description, double price, User user, String thumbnail, int stock){
@@ -23,29 +29,85 @@ public class Product implements Persistent{
         this.user = user;
         this.thumbnail = thumbnail;
         this.stock = stock;
-
-        visits=0;
-        sold=0;
+        this.visits=0;
+        this.sold=0;
     }
 
+    private Product(int id, String name, String description, double price, int userId, String thumbnail, int stock, int visits, int sold) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.userId = userId;
+        this.user = null;
+        this.thumbnail = thumbnail;
+        this.stock = stock;
+        this.visits = visits;
+        this.sold = sold;
+    }
+
+    private static final String select = "SELECT * FROM product ";
+
     public static Product create(String name, String description, double price, User user, String thumbnail, int stock) {
-        return new Product(0, name, description, price, user, thumbnail, stock);
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO product (name, description, price, stock, idclient, thumbnail) " +
+                    "VALUES ('"+name+"', '"+description+"', "+price+", "+stock+", "+user.getId()+", "+(thumbnail==null?"NULL":"'"+thumbnail+"'")+") " +
+                    "RETURNING id");
+            if(rs.next())
+                return new Product(rs.getInt(1), name, description, price, user, thumbnail, stock);
+            else
+                return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static Product get(int id) {
-        return new Product();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select+"WHERE id = "+id);
+            if(rs.next())
+                return fromResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static ArrayList<Product> listByCriteria(String criteria) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + criteria);
+            while (rs.next()) {
+                products.add(fromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public static ArrayList<Product> getByUser(User user) {
+        return listByCriteria("WHERE idclient = "+user.getId());
     }
 
     public static ArrayList<Product> list() {
-        return new ArrayList<>();
-    }
-
-    public static ArrayList<Product> list(User user) {
-        return new ArrayList<>();
+        return listByCriteria("");
     }
 
     public static ArrayList<Product> search(String text) {
-        return new ArrayList<>();
+        return listByCriteria("WHERE name ILIKE '%"+text+"%'");
+    }
+
+    private static Product fromResultSet(ResultSet rs) {
+        try {
+            return new Product(rs.getInt("id"), rs.getString("name"), rs.getString("description"),
+                    rs.getDouble("price"), rs.getInt("idClient"), rs.getString("thumbnail"),
+                    rs.getInt("stock"), rs.getInt("visits"), rs.getInt("sold"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -95,6 +157,8 @@ public class Product implements Persistent{
     }
 
     public User getUser() {
+        if(user == null)
+            user = User.get(userId);
         return user;
     }
 
@@ -127,11 +191,11 @@ public class Product implements Persistent{
     }
 
     public ArrayList<Review> getReviews() {
-        return new ArrayList<>();
+        return Review.list(this);
     }
 
     public ArrayList<Picture> getPictures() {
-        return new ArrayList<>();
+        return Picture.list(this);
     }
 
     @Override

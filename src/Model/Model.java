@@ -17,12 +17,6 @@ public class Model {
         cards = new ArrayList<>();
         products = new ArrayList<>();
     }
-    
-    @Deprecated
-    public void createProduct(int id, String name, String description, double price, User user, String thumbnail, int stock){
-        Product newprod = Product.create(name, description, price, user, thumbnail, stock);
-        products.add(newprod);
-    }
 
     public void deleteProduct(Product prod){
         products.remove(prod);

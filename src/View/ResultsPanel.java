@@ -73,10 +73,7 @@ public class ResultsPanel {
 
     public void printResults(String query){
 
-        final ArrayList<Product> prods = new ArrayList<>();
-        prods.add(Product.create("Manzana","esta medio podrida", 666.0, User.get(0), "thumbnail", 4));
-        prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
-        prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
+        ArrayList<Product> prods = Product.search(query);
 
         if(prods.size()>=1)
         textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
