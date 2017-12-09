@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Country extends Area {
+public class Country extends Data {
     private String name;
 
     private static final String select = "SELECT * FROM country ";

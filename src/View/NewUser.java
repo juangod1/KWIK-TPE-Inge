@@ -2,14 +2,12 @@ package View;
 
 import Controller.InputController;
 import Controller.UserCreationStruct;
-import Model.City;
-import Model.Country;
-import Model.Province;
-import Model.User;
+import Model.*;
 import jdk.internal.util.xml.impl.Input;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.naming.ldap.Control;
+import javax.print.Doc;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -58,13 +56,13 @@ public class NewUser {
     private JTextField neighborhood;
     private JTextField secondaryPhone;
     private JTextField mainPhone;
-    private JTextField docType;
     private JTextField confirmedPassword;
     private JTextField document;
     private JTextField province;
     private JComboBox<Country> countries;
-    private JComboBox provinces;
-    private JComboBox cities;
+    private JComboBox<Province> provinces;
+    private JComboBox<City> cities;
+    private JComboBox<DocType> docType;
     private boolean isCreating;
 
     public void setCreating(boolean creating) {
@@ -97,7 +95,6 @@ public class NewUser {
         neighborhood.setText(currentUser.getCity().getName());
         secondaryPhone.setText(currentUser.getPhone2());
         mainPhone.setText(currentUser.getPhone());
-        docType.setText(currentUser.getDocType().getName());
         confirmedPassword.setText(currentUser.getPassword());
         document.setText(currentUser.getdoc());
         province.setText(currentUser.getProvince().getName());
@@ -108,8 +105,8 @@ public class NewUser {
         public void actionPerformed(ActionEvent e) {
             UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
                     (Country)(countries.getSelectedItem()), (City)cities.getSelectedItem(), address.getText(), mainPhone.getText(), surname.getText(),
-                    email.getText(), confirmedPassword.getText(), (Province)provinces.getSelectedItem(), postalCode.getText(), docType.getText(),
-                    document.getText(), secondaryPhone.getText());
+                    email.getText(), confirmedPassword.getText(), (Province)provinces.getSelectedItem(), postalCode.getText(),
+                    (DocType)(docType.getSelectedItem()),document.getText(), secondaryPhone.getText());
             int errorcode=inputController.checkAll(userCreationStruct);
             if(errorcode==0){
                 inputController.addUser(userCreationStruct);
@@ -125,7 +122,7 @@ public class NewUser {
         public void actionPerformed(ActionEvent e) {
             UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
                     (Country)countries.getSelectedItem(), (City)cities.getSelectedItem(), address.getText(), mainPhone.getText(), surname.getText(),
-                    email.getText(), confirmedPassword.getText(), (Province)provinces.getSelectedItem(), postalCode.getText(), docType.getText(),
+                    email.getText(), confirmedPassword.getText(), (Province)provinces.getSelectedItem(), postalCode.getText(), (DocType)docType.getSelectedItem(),
                     document.getText(), secondaryPhone.getText());
             int errorcode=inputController.checkAll(userCreationStruct);
             if(errorcode==0){
@@ -138,6 +135,9 @@ public class NewUser {
     };
 
     public NewUser(final InputController inputController) {
+        for(DocType d: DocType.list()){
+            docType.addItem(d);
+        }
         for(Country c : Country.list()){
             countries.addItem(c);
         }
@@ -273,7 +273,6 @@ public class NewUser {
         cities.removeAllItems();
         secondaryPhone.setText("");
         mainPhone.setText("");
-        docType.setText("");
         confirmedPassword.setText("");
         document.setText("");
         provinces.removeAllItems();

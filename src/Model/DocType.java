@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DocType {
+public class DocType extends Data{
     private int id;
     private String name;
 
@@ -52,6 +52,10 @@ public class DocType {
 
     public int getId() {
         return id;
+    }
+
+    public String toString(){
+        return getName();
     }
 
     public String getName() {

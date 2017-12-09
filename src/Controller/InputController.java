@@ -57,7 +57,7 @@ public class InputController {
                     if(!checkUserState(((Province)(fe.getValue().getItem())).getName())) return 10;
                     break;
                 case 11:
-                    if(!checkUserDocumentType((String)fe.getValue().getItem())) return 11;
+                    if(!checkUserDocumentType((DocType)fe.getValue().getItem())) return 11;
                     break;
                 case 12:
                     if(!checkUserDocument((String)(fe.getValue().getItem()))) return 12;
@@ -265,8 +265,8 @@ public class InputController {
         return !postalCode.isEmpty();
 
     }
-    public boolean checkUserDocumentType(String documentType){
-        return documentType.equals("DNI");
+    public boolean checkUserDocumentType(DocType documentType){
+        return documentType.toString().equals("DNI");
     }
     public boolean checkUserBirthDate(String birthDate){
         String[] strs = birthDate.split("/");

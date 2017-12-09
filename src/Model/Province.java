@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Province extends Area {
+public class Province extends Data {
     private String name;
     private int countryId;
     private Country country;
