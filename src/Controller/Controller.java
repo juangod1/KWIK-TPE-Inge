@@ -81,6 +81,7 @@ public class Controller {
         User user = User.login(username, password);
         if(user !=null){
             model.setUser(user);
+            view.setViewsAsLoggedIn();
             return true;
         }
         return false;

@@ -2,6 +2,8 @@ package View;
 
 import Controller.Controller;
 import Model.Card;
+import Model.User;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +20,6 @@ public class ProfilePanel {
     private JPanel footnote;
     private JPanel middle;
     private JLabel registrationLabel;
-    private JTextField surname;
-    private JTextField name;
-    private JTextField username;
-    private JTextField neighborhood;
-    private JTextField country;
-    private JTextField postalCode;
-    private JTextField address;
     private JLabel nameLabel;
     private JLabel surnameLabel;
     private JLabel usernameLabel;
@@ -32,23 +27,26 @@ public class ProfilePanel {
     private JLabel CountryLabel;
     private JLabel addressLabel;
     private JLabel postalCodeLabel;
-    private JTextField mainPhone;
     private JLabel secondaryPhoneLabel;
-    private JTextField secondaryPhone;
     private JLabel docTypeLabel;
-    private JLabel passwordLabel;
-    private JTextField password;
-    private JTextField document;
-    private JTextField confirmedPassword;
     private JLabel documentLabel;
-    private JLabel confirmedPasswordLabel;
     private JButton modificarButton;
     private JLabel NeighbourhoodLabel;
     private JLabel mainPhoneLabel;
     private JLabel ProvinceLabel;
-    private JTextField email;
-    private JTextField province;
-    private JTextField docType;
+    private JTextArea name;
+    private JTextArea surname;
+    private JTextArea username;
+    private JTextArea email;
+    private JTextArea country;
+    private JTextArea neighborhood;
+    private JTextArea address;
+    private JTextArea postalCode;
+    private JTextArea mainPhone;
+    private JTextArea secondaryPhone;
+    private JTextArea docType;
+    private JTextArea document;
+    private JTextArea province;
     private View.ViewSwapper vs;
 
     public ProfilePanel(final View.ViewSwapper vs, Controller controller){
@@ -60,7 +58,27 @@ public class ProfilePanel {
                 vs.changeView("newUser",1);
             }
         });
+        if(Controller.getInstance().isLoggedIn())
+            updateValues();
         
+    }
+
+    public void updateValues() {
+        User currentUser = Controller.getInstance().getCurrentUser();
+        username.setText(currentUser.getUsername());
+        name.setText(currentUser.getName());
+        System.out.println("Current name n profolePanel: "+currentUser.getName());
+        surname.setText(currentUser.getSurname());
+        country.setText(currentUser.getCountry().getName());
+        address.setText(currentUser.getaddress());
+        email.setText(currentUser.getEmail());
+        postalCode.setText(currentUser.getPostCode());
+        neighborhood.setText(currentUser.getCity().getName());
+        secondaryPhone.setText(currentUser.getPhone2());
+        mainPhone.setText(currentUser.getPhone());
+        docType.setText(currentUser.getDocType().getName());
+        document.setText(currentUser.getdoc());
+        province.setText(currentUser.getProvince().getName());
     }
 
     public JButton getVISIONButton() {

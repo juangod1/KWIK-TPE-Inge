@@ -307,7 +307,8 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                    cardLayout.show(cards, "profilePanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -564,6 +565,10 @@ public class View {
         frame.pack();
         frame.setVisible(true);
         this.controller = controller;
+    }
+
+    public void setViewsAsLoggedIn(){
+        profilePanel.updateValues();
     }
 
 }
