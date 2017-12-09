@@ -88,16 +88,13 @@ public class NewUser {
         name.setText(currentUser.getName());
         password.setText(currentUser.getPassword());
         surname.setText(currentUser.getSurname());
-        country.setText(currentUser.getCountry().getName());
         address.setText(currentUser.getaddress());
         email.setText(currentUser.getEmail());
         postalCode.setText(currentUser.getPostCode());
-        neighborhood.setText(currentUser.getCity().getName());
         secondaryPhone.setText(currentUser.getPhone2());
         mainPhone.setText(currentUser.getPhone());
         confirmedPassword.setText(currentUser.getPassword());
         document.setText(currentUser.getdoc());
-        province.setText(currentUser.getProvince().getName());
     }
 
     ActionListener createListener = new ActionListener() {
