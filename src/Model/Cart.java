@@ -36,7 +36,7 @@ public class Cart implements Persistent {
 
     private static final String select = "SELECT * FROM cart ";
 
-    public static Cart create(User user) {
+    public static Cart getOrCreate(User user) {
         Cart currentCart = getUserCart(user);
         if(currentCart != null)
             return currentCart;
