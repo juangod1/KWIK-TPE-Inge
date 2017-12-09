@@ -21,6 +21,7 @@ public class User implements Persistent{
     private static final String select = "SELECT u.*, d.name as docName, c.name as countryName, p.name as provinceName, city.name as cityName " +
             "FROM client u JOIN doctype d ON d.id = u.iddoctype JOIN country c ON c.id = u.idcountry " +
             "JOIN province p ON p.id = u.idprovince JOIN city ON city.id = u.idcity ";
+    private static final String update = "UPDATE client SET username = '%s', password = '%s', name = '%s', surname = '%s', email = '%s', iddoctype = %d, idcountry = %d, idprovince = %d, idcity = %d, postcode = '%s', phone = '%s', enabled = %b, confirmed = %b, admin = %b, doc = '%s', phone2 = '%s', address = '%s' WHERE id = %d";
 
 
     private User(){}
@@ -127,16 +128,25 @@ public class User implements Persistent{
 
     @Override
     public boolean save() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, username, password, name, surname, email,
+                    docType.getId(), country.getId(), province.getId(), city.getId(), postCode, phone, enabled, confirmed, admin, doc, phone2, address, id));
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM review WHERE id = "+id);
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
-    }
-
-    public boolean validateLogin(){
-        return true;
     }
 
     public int getId() {

@@ -19,6 +19,7 @@ public class Card implements Persistent{
     private int userId;
 
     private static final String select = "SELECT * FROM card ";
+    private static final String update = "UPDATE card SET idclient = %d, name = '%s', surname = '%s', number = '%s', year = %d, month = %d, code = %d WHERE id = %d";
 
     private Card() {}
 
@@ -93,11 +94,24 @@ public class Card implements Persistent{
 
     @Override
     public boolean save() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, user == null ? userId : user.getId(),
+                    name, surname, number, year, month, code, id));
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM card WHERE id = "+id);
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

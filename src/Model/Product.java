@@ -47,6 +47,8 @@ public class Product implements Persistent{
     }
 
     private static final String select = "SELECT * FROM product ";
+    private static final String update = "UPDATE product SET name = '%s', description = '%s', price = %f, idclient = %d, thumbnail = '%s', " +
+            "stock = %d, visits = %d, sold = %d WHERE id = %d";
 
     public static Product create(String name, String description, double price, User user, String thumbnail, int stock) {
         try {
@@ -112,11 +114,24 @@ public class Product implements Persistent{
 
     @Override
     public boolean save() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, name, description, price,
+                    user == null ? userId : user.getId(), thumbnail, stock, visits, sold, id));
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM product WHERE id = "+id);
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

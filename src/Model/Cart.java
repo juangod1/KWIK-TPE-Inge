@@ -35,6 +35,8 @@ public class Cart implements Persistent {
     }
 
     private static final String select = "SELECT * FROM cart ";
+    private static final String update = "UPDATE cart SET idclient = %d, closed = %b, idcard = %s WHERE id = %d";
+
 
     public static Cart getOrCreate(User user) {
         Cart currentCart = getUserCart(user);
@@ -144,11 +146,24 @@ public class Cart implements Persistent {
 
     @Override
     public boolean save() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, user == null ? userId : user.getId(),
+                    closed, card == null ? (cardId == 0 ? null : cardId) : card.getId(), id));
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM cart WHERE id = "+id);
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 

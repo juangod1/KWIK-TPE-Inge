@@ -15,6 +15,7 @@ public class Review implements Persistent{
     private int productId;
 
     private static final String select = "SELECT * FROM review ";
+    private static final String update = "UPDATE review SET idproduct = %d, comment = '%s', rating = %d WHERE id = %d";
 
     private Review() {}
 
@@ -80,11 +81,24 @@ public class Review implements Persistent{
 
     @Override
     public boolean save() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update,
+                    product == null ? productId : product.getId(), comment, rating, id));
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public boolean delete() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM review WHERE id = "+id);
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
