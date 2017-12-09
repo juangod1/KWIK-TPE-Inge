@@ -13,13 +13,13 @@ public class User implements Persistent{
     private Country country;
     private City city;
     private Province province;
-    private String adress,  postalCode, phone;
+    private String address,  postalCode, phone, phone2;
 
 
     private User(){}
 
     private User(int id, String doc, String username, String password, String name, String surname, String email, boolean enabled,
-                boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String adress,
+                boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
                  String postalCode, String phone, String phone2) {
         this.id = id;
         this.doc = doc;
@@ -35,18 +35,19 @@ public class User implements Persistent{
         this.country = country;
         this.city = city;
         this.province = province;
-        this.adress=adress;
+        this.address = address;
         this.postalCode = postalCode;
         this.phone = phone;
+        this.phone2 = phone2;
         this.admin = admin;
     }
 
     public static User create(String doc, String username, String password, String name, String surname, String email, boolean enabled,
-                              boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String adress,
+                              boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
                               String postalCode, String phone, String phone2) { //Factory :wink:
 
         return new User(0, doc, username, password, name, surname, email, enabled, confirmed, admin, docType, cart, country, city,
-                        province, adress, postalCode, phone,phone2);
+                        province, address, postalCode, phone, phone2);
     }
 
     public static User get(int id) {
@@ -195,9 +196,13 @@ public class User implements Persistent{
         this.province = province;
     }
 
-    public void setAdress(String adress){ this.adress=adress;}
+    public void setaddress(String address){
+        this.address = address;
+    }
 
-    public String getAdress(){return  adress;}
+    public String getaddress(){
+        return address;
+    }
 
     public String getPostalCode() {
         return postalCode;
@@ -213,5 +218,13 @@ public class User implements Persistent{
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone) {
+        this.phone2 = phone;
     }
 }
