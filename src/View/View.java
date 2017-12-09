@@ -202,7 +202,7 @@ public class View {
         searchPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -213,7 +213,7 @@ public class View {
         teamPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -224,7 +224,7 @@ public class View {
         resultsPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -235,7 +235,7 @@ public class View {
         newUser.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -246,7 +246,7 @@ public class View {
         profileLoginPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -257,7 +257,7 @@ public class View {
         shoppingcartPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -268,7 +268,7 @@ public class View {
         visionPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -279,7 +279,7 @@ public class View {
         paymentOptions.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -290,7 +290,7 @@ public class View {
         profilePanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{
@@ -301,7 +301,7 @@ public class View {
         viewProduct.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Controller.isLoggedIn()) {
+                if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profilePanel");
                 }
                 else{

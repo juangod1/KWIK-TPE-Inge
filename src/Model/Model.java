@@ -6,7 +6,7 @@ import java.util.ArrayList;
     private ArrayList<Cart> carts;
     private ArrayList<Card> cards;
     private ArrayList<Product> products;
-    public User user = null;
+    private User user = null;
 
     public User getUser(){
         return user;

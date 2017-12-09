@@ -13,7 +13,7 @@ public class Controller {
     private static Controller singleton;
     private DataBaseHandler dBH;
     private InputController inputController;
-    private static Model model;
+    private  Model model;
     private static View view;
 
     public static void main(String[] args){
@@ -65,32 +65,32 @@ public class Controller {
     }
 
 
-    public static Model getModel(){
+    public  Model getModel(){
         return model;
     }
 
-    public static boolean isLoggedIn(){
-        if(model.user != null) {
-            System.out.println("logged as: " + model.user.getName());
+    public  boolean isLoggedIn(){
+        if(model.getUser() != null) {
+            System.out.println("logged as: " + model.getUser().getName());
             return true;
         }
         return false;
     }
 
-    public static boolean logInUser(String username, String password){
+    public  boolean logInUser(String username, String password){
         User user = User.login(username, password);
         if(user !=null){
-            model.user = user;
+            model.setUser(user);
             return true;
         }
         return false;
     }
 
     public User getCurrentUser() {
-        return model.user;
+        return model.getUser();
     }
 
-    public static void setUser(User user) {
+    public  void setUser(User user) {
         getModel().setUser(user);
     }
 }
