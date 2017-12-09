@@ -314,10 +314,23 @@ public class InputController {
     }
 
     public User modifyUser(UserCreationStruct userCreationStruct, User currentUser) {
-        currentUser.delete();
-        User u = addUser(userCreationStruct);
-        getController().setUser(u);
-        return u;
+
+        currentUser.setName((String)userCreationStruct.getFormEntries().get(1).getItem());
+        currentUser.setUsername((String)userCreationStruct.getFormEntries().get(2).getItem());
+        currentUser.setPassword((String)userCreationStruct.getFormEntries().get(3).getItem());
+        currentUser.setCountry((Country)userCreationStruct.getFormEntries().get(4).getItem());
+        currentUser.setCity((City)userCreationStruct.getFormEntries().get(5).getItem());
+        currentUser.setaddress((String)userCreationStruct.getFormEntries().get(6).getItem());
+        currentUser.setPhone((String)userCreationStruct.getFormEntries().get(7).getItem());
+        currentUser.setSurname((String)userCreationStruct.getFormEntries().get(8).getItem());
+        currentUser.setEmail((String)userCreationStruct.getFormEntries().get(9).getItem());
+        currentUser.setProvince((Province) userCreationStruct.getFormEntries().get(10).getItem());
+        currentUser.setDocType( DocType.list().get(0)); // TODO: lewat get(0)
+        currentUser.setdoc((String)userCreationStruct.getFormEntries().get(12).getItem());
+        currentUser.setPostCode((String)userCreationStruct.getFormEntries().get(14).getItem());
+        currentUser.setPhone2((String)userCreationStruct.getFormEntries().get(16).getItem());
+        currentUser.save();
+        return currentUser;
     }
 }
 
