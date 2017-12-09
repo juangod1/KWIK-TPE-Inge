@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Cart;
 import Model.Product;
 import Model.User;
 
@@ -71,50 +72,59 @@ public class ResultsPanel {
         this.controller = controller;
         }
 
-    public void printResults(ArrayList<Product> prods){
+    public void printResults(final ArrayList<Product> prods){
         cleanPanel();
 
-        if(prods.size()>=1)
-        textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
-        if(prods.size()>=2)
-        textArea2.setText(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
-        if(prods.size()>=3)
-        textArea3.setText(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
-        if(prods.size()>=4)
-        textArea4.setText(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
-        if(prods.size()>=5)
-        textArea5.setText(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
-
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("add item to cart");
-            }
-        });
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("add item to cart");
-            }
-        });
-        button3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("add item to cart");
-            }
-        });
-        button4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("add item to cart");
-            }
-        });
-        button5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("add item to cart");
-            }
-        });
+        if(prods.size()>=1) {
+            textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
+            button1.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (controller.getCurrentUser()==null) return;
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(0),1);
+                }
+            });
+        }
+        if(prods.size()>=2) {
+            textArea2.setText(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
+            button2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (controller.getCurrentUser()==null) return;
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(1),1);
+                }
+            });
+        }
+        if(prods.size()>=3) {
+            textArea3.setText(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
+            button3.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (controller.getCurrentUser()==null) return;
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(2),1);
+                }
+            });
+        }
+        if(prods.size()>=4) {
+            textArea4.setText(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
+            button4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (controller.getCurrentUser()==null) return;
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(3),1);
+                }
+            });
+        }
+        if(prods.size()>=5) {
+            textArea5.setText(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
+            button5.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (controller.getCurrentUser()==null) return;
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(4),1);
+                }
+            });
+        }
      }
 
      private void cleanPanel(){

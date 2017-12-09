@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Model.Cart;
 import Model.Product;
 
@@ -32,15 +33,19 @@ public class ShoppingcartPanel {
     private JTextArea textArea4;
     private JTextArea textArea;
     private View.ViewSwapper vs;
+    private Controller controller;
+    private Cart cart;
 
 
-    public ShoppingcartPanel(final View.ViewSwapper vs, final Cart cart) {
+    public ShoppingcartPanel(final View.ViewSwapper vs, Controller controller) {
         this.vs = vs;
+        this.controller = controller;
 
         mainpanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 super.componentShown(e);
+                writeCart();
             }
         });
         checkoutButton.addActionListener(new ActionListener() {
@@ -70,27 +75,6 @@ public class ShoppingcartPanel {
 
             }
         });
-
-        if(cart != null) {
-            if (cart.getProducts().size() >= 1)
-                textArea1.setText(cart.getProducts().get(0).getName());
-            if (cart.getProducts().size() >= 2)
-                textArea2.setText(cart.getProducts().get(1).getName());
-            if (cart.getProducts().size() >= 3)
-                textArea3.setText(cart.getProducts().get(2).getName());
-            if (cart.getProducts().size() >= 4)
-                textArea4.setText(cart.getProducts().get(3).getName());
-
-            double moneh = 0;
-            for (Product p : cart.getProducts()) {
-                moneh += p.getPrice();
-            }
-
-            total.setText("The total is:    $" + moneh);
-        }
-
-        else
-            total.setText("There is no cart");
     }
 
     public JPanel getMainpanel() {
@@ -123,5 +107,41 @@ public class ShoppingcartPanel {
     public void write(String string){
         System.out.println(string);
         textArea.append(string);
+    }
+
+    public void writeCart(){
+        if(controller.getCurrentUser()!=null) {
+            this.cart = Cart.getUserCart(controller.getCurrentUser());
+            if (cart != null) {
+                if (cart.getProducts().size() >= 1)
+                    textArea1.setText(cart.getProducts().get(0).getName());
+                else
+                    textArea1.setText("");
+
+                if (cart.getProducts().size() >= 2)
+                    textArea2.setText(cart.getProducts().get(1).getName());
+                else
+                    textArea2.setText("");
+
+                if (cart.getProducts().size() >= 3)
+                    textArea3.setText(cart.getProducts().get(2).getName());
+                else
+                    textArea3.setText("");
+
+                if (cart.getProducts().size() >= 4)
+                    textArea4.setText(cart.getProducts().get(3).getName());
+                else
+                    textArea4.setText("");
+
+                double moneh = 0;
+                for (Product p : cart.getProducts()) {
+                    moneh += p.getPrice();
+                }
+
+                total.setText("The total is:    $" + moneh);
+            }
+        }
+        else
+            total.setText("There is no cart");
     }
 }

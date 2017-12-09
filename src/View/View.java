@@ -61,7 +61,7 @@ public class View {
         teamPanel = new TeamPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
-        shoppingcartPanel = new ShoppingcartPanel(viewSwapper,null); //el usuario puede ser null. hay que ver que hacer en ese caso
+        shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller);
         profileLoginPanel = new ProfileLoginPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper, controller);
         visionPanel = new VisionPanel();
