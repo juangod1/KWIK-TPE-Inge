@@ -1,6 +1,8 @@
 package View;
 
 import Controller.Controller;
+import Model.Cart;
+import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,7 +46,7 @@ public class View {
         teamPanel = new TeamPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper);
-        shoppingcartPanel = new ShoppingcartPanel(viewSwapper);
+        shoppingcartPanel = new ShoppingcartPanel(viewSwapper, Cart.getUserCart(controller.getModel().getUser()));
         profilePanel = new ProfilePanel(viewSwapper);
         visionPanel = new VisionPanel();
         cards.add(searchPanel.getMainpanel(),"searchPanel");

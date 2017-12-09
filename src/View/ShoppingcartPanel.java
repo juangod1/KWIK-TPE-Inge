@@ -1,10 +1,14 @@
 package View;
 
+import Model.Cart;
+import Model.Product;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -20,14 +24,17 @@ public class ShoppingcartPanel {
     private JButton SEARCHbutton;
     private JPanel footnote;
     private JPanel middle;
-    private JTextArea subtotalText;
+    private JTextArea total;
     private JButton checkoutButton;
-    private JList cartList;
+    private JTextArea textArea1;
+    private JTextArea textArea2;
+    private JTextArea textArea3;
+    private JTextArea textArea4;
     private JTextArea textArea;
     private View.ViewSwapper vs;
 
 
-    public ShoppingcartPanel(final View.ViewSwapper vs) {
+    public ShoppingcartPanel(final View.ViewSwapper vs, Cart cart) {
         this.vs = vs;
 
         mainpanel.addComponentListener(new ComponentAdapter() {
@@ -57,6 +64,21 @@ public class ShoppingcartPanel {
 
             }
         });
+        if(cart.getProducts().size()>=1)
+        textArea1.setText(cart.getProducts().get(0).getName());
+        if(cart.getProducts().size()>=2)
+        textArea2.setText(cart.getProducts().get(1).getName());
+        if(cart.getProducts().size()>=3)
+        textArea3.setText(cart.getProducts().get(2).getName());
+        if(cart.getProducts().size()>=4)
+        textArea4.setText(cart.getProducts().get(3).getName());
+
+        int moneh=0;
+        for(Product p : cart.getProducts()){
+            moneh+=p.getPrice();
+        }
+
+        total.setText("The total is:    $"+moneh);
     }
 
     public JPanel getMainpanel() {
