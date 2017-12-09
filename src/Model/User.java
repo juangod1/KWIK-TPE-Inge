@@ -38,7 +38,6 @@ public class User implements Persistent{
         this.enabled = enabled;
         this.confirmed = confirmed;
         this.docType = docType;
-        this.cart = cart;
         this.country = country;
         this.city = city;
         this.province = province;
