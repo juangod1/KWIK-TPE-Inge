@@ -1,10 +1,16 @@
 package Model;
 
+import Service.DatabaseService;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Country {
     private int id;
     private String name;
+
+    private static final String select = "SELECT * FROM country ";
 
     private Country() {}
 
@@ -14,11 +20,35 @@ public class Country {
     }
 
     public static Country get(int id) {
-        return new Country(0, "arg");
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE id ="+id);
+            if(rs.next())
+                return fromResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static ArrayList<Country> list() {
-        return new ArrayList<>();
+        ArrayList<Country> countries = new ArrayList<>();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select);
+            while (rs.next())
+                countries.add(fromResultSet(rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countries;
+    }
+
+    private static Country fromResultSet(ResultSet rs) {
+        try {
+            return new Country(rs.getInt("id"), rs.getString("name"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public int getId() {
@@ -27,9 +57,5 @@ public class Country {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
