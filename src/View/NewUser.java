@@ -165,24 +165,6 @@ public class NewUser {
                 postalCode.getText();
             }
         });
-
-        crearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
-                        country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
-                        email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
-                        document.getText(), secondaryPhone.getText());
-                int errorcode=inputController.checkAll(userCreationStruct);
-                if(errorcode==0){
-                    inputController.addUser(userCreationStruct);
-                    JOptionPane.showMessageDialog(null, "User Created Successfully!");
-                }else{
-                    createUserErrorMessage(errorcode);
-                }
-            }
-
-        });
     }
 
     public void createUserErrorMessage(int errorcode) {
