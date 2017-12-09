@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProfilePanel {
-    private JPanel mainPanel;
+    private JPanel mainpanel;
     private JPanel header;
     private JButton VISIONButton;
     private JButton EQUIPObutton;
@@ -96,4 +96,10 @@ public class ProfilePanel {
                 vs.changeView("searchPanel",null); }
         });
     }
+
+
+    public JPanel getMainpanel() {
+        return mainpanel;
+    }
+
 }

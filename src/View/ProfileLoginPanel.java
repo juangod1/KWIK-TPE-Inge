@@ -36,14 +36,17 @@ public class ProfileLoginPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                User user = User.login(name.getText(), password.getPassword().toString());
-                if(user != null){
-                    Controller.setUser(user);
-                    vs.changeView("searchPanel", null);
+                System.out.println("user: "+ name.getText()+" pw: "+password.getText());
+                if(!Controller.isLoggedIn()) {
+                    if (Controller.logInUser(name.getText(), password.getText())) {
+                        vs.changeView("searchPanel", null);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "invalid username or password");
+
+                    }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "invalid username or password");
-
+                    JOptionPane.showMessageDialog(null, "ya esta logeado, esto no deberia pasar");
                 }
             }
         });

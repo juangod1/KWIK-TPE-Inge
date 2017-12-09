@@ -2,11 +2,11 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Model {
+ public class Model {
     private ArrayList<Cart> carts;
     private ArrayList<Card> cards;
     private ArrayList<Product> products;
-    private User user;
+    public User user = null;
 
     public User getUser(){
         return user;

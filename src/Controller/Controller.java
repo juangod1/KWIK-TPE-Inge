@@ -69,17 +69,24 @@ public class Controller {
         return model;
     }
 
-    public boolean isLoggedIn(){
-        if(model.getUser() != null)
+    public static boolean isLoggedIn(){
+        if(model.user != null) {
+            System.out.println("logged as: " + model.user.getName());
             return true;
+        }
         return false;
     }
 
-    public static boolean setUser(User user){
-        return model.setUser(user);
+    public static boolean logInUser(String username, String password){
+        User user = User.login(username, password);
+        if(user !=null){
+            model.user = user;
+            return true;
+        }
+        return false;
     }
 
     public User getCurrentUser() {
-        return model.getUser();
+        return model.user;
     }
 }
