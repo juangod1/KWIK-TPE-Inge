@@ -7,6 +7,8 @@ import Model.User;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,16 @@ public class ResultsPanel {
     private JPanel footnote;
     private JLabel resultsLabel;
     private JButton SEARCHbutton;
-    private JList list1;
+    private JTextArea textArea1;
+    private JTextArea textArea2;
+    private JTextArea textArea3;
+    private JTextArea textArea4;
+    private JTextArea textArea5;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
+    private JButton button5;
     private JTable table1;
     private Controller controller;
 
@@ -56,30 +67,22 @@ public class ResultsPanel {
         }
 
     public void printResults(String query){
-        System.out.println(table1);
-        String[] columns = {"Artículo", "Categoría", "Precio", "Dias Restantes", "Fecha"};
-        Object[][] data = new Object[3][5];
         ArrayList<Product> prods = new ArrayList<>();
         prods.add(Product.create("Manzana","esta medio podrida", 666.0, User.get(0), "thumbnail", 4));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
 
-        int row,col;
-        for (row=0;row<3;row++){
-            for (col=0;col<3;col++){
-                switch (col){
-                    case 0:
-                        data[row][col] = prods.get(row).getName();
-                        break;
-                    case 1:
-                        data[row][col] = "Category is no more";
-                        break;
-                    case 2:
-                        data[row][col] = prods.get(row).getPrice();
-                        break;
-                }
+        textArea1.append(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
+        textArea2.append(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
+        textArea3.append(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
+        textArea4.append(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
+        textArea5.append(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
 
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("asdfasdf");
             }
-        }
-    }
+        });
+     }
 }
