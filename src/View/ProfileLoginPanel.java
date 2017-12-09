@@ -1,5 +1,8 @@
 package View;
 
+import Controller.Controller;
+import Model.User;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,9 +28,25 @@ public class ProfileLoginPanel {
     private JLabel nameLabel;
     private JButton registrationButton;
     private JLabel newUserLabel;
+    private JButton loginButton;
     private View.ViewSwapper vs;
 
     public ProfileLoginPanel(final View.ViewSwapper vs) {
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                User user = User.login(name.getText(), password.getPassword().toString());
+                if(user != null){
+                    Controller.setUser(user);
+                    vs.changeView("searchPanel", null);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "invalid username or password");
+
+                }
+            }
+        });
         this.vs = vs;
 
         registrationButton.addActionListener(new ActionListener() {

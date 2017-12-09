@@ -12,6 +12,15 @@ public class Model {
         return user;
     }
 
+    public boolean setUser(User user){
+        if(user == null){
+            this.user = user;
+            return true;
+        }
+        else
+            return false;
+    }
+
     public Model(){
         carts = new ArrayList<>();
         cards = new ArrayList<>();

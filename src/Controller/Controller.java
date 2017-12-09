@@ -13,7 +13,7 @@ public class Controller {
     private static Controller singleton;
     private DataBaseHandler dBH;
     private InputController inputController;
-    private Model model;
+    private static Model model;
     private View view;
 
     public static void main(String[] args){
@@ -67,5 +67,15 @@ public class Controller {
 
     public Model getModel(){
         return model;
+    }
+
+    public boolean isLoggedIn(){
+        if(model.getUser() != null)
+            return true;
+        return false;
+    }
+
+    public static boolean setUser(User user){
+        return model.setUser(user);
     }
 }

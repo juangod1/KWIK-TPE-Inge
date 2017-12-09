@@ -82,11 +82,12 @@ public class NewUser {
                     country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
                     email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
                     document.getText(), secondaryPhone.getText());
-            if(inputController.checkAll(userCreationStruct) == 0){
-                //mandar a BD y logear
+            int errorcode=inputController.checkAll(userCreationStruct);
+            if(errorcode==0){
+                inputController.addUser(userCreationStruct);
+                JOptionPane.showMessageDialog(null, "User Created Successfully!");
             }else{
-                JOptionPane.showMessageDialog(null, "Input Mistake");
-                //mensajito de error
+                createUserErrorMessage(errorcode);
             }
         }
     };
@@ -171,55 +172,56 @@ public class NewUser {
                 }
             }
 
-            private void createUserErrorMessage(int errorcode) {
-                switch (errorcode){
-                    case 1:
-                        JOptionPane.showMessageDialog(null, "Nombre incorrecto");
-                        break;
-                    case 2:
-                        JOptionPane.showMessageDialog(null, "Nombre de Usuario incorrecto");
-                        break;
-                    case 3:
-                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-                        break;
-                    case 4:
-                        JOptionPane.showMessageDialog(null, "Pais incorrecto");
-                        break;
-                    case 5:
-                        JOptionPane.showMessageDialog(null, "Barrio incorrecto");
-                        break;
-                    case 6:
-                        JOptionPane.showMessageDialog(null, "Dirección incorrecta");
-                        break;
-                    case 7:
-                        JOptionPane.showMessageDialog(null, "Teléfono incorrecto (debe tener 8 digitos)");
-                        break;
-                    case 8:
-                        JOptionPane.showMessageDialog(null, "Apellido incorrecto");
-                        break;
-                    case 9:
-                        JOptionPane.showMessageDialog(null, "E-Mail incorrecto");
-                        break;
-                    case 10:
-                        JOptionPane.showMessageDialog(null, "Provincia incorrecto");
-                        break;
-                    case 11:
-                        JOptionPane.showMessageDialog(null, "Tipo de Documento Incorrecto (debe ser DNI)");
-                        break;
-                    case 12:
-                        JOptionPane.showMessageDialog(null, "Numero de Documento Incorrecto");
-                        break;
-                    case 14:
-                        JOptionPane.showMessageDialog(null, "Numero postal incorrecto");
-                        break;
-                    case 15:
-                        JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-            }
         });
+    }
+
+    public void createUserErrorMessage(int errorcode) {
+        switch (errorcode){
+            case 1:
+                JOptionPane.showMessageDialog(null, "Nombre incorrecto");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Nombre de Usuario incorrecto");
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null, "Pais incorrecto");
+                break;
+            case 5:
+                JOptionPane.showMessageDialog(null, "Barrio incorrecto");
+                break;
+            case 6:
+                JOptionPane.showMessageDialog(null, "Dirección incorrecta");
+                break;
+            case 7:
+                JOptionPane.showMessageDialog(null, "Teléfono incorrecto (debe tener 8 digitos)");
+                break;
+            case 8:
+                JOptionPane.showMessageDialog(null, "Apellido incorrecto");
+                break;
+            case 9:
+                JOptionPane.showMessageDialog(null, "E-Mail incorrecto");
+                break;
+            case 10:
+                JOptionPane.showMessageDialog(null, "Provincia incorrecto");
+                break;
+            case 11:
+                JOptionPane.showMessageDialog(null, "Tipo de Documento Incorrecto (debe ser DNI)");
+                break;
+            case 12:
+                JOptionPane.showMessageDialog(null, "Numero de Documento Incorrecto");
+                break;
+            case 14:
+                JOptionPane.showMessageDialog(null, "Numero postal incorrecto");
+                break;
+            case 15:
+                JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+                break;
+            default:
+                throw new NotImplementedException();
+        }
     }
 
     public JPanel getMainpanel() {

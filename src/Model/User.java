@@ -18,7 +18,6 @@ public class User implements Persistent{
     private City city;
     private Province province;
     private String address,  postCode, phone, phone2;
-    private ArrayList<Card> cards;
 
     private static final String select = "SELECT u.*, d.name as docName, c.name as countryName, p.name as provinceName, city.name as cityName " +
             "FROM client u JOIN doctype d ON d.id = u.iddoctype JOIN country c ON c.id = u.idcountry " +
@@ -27,7 +26,6 @@ public class User implements Persistent{
 
     private User(){}
 
-    // TODO: inicializar cards con la BD
     private User(int id, String doc, String username, String password, String name, String surname, String email, boolean enabled,
                 boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
                  String postCode, String phone, String phone2) {

@@ -34,7 +34,7 @@ public class ShoppingcartPanel {
     private View.ViewSwapper vs;
 
 
-    public ShoppingcartPanel(final View.ViewSwapper vs, Cart cart) {
+    public ShoppingcartPanel(final View.ViewSwapper vs, final Cart cart) {
         this.vs = vs;
 
         mainpanel.addComponentListener(new ComponentAdapter() {
@@ -46,6 +46,7 @@ public class ShoppingcartPanel {
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Object[] options = {"Pagar con tarjeta",
                         "Reservar",
                         "Cancelar"};
@@ -58,7 +59,12 @@ public class ShoppingcartPanel {
                         options,
                         options[2]);
                 if( n == JOptionPane.YES_OPTION){
-                    vs.changeView("paymentOptionsPanel",null);
+                    if(cart != null && cart.getProducts().size() > 0) {
+                        vs.changeView("paymentOptionsPanel", null);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No hay articulos en el carrito");
+                    }
                 }
 
 
