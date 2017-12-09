@@ -14,10 +14,10 @@ public class Controller {
     private DataBaseHandler dBH;
     private InputController inputController;
     private static Model model;
-    private View view;
+    private static View view;
 
     public static void main(String[] args){
-        View view = new View(getInstance());
+        view = new View(getInstance());
         view.initialize(getInstance());
         DatabaseService.getInstance().initializeDB();
         User user = User.login("admin", "admin");

@@ -1,6 +1,11 @@
 package View;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import Controller.Controller;
+import View.View.ViewSwapper;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -23,12 +28,9 @@ public class SearchPanel {
 
     }
 
+
     public JButton getVISIONButton() {
         return VISIONButton;
-    }
-
-    public JButton getPERFILButton() {
-        return PERFILButton;
     }
 
     public JButton getCARRITObutton() {
@@ -51,4 +53,7 @@ public class SearchPanel {
         return SEARCHbutton;
     }
 
+    public JButton getPERFILButton() {
+        return PERFILButton;
+    }
 }
