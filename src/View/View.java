@@ -213,7 +213,7 @@ public class View {
         visionPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
         paymentOptions.getPERFILButton().addActionListener(new ActionListener() {
