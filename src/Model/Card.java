@@ -1,5 +1,9 @@
 package Model;
 
+import Service.DatabaseService;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Card implements Persistent{
@@ -8,34 +12,83 @@ public class Card implements Persistent{
     private String name;
     private String surname;
     private String number;
-    private int day;
+    private int year;
     private int month;
     private int code;
 
+    private int userId;
+
+    private static final String select = "SELECT * FROM card ";
+
     private Card() {}
 
-    private Card(int id, User user, String name, String surname, String number, int day, int month, int code) {
+    private Card(int id, User user, String name, String surname, String number, int year, int month, int code) {
         this.id = id;
         this.user = user;
         this.name = name;
         this.surname = surname;
         this.number = number;
-        this.day = day;
+        this.year = year;
+        this.month = month;
+        this.code = code;
+    }
+
+    private Card(int id, int userId, String name, String surname, String number, int year, int month, int code) {
+        this.id = id;
+        this.userId = userId;
+        this.user = null;
+        this.name = name;
+        this.surname = surname;
+        this.number = number;
+        this.year = year;
         this.month = month;
         this.code = code;
     }
 
     public static Card create(User user, String name, String surname, String number, int month, int year, int code) {
-        return new Card(0, user, name, surname, number,  month, year, code);
-
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO card (idclient, name, surname, number, year, month, code) " +
+                    "VALUES ("+user.getId()+", '"+name+"', '"+surname+"', '"+number+"', "+year+", "+month+", "+code+") RETURNING id");
+            if(rs.next())
+                return new Card(rs.getInt(1), user, name, surname, number,  month, year, code);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static Card get(int id) {
-        return new Card();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE id = "+id);
+            if(rs.next())
+                return fromResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static ArrayList<Card> getByUser(User user) {
-        return new ArrayList<>();
+        ArrayList<Card> cards = new ArrayList<>();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE idclient = "+user.getId());
+            while (rs.next())
+                cards.add(fromResultSet(rs));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cards;
+    }
+
+    private static Card fromResultSet(ResultSet rs) {
+        try {
+            return new Card(rs.getInt("id"), rs.getInt("idClient"), rs.getString("name"),
+                    rs.getString("surname"), rs.getString("number"), rs.getInt("year"),
+                    rs.getInt("month"), rs.getInt("code"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -53,6 +106,8 @@ public class Card implements Persistent{
     }
 
     public User getUser() {
+        if(user == null)
+            user = User.get(userId);
         return user;
     }
 
@@ -84,12 +139,12 @@ public class Card implements Persistent{
         this.number = number;
     }
 
-    public int getDay() {
-        return day;
+    public int getYear() {
+        return year;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public int getMonth() {
