@@ -67,16 +67,17 @@ public class ResultsPanel {
         }
 
     public void printResults(String query){
+
         ArrayList<Product> prods = new ArrayList<>();
         prods.add(Product.create("Manzana","esta medio podrida", 666.0, User.get(0), "thumbnail", 4));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
 
-        textArea1.append(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
-        textArea2.append(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
-        textArea3.append(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
-        textArea4.append(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
-        textArea5.append(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
+        textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
+        textArea2.setText(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
+        textArea3.setText(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
+        textArea4.setText(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
+        textArea5.setText(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
 
         button1.addActionListener(new ActionListener() {
             @Override
