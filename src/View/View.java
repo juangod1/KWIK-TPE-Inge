@@ -135,6 +135,13 @@ public class View {
             }
         });
 
+        profilePanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"teamPanel");
+            }
+        });
+
         //VISION
         searchPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
@@ -179,6 +186,12 @@ public class View {
             }
         });
         viewProduct.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"visionPanel");
+            }
+        });
+        profilePanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"visionPanel");
@@ -274,6 +287,28 @@ public class View {
                 }
             }
         });
+        profilePanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.isLoggedIn()) {
+                    cardLayout.show(cards, "profilePanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        viewProduct.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.isLoggedIn()) {
+                    cardLayout.show(cards, "profilePanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
 
         //CARRITO
         searchPanel.getCARRITObutton().addActionListener(new ActionListener() {
@@ -329,6 +364,12 @@ public class View {
                 cardLayout.show(cards,"shoppingcartPanel");
             }
         });
+        profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+            }
+        });
 
         //SEARCH
         newUser.getSEARCHbutton().addActionListener(new ActionListener() {
@@ -374,6 +415,12 @@ public class View {
             }
         });
         viewProduct.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        profilePanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");

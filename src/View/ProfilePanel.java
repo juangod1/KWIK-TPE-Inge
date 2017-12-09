@@ -60,46 +60,32 @@ public class ProfilePanel {
                 vs.changeView("newUser",1);
             }
         });
-
-        EQUIPObutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vs.changeView("teamPanel",null);
-            }
-        });
-
-        VISIONButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //vs.changeView("visionPanel");
-                JOptionPane.showMessageDialog(null,"Vision under development");
-            }
-        });
-
-        PERFILButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vs.changeView("profilePanel",null);
-            }
-        });
-
-        CARRITObutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vs.changeView("shoppingcartPanel",null);
-            }
-        });
-
-        SEARCHbutton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vs.changeView("searchPanel",null); }
-        });
+        
     }
 
+    public JButton getVISIONButton() {
+        return VISIONButton;
+    }
+
+    public JButton getCARRITObutton() {
+        return CARRITObutton;
+    }
 
     public JPanel getMainpanel() {
         return mainpanel;
     }
+
+    public JButton getEQUIPObutton() {
+        return EQUIPObutton;
+    }
+
+    public JButton getSEARCHbutton() {
+        return SEARCHbutton;
+    }
+
+    public JButton getPERFILButton() {
+        return PERFILButton;
+    }
+
 
 }
