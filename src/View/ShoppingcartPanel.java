@@ -70,7 +70,7 @@ public class ShoppingcartPanel {
 
             }
         });
-        // TODO: que pasa si cart es null
+
         if(cart != null) {
             if (cart.getProducts().size() >= 1)
                 textArea1.setText(cart.getProducts().get(0).getName());
@@ -81,13 +81,16 @@ public class ShoppingcartPanel {
             if (cart.getProducts().size() >= 4)
                 textArea4.setText(cart.getProducts().get(3).getName());
 
-            int moneh = 0;
+            double moneh = 0;
             for (Product p : cart.getProducts()) {
                 moneh += p.getPrice();
             }
 
             total.setText("The total is:    $" + moneh);
         }
+
+        else
+            total.setText("There is no cart");
     }
 
     public JPanel getMainpanel() {

@@ -72,6 +72,7 @@ public class ResultsPanel {
         }
 
     public void printResults(String query){
+        cleanPanel();
 
         final ArrayList<Product> prods = Product.search(query);
 
@@ -149,7 +150,44 @@ public class ResultsPanel {
                 System.out.println("go to product "+prods.get(4).getName());
             }
         });
+     }
+
+     private void cleanPanel(){
+        textArea1.setText("");
+        textArea2.setText("");
+        textArea3.setText("");
+        textArea4.setText("");
+        textArea5.setText("");
+
+        if(viewButton.getActionListeners().length>0)
+        viewButton.removeActionListener(viewButton.getActionListeners()[0]);
+
+        if(viewButton1.getActionListeners().length>0)
+        viewButton1.removeActionListener(viewButton1.getActionListeners()[0]);
+
+        if(viewButton2.getActionListeners().length>0)
+        viewButton2.removeActionListener(viewButton2.getActionListeners()[0]);
+
+         if(viewButton3.getActionListeners().length>0)
+        viewButton3.removeActionListener(viewButton3.getActionListeners()[0]);
+
+         if(viewButton4.getActionListeners().length>0)
+        viewButton4.removeActionListener(viewButton4.getActionListeners()[0]);
 
 
+         if(button1.getActionListeners().length>0)
+         button1.removeActionListener(button1.getActionListeners()[0]);
+
+         if(button2.getActionListeners().length>0)
+         button2.removeActionListener(button2.getActionListeners()[0]);
+
+         if(button3.getActionListeners().length>0)
+         button3.removeActionListener(button3.getActionListeners()[0]);
+
+         if(button4.getActionListeners().length>0)
+         button4.removeActionListener(button4.getActionListeners()[0]);
+
+         if(button5.getActionListeners().length>0)
+         button5.removeActionListener(button5.getActionListeners()[0]);
      }
 }
