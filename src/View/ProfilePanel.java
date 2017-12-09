@@ -55,7 +55,7 @@ public class ProfilePanel {
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vs.changeView("newUser",1);
+                vs.changeView("newUser",0);
             }
         });
         if(Controller.getInstance().isLoggedIn())
@@ -63,22 +63,22 @@ public class ProfilePanel {
         
     }
 
+    // TODO: descomentar country provnce doctype y neighborhood por que crashean
     public void updateValues() {
         User currentUser = Controller.getInstance().getCurrentUser();
         username.setText(currentUser.getUsername());
         name.setText(currentUser.getName());
-        System.out.println("Current name n profolePanel: "+currentUser.getName());
         surname.setText(currentUser.getSurname());
-        country.setText(currentUser.getCountry().getName());
+        //country.setText(currentUser.getCountry().getName());
         address.setText(currentUser.getaddress());
         email.setText(currentUser.getEmail());
         postalCode.setText(currentUser.getPostCode());
-        neighborhood.setText(currentUser.getCity().getName());
+        //neighborhood.setText(currentUser.getCity().getName());
         secondaryPhone.setText(currentUser.getPhone2());
         mainPhone.setText(currentUser.getPhone());
-        docType.setText(currentUser.getDocType().getName());
+        //docType.setText(currentUser.getDocType().getName());
         document.setText(currentUser.getdoc());
-        province.setText(currentUser.getProvince().getName());
+        //province.setText(currentUser.getProvince().getName());
     }
 
     public JButton getVISIONButton() {

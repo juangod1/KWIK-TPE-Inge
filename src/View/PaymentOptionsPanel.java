@@ -104,9 +104,9 @@ public class PaymentOptionsPanel {
         panel.add(name);
         panel.add(new JLabel("Surname:"));
         panel.add(surname);
-        panel.add(new JLabel("Expiration day:"));
-        panel.add(month);
         panel.add(new JLabel("Expiration month:"));
+        panel.add(month);
+        panel.add(new JLabel("Expiration year:"));
         panel.add(year);
         panel.add(new JLabel("Credit card number:"));
         panel.add(number);
@@ -131,6 +131,7 @@ public class PaymentOptionsPanel {
             System.out.println("Cancelled");
         }
     }
+
     private static void createUserErrorMessage(int errorcode){
         switch (errorcode){
             case 31:

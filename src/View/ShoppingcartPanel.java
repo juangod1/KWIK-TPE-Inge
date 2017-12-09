@@ -53,16 +53,15 @@ public class ShoppingcartPanel {
             public void actionPerformed(ActionEvent e) {
 
                 Object[] options = {"Pagar con tarjeta",
-                        "Reservar",
                         "Cancelar"};
                 int n = JOptionPane.showOptionDialog(mainpanel,
                         "como desea proceder?",
                         "",
-                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE,
                         null,
                         options,
-                        options[2]);
+                        options[1]);
                 if( n == JOptionPane.YES_OPTION){
                     if(cart != null && cart.getProducts().size() > 0) {
                         vs.changeView("paymentOptionsPanel", null);

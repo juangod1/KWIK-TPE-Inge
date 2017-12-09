@@ -92,6 +92,7 @@ public class Controller {
     }
 
     public  void setUser(User user) {
-        getModel().setUser(user);
+        getModel().replaceUser(user);
     }
+
 }

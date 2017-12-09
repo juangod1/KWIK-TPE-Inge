@@ -21,6 +21,9 @@ import java.util.ArrayList;
             return false;
         }
     }
+    public void replaceUser(User user){
+        this.user = user;
+    }
 
     public Model(){
         carts = new ArrayList<>();

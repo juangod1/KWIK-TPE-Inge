@@ -315,7 +315,7 @@ public class InputController {
 
     public User modifyUser(UserCreationStruct userCreationStruct, User currentUser) {
         currentUser.delete();
-        User u =addUser(userCreationStruct);
+        User u = addUser(userCreationStruct);
         getController().setUser(u);
         return u;
     }
