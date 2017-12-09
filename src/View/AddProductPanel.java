@@ -40,7 +40,7 @@ public class AddProductPanel {
     private View.ViewSwapper vs;
 
 
-    public AddProductPanel(final View.ViewSwapper vs, InputController inputController) {
+    public AddProductPanel(final View.ViewSwapper vs, final InputController inputController) {
         this.vs = vs;
         foto1.addActionListener(new ActionListener() {
             @Override
