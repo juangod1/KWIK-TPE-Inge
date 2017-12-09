@@ -43,7 +43,7 @@ public class View {
         resultsPanel = new ResultsPanel(controller);
         teamPanel = new TeamPanel();
         newUser = new NewUser(controller.getInputController());
-        paymentOptions = new PaymentOptionsPanel(viewSwapper);
+        paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper);
         visionPanel = new VisionPanel();

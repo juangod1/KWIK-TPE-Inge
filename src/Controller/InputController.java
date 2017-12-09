@@ -80,8 +80,23 @@ public class InputController {
                 case 23:
                     if(!checkProductPrice(fe.getValue().getString())) return 23;
                     break;
-                case 24:
-                    if(!checkProductDescription(fe.getValue().getString())) return 24;
+                case 31:
+                    if(!checkCardName(fe.getValue().getString())) return 31;
+                    break;
+                case 32:
+                    if(!checkCardSurname(fe.getValue().getString())) return 32;
+                    break;
+                case 33:
+                    if(!checkCardExpMonth(fe.getValue().getString())) return 33;
+                    break;
+                case 34:
+                    if(!checkCardExpYear(fe.getValue().getString())) return 34;
+                    break;
+                case 35:
+                    if(!checkCardSecurityNumber(fe.getValue().getString())) return 35;
+                    break;
+                case 36:
+                    if(!checkCardNumber(fe.getValue().getString())) return 36;
                     break;
                 default:
                     throw new NotImplementedException();
@@ -89,6 +104,66 @@ public class InputController {
         }
         return 0;
     }
+
+    private boolean checkCardNumber(String string) {
+        if(string.length()!=16){
+            return false;
+        }
+        for(Character c : string.toCharArray()){
+            if (!Character.isDigit(c)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkCardExpYear(String string) {
+        if(string.length()!=4){
+            return false;
+        }
+        for(Character c : string.toCharArray()){
+            if (!Character.isDigit(c)){
+                return false;
+            }
+        }
+        int year = Integer.parseInt(string);
+        return year<2050 && year>2017;
+
+    }
+
+    private boolean checkCardExpMonth(String string) {
+        if(string.length()!=2){
+            return false;
+        }
+        for(Character c : string.toCharArray()){
+            if (!Character.isDigit(c)){
+                return false;
+            }
+        }
+        int month = Integer.parseInt(string);
+        return month<13 && month>0;
+    }
+
+    private boolean checkCardSurname(String string) {
+        return !string.isEmpty();
+    }
+    private boolean checkCardName(String string) {
+        return !string.isEmpty();
+    }
+
+    private boolean checkCardSecurityNumber(String string) {
+        if(string.length()!=3){
+            return false;
+        }
+        for (char c : string.toCharArray())
+        {
+            if (!Character.isDigit(c)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public User addUser(UserCreationStruct userCreationStruct){
         String name= userCreationStruct.getFormEntries().get(1).getString();
         String userName= userCreationStruct.getFormEntries().get(2).getString();
@@ -222,6 +297,18 @@ public class InputController {
     }
     public boolean checkProductDescription(String email){
         return true;
+    }
+
+    public void addCard(CardStruct cardStruct) {
+        User user = null;
+        String name = cardStruct.getFormEntries().get(31).getString();
+        String surname = cardStruct.getFormEntries().get(32).getString();
+        String number = cardStruct.getFormEntries().get(36).getString();
+        int month = Integer.parseInt(cardStruct.getFormEntries().get(33).getString());
+        int year = Integer.parseInt(cardStruct.getFormEntries().get(34).getString());
+        int code = Integer.parseInt(cardStruct.getFormEntries().get(35).getString());
+
+        Card.create(user, name, surname, number, month, year, code);
     }
 }
 

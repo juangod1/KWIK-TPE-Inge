@@ -1,6 +1,10 @@
 package View;
 
+import Controller.CardStruct;
+import Controller.InputController;
 import Model.Card;
+import jdk.internal.util.xml.impl.Input;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PaymentOptionsPanel {
+    private InputController inputController;
     private JPanel footnote;
     private JPanel header;
     private JButton VISIONButton;
@@ -26,7 +31,7 @@ public class PaymentOptionsPanel {
     private JButton confirmPaymentButton;
     private View.ViewSwapper vs;
 
-    public PaymentOptionsPanel(final View.ViewSwapper vs){
+    public PaymentOptionsPanel(final View.ViewSwapper vs, InputController inputController){
         this.vs = vs;
 //        for(Card card : ){
 //            cardSelector.addItem()
@@ -50,7 +55,7 @@ public class PaymentOptionsPanel {
         newCardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                displayCardCreator();
+                displayCardCreator(inputController);
             }
         });
 
@@ -90,12 +95,12 @@ public class PaymentOptionsPanel {
         });
     }
 
-    private static void displayCardCreator() {
+    private static void displayCardCreator(InputController inputController) {
         JTextField name = new JTextField();
         JTextField surname = new JTextField();
         JTextField number = new JTextField();
-        JTextField day = new JTextField();
         JTextField month = new JTextField();
+        JTextField year = new JTextField();
         JTextField code = new JTextField();
 
         JPanel panel = new JPanel(new GridLayout(0, 1));
@@ -104,9 +109,9 @@ public class PaymentOptionsPanel {
         panel.add(new JLabel("Surname:"));
         panel.add(surname);
         panel.add(new JLabel("Expiration day:"));
-        panel.add(day);
-        panel.add(new JLabel("Expiration month:"));
         panel.add(month);
+        panel.add(new JLabel("Expiration month:"));
+        panel.add(year);
         panel.add(new JLabel("Credit card number:"));
         panel.add(number);
         panel.add(new JLabel("security Code:"));
@@ -115,10 +120,45 @@ public class PaymentOptionsPanel {
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (result == JOptionPane.OK_OPTION) {
-            //retrieve fields and send to model
+            CardStruct cardStruct = new CardStruct(name.getText(), surname.getText(), month.getText(), year.getText(),
+                    number.getText(), code.getText());
+            int errorcode =inputController.checkAll(cardStruct);
+            if(errorcode==0){
+                inputController.addCard(cardStruct);
+                JOptionPane.showMessageDialog(null, "Added card successfully");
+                System.out.println("anda");
+            }else{
+                createUserErrorMessage(errorcode);
+                System.out.println("no");
+            }
         } else {
             System.out.println("Cancelled");
         }
+    }
+    private static void createUserErrorMessage(int errorcode){
+        switch (errorcode){
+            case 31:
+                JOptionPane.showMessageDialog(null, "Nombre Incorrecto");
+                break;
+            case 32:
+                JOptionPane.showMessageDialog(null, "Apellido Incorrecto");
+                break;
+            case 33:
+                JOptionPane.showMessageDialog(null, "Mes Incorrecto");
+                break;
+            case 34:
+                JOptionPane.showMessageDialog(null, "Año Incorrecto");
+                break;
+            case 35:
+                JOptionPane.showMessageDialog(null, "Codigo Incorrecto");
+                break;
+            case 36:
+                JOptionPane.showMessageDialog(null, "Numero incorrecto");
+                break;
+            default:
+                throw new NotImplementedException();
+        }
+
     }
 
     public Card getCard() {

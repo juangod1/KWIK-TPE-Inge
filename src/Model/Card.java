@@ -25,8 +25,9 @@ public class Card implements Persistent{
         this.code = code;
     }
 
-    public static Card create(User user, String name, String surname, String number, int day, int month, int code) {
-        return new Card(0, user, name, surname, number, day, month, code);
+    public static Card create(User user, String name, String surname, String number, int month, int year, int code) {
+        return new Card(0, user, name, surname, number,  month, year, code);
+
     }
 
     public static Card get(int id) {
