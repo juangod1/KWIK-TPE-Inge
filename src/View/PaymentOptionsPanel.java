@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 public class PaymentOptionsPanel {
     private InputController inputController;
@@ -85,6 +86,8 @@ public class PaymentOptionsPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vs.changeView("searchPanel",null); }
+        });
+        KWIKlabel.addMouseListener(new MouseAdapter() {
         });
     }
 
