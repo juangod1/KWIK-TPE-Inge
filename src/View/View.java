@@ -21,6 +21,7 @@ public class View {
     TeamPanel teamPanel;
     NewUser newUser;
     PaymentOptionsPanel paymentOptions;
+    ProfileLoginPanel profileLoginPanel;
     ProfilePanel profilePanel;
     ShoppingcartPanel shoppingcartPanel;
     VisionPanel visionPanel;
@@ -28,16 +29,25 @@ public class View {
     ViewSwapper viewSwapper = new ViewSwapper();
     Controller controller;
 
+
+    // TODO: hacer que si loggedIn true el boton de profile llame a profilePanel y no a ProfileLoginPanel
     public  class ViewSwapper {
-        public void changeView(String name) {
+        public void changeView(String name,Integer options) {
             cardLayout.show(cards, name);
             if(name == "newUser"){
                 newUser.clearText();
+                if(options == 0){
+                    newUser.setCreating(false);
+                }
+                else{
+                    newUser.setCreating(true);
+                }
             }
         }
     }
 
     public View(Controller controller){
+
         this.controller=controller;
         cardLayout = new CardLayout();
         cards = new JPanel(cardLayout);
@@ -46,15 +56,16 @@ public class View {
         teamPanel = new TeamPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
-        shoppingcartPanel = new ShoppingcartPanel(viewSwapper, Cart.getUserCart(controller.getModel().getUser()));
-        profilePanel = new ProfilePanel(viewSwapper);
+        shoppingcartPanel = new ShoppingcartPanel(viewSwapper,null); //el usuario puede ser null. hay que ver que hacer en ese caso
+        profileLoginPanel = new ProfileLoginPanel(viewSwapper);
+        profilePanel = new ProfilePanel(viewSwapper, controller);
         visionPanel = new VisionPanel();
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(teamPanel.getMainpanel(),"teamPanel");
         cards.add(newUser.getMainpanel(),"newUser");
         cards.add(paymentOptions.getMainpanel(),"paymentOptionsPanel");
-        cards.add(profilePanel.getMainpanel(),"profilePanel");
+        cards.add(profileLoginPanel.getMainpanel(),"profileLoginPanel");
         cards.add(shoppingcartPanel.getMainpanel(),"shoppingcartPanel");
         cards.add(visionPanel.getMainpanel(),"visionPanel");
         loggedIn = false;
@@ -73,21 +84,6 @@ public class View {
                 searchPanel.getSearchBox().setText("");
             }
         });
-//        profilePanel.getRegistrationButton().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                cardLayout.show(cards,"newUser");
-//            }
-//        });
-//        profilePanel.getPassword().addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                char[] ps =  profilePanel.getPassword().getPassword();
-//                System.out.println(ps);
-//                //Si se loggeo deberia setear loggedin en true
-//                loggedIn=true;
-//            }
-//        });
 
         //EQUIPO
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {
@@ -114,7 +110,7 @@ public class View {
                 cardLayout.show(cards,"teamPanel");
             }
         });
-        profilePanel.getEQUIPObutton().addActionListener(new ActionListener() {
+        profileLoginPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"teamPanel");
@@ -158,7 +154,7 @@ public class View {
                 cardLayout.show(cards,"visionPanel");
             }
         });
-        profilePanel.getVISIONButton().addActionListener(new ActionListener() {
+        profileLoginPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"visionPanel");
@@ -181,45 +177,49 @@ public class View {
         searchPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
         teamPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
         resultsPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
         newUser.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
-        profilePanel.getPERFILButton().addActionListener(new ActionListener() {
+        profileLoginPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
-
-
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
         shoppingcartPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"profilePanel");
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
         visionPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"profilePanel");
+            }
+        });
+        paymentOptions.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"profileLoginPanel");
             }
         });
 
@@ -252,7 +252,7 @@ public class View {
 
             }
         });
-        profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
+        profileLoginPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
@@ -298,7 +298,7 @@ public class View {
                 cardLayout.show(cards,"searchPanel");
             }
         });
-        profilePanel.getSEARCHbutton().addActionListener(new ActionListener() {
+        profileLoginPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");

@@ -58,6 +58,45 @@ public class NewUser {
     private JTextField confirmedPassword;
     private JTextField document;
     private JTextField province;
+    private boolean isCreating;
+
+    public void setCreating(boolean creating) {
+        isCreating = creating;
+        if(creating){
+            crearButton.setText("Crear");
+            crearButton.removeActionListener(modifyListener);
+            crearButton.addActionListener(createListener);
+
+        }
+        else{
+            crearButton.setText("modificar");
+            crearButton.removeActionListener(createListener);
+            crearButton.addActionListener(modifyListener);
+        }
+    }
+
+    ActionListener createListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
+                    country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
+                    email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
+                    document.getText(), secondaryPhone.getText());
+            if(inputController.checkAll(userCreationStruct) == 0){
+                //mandar a BD y logear
+            }else{
+                JOptionPane.showMessageDialog(null, "Input Mistake");
+                //mensajito de error
+            }
+        }
+    };
+
+    ActionListener modifyListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO: usar el modifiaction struct y meterlo en la BD
+        }
+    };
 
     public NewUser(final InputController inputController) {
         this.inputController=inputController;
@@ -196,6 +235,13 @@ public class NewUser {
         email.setText("");
         postalCode.setText("");
         surname.setText("");
+        neighborhood.setText("");
+        secondaryPhone.setText("");
+        mainPhone.setText("");
+        docType.setText("");
+        confirmedPassword.setText("");
+        document.setText("");
+        province.setText("");
 
     }
 

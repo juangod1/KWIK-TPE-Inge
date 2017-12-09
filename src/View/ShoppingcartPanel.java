@@ -58,27 +58,30 @@ public class ShoppingcartPanel {
                         options,
                         options[2]);
                 if( n == JOptionPane.YES_OPTION){
-                    vs.changeView("paymentOptionsPanel");
+                    vs.changeView("paymentOptionsPanel",null);
                 }
 
 
             }
         });
-        if(cart.getProducts().size()>=1)
-        textArea1.setText(cart.getProducts().get(0).getName());
-        if(cart.getProducts().size()>=2)
-        textArea2.setText(cart.getProducts().get(1).getName());
-        if(cart.getProducts().size()>=3)
-        textArea3.setText(cart.getProducts().get(2).getName());
-        if(cart.getProducts().size()>=4)
-        textArea4.setText(cart.getProducts().get(3).getName());
+        // TODO: que pasa si cart es null
+        if(cart != null) {
+            if (cart.getProducts().size() >= 1)
+                textArea1.setText(cart.getProducts().get(0).getName());
+            if (cart.getProducts().size() >= 2)
+                textArea2.setText(cart.getProducts().get(1).getName());
+            if (cart.getProducts().size() >= 3)
+                textArea3.setText(cart.getProducts().get(2).getName());
+            if (cart.getProducts().size() >= 4)
+                textArea4.setText(cart.getProducts().get(3).getName());
 
-        int moneh=0;
-        for(Product p : cart.getProducts()){
-            moneh+=p.getPrice();
+            int moneh = 0;
+            for (Product p : cart.getProducts()) {
+                moneh += p.getPrice();
+            }
+
+            total.setText("The total is:    $" + moneh);
         }
-
-        total.setText("The total is:    $"+moneh);
     }
 
     public JPanel getMainpanel() {

@@ -8,6 +8,10 @@ public class Model {
     private ArrayList<Product> products;
     private User user;
 
+    public User getUser(){
+        return user;
+    }
+
     public Model(){
         carts = new ArrayList<>();
         cards = new ArrayList<>();
@@ -28,7 +32,4 @@ public class Model {
         return products;
     }
 
-    public User getUser() {
-        return user;
-    }
 }

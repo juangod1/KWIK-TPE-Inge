@@ -299,16 +299,6 @@
               <text value="Tipo de documento"/>
             </properties>
           </component>
-          <component id="e4f6f" class="javax.swing.JTextField" binding="docType">
-            <constraints>
-              <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-4473925"/>
-            </properties>
-          </component>
           <component id="bdd59" class="javax.swing.JLabel" binding="passwordLabel">
             <constraints>
               <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -366,14 +356,6 @@
               <text value="Confirmar Contraseña"/>
             </properties>
           </component>
-          <component id="2a86c" class="javax.swing.JButton" binding="crearButton" default-binding="true">
-            <constraints>
-              <grid row="15" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="crear"/>
-            </properties>
-          </component>
           <component id="fbc96" class="javax.swing.JLabel" binding="NeighbourhoodLabel">
             <constraints>
               <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -418,6 +400,25 @@
             <properties>
               <background color="-4473925"/>
               <text value=""/>
+            </properties>
+          </component>
+          <component id="e4f6f" class="javax.swing.JTextField" binding="docType">
+            <constraints>
+              <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-4473925"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="2a86c" class="javax.swing.JButton" binding="crearButton" default-binding="true">
+            <constraints>
+              <grid row="17" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="crear"/>
             </properties>
           </component>
         </children>

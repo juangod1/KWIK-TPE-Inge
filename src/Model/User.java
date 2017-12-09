@@ -14,10 +14,12 @@ public class User implements Persistent{
     private City city;
     private Province province;
     private String address,  postalCode, phone, phone2;
+    private ArrayList<Card> cards;
 
 
     private User(){}
 
+    // TODO: inicializar cards con la BD
     private User(int id, String doc, String username, String password, String name, String surname, String email, boolean enabled,
                 boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
                  String postalCode, String phone, String phone2) {
@@ -78,6 +80,11 @@ public class User implements Persistent{
 
     public String getdoc() {
         return doc;
+    }
+
+    // TODO: Agregar a la base de datos
+    public boolean addCard(Card card){
+        return cards.add(card);
     }
 
     public void setdoc(String doc) {

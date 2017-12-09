@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 import Model.Product;
 import Service.DatabaseService;
+import Model.Card;
 import View.*;
 
 import java.util.ArrayList;
@@ -61,6 +62,9 @@ public class Controller {
 
     public InputController getInputController() {
         return inputController;
+    }
+    public void addCard(Card card){
+        model.getUser().addCard(card);
     }
 
     public Model getModel(){

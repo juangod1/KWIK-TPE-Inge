@@ -31,7 +31,7 @@ public class PaymentOptionsPanel {
     private JButton confirmPaymentButton;
     private View.ViewSwapper vs;
 
-    public PaymentOptionsPanel(final View.ViewSwapper vs, InputController inputController){
+    public PaymentOptionsPanel(final View.ViewSwapper vs, final InputController inputController){
         this.vs = vs;
 //        for(Card card : ){
 //            cardSelector.addItem()
@@ -62,7 +62,7 @@ public class PaymentOptionsPanel {
         EQUIPObutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vs.changeView("teamPanel");
+                vs.changeView("teamPanel",null);
             }
         });
 
@@ -74,24 +74,17 @@ public class PaymentOptionsPanel {
             }
         });
 
-        PERFILButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                vs.changeView("profilePanel");
-            }
-        });
-
         CARRITObutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vs.changeView("shoppingcartPanel");
+                vs.changeView("shoppingcartPanel",null);
             }
         });
 
         SEARCHbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vs.changeView("searchPanel"); }
+                vs.changeView("searchPanel",null); }
         });
     }
 
@@ -169,4 +162,40 @@ public class PaymentOptionsPanel {
         return mainpanel;
     }
 
+    public static boolean validateCard(String name, String surname, String day, String month, String number, String code){
+        if(validateString(name) && validateString(surname) && validateInteger(day) && validateInteger(month) && validateInteger(number)  && validateInteger(code)){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validateString(String str){
+        if(str == null){
+            return false;
+        }
+        if(str.equals("")){
+            return false;
+        }
+        if(str.matches("[a-zA-Z]+")){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean validateInteger(String str){
+        if(str == null){
+            return false;
+        }
+        if(str.equals("")){
+            return false;
+        }
+        if(str.matches("[0-9]+")){
+            return true;
+        }
+        return false;
+    }
+
+    public JButton getPERFILButton() {
+        return PERFILButton;
+    }
 }
