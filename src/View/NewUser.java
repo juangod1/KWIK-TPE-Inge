@@ -2,6 +2,9 @@ package View;
 
 import Controller.InputController;
 import Controller.UserCreationStruct;
+import Model.City;
+import Model.Country;
+import Model.Province;
 import Model.User;
 import jdk.internal.util.xml.impl.Input;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -59,6 +62,9 @@ public class NewUser {
     private JTextField confirmedPassword;
     private JTextField document;
     private JTextField province;
+    private JComboBox<Country> countries;
+    private JComboBox provinces;
+    private JComboBox cities;
     private boolean isCreating;
 
     public void setCreating(boolean creating) {
@@ -101,8 +107,8 @@ public class NewUser {
         @Override
         public void actionPerformed(ActionEvent e) {
             UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
-                    country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
-                    email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
+                    (Country)(countries.getSelectedItem()), (City)cities.getSelectedItem(), address.getText(), mainPhone.getText(), surname.getText(),
+                    email.getText(), confirmedPassword.getText(), (Province)provinces.getSelectedItem(), postalCode.getText(), docType.getText(),
                     document.getText(), secondaryPhone.getText());
             int errorcode=inputController.checkAll(userCreationStruct);
             if(errorcode==0){
@@ -118,8 +124,8 @@ public class NewUser {
         @Override
         public void actionPerformed(ActionEvent e) {
             UserCreationStruct userCreationStruct= new UserCreationStruct(name.getText(),username.getText(),password.getText(),
-                    country.getText(), neighborhood.getText(), address.getText(), mainPhone.getText(), surname.getText(),
-                    email.getText(), confirmedPassword.getText(), province.getText(), postalCode.getText(), docType.getText(),
+                    (Country)countries.getSelectedItem(), (City)cities.getSelectedItem(), address.getText(), mainPhone.getText(), surname.getText(),
+                    email.getText(), confirmedPassword.getText(), (Province)provinces.getSelectedItem(), postalCode.getText(), docType.getText(),
                     document.getText(), secondaryPhone.getText());
             int errorcode=inputController.checkAll(userCreationStruct);
             if(errorcode==0){
@@ -132,6 +138,9 @@ public class NewUser {
     };
 
     public NewUser(final InputController inputController) {
+        for(Country c : Country.list()){
+            countries.addItem(c);
+        }
         this.inputController=inputController;
         name.addActionListener(new ActionListener() {
             @Override
@@ -157,10 +166,27 @@ public class NewUser {
                 password.getText();
             }
         });
-        country.addActionListener(new ActionListener() {
+        countries.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                country.getText();
+                if(countries.getSelectedItem()!=null){
+                    cities.removeAllItems();
+                    provinces.removeAllItems();
+                    for(Province province: Province.list((Country)countries.getSelectedItem())){
+                        provinces.addItem(province);
+                    }
+                }
+            }
+        });
+        provinces.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(provinces.getSelectedItem()!=null){
+                    cities.removeAllItems();
+                    for(City city: City.list((Province) provinces.getSelectedItem())){
+                        cities.addItem(city);
+                    }
+                }
             }
         });
         address.addActionListener(new ActionListener() {
@@ -173,12 +199,6 @@ public class NewUser {
             @Override
             public void actionPerformed(ActionEvent e) {
                 email.getText();
-            }
-        });
-        province.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                province.getText();
             }
         });
         postalCode.addActionListener(new ActionListener() {
@@ -246,18 +266,17 @@ public class NewUser {
         name.setText("");
         username.setText("");
         password.setText("");
-        country.setText("");
         address.setText("");
         email.setText("");
         postalCode.setText("");
         surname.setText("");
-        neighborhood.setText("");
+        cities.removeAllItems();
         secondaryPhone.setText("");
         mainPhone.setText("");
         docType.setText("");
         confirmedPassword.setText("");
         document.setText("");
-        province.setText("");
+        provinces.removeAllItems();
 
     }
 

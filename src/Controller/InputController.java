@@ -16,94 +16,94 @@ public class InputController {
         return controller;
     }
     public int checkAll(InputStruct inputStruct){
-        Set<Map.Entry<Integer, FormEntry>> formEntries=inputStruct.getFormEntries().entrySet();
+        Set<Map.Entry<Integer, MyEntry>> formEntries=inputStruct.getFormEntries().entrySet();
         String password=null;
-        for(Map.Entry<Integer,FormEntry> fe: formEntries){
+        for(Map.Entry<Integer,MyEntry> fe: formEntries){
             int code = fe.getValue().getCode();
             switch (code){
                 case 1:
-                    if(!checkUserName(fe.getValue().getString())) return 1;
+                    if(!checkUserName((String)fe.getValue().getItem())) return 1;
                     break;
                 case 2:
-                    if(!checkUserUserName(fe.getValue().getString())) return 2;
+                    if(!checkUserUserName((String)fe.getValue().getItem())) return 2;
                     break;
                 case 3:
-                    if(!checkUserPassword(fe.getValue().getString())) return 3;
+                    if(!checkUserPassword((String)fe.getValue().getItem())) return 3;
                     if(password==null) {
-                        password = fe.getValue().getString();
+                        password = (String)fe.getValue().getItem();
                     }else{
-                        if(!password.equals(fe.getValue().getString())) return 3;
+                        if(!password.equals((String)fe.getValue().getItem())) return 3;
                     }
                     break;
                 case 4:
-                    if(!checkUserCountry(fe.getValue().getString())) return 4;
+                    if(!checkUserCountry(((Country)fe.getValue().getItem()).getName())) return 4;
                     break;
                 case 5:
-                    if(!checkUserNeighbourhood(fe.getValue().getString())) return 5;
+                    if(!checkUserNeighbourhood(((City)(fe.getValue().getItem())).getName())) return 5;
                     break;
                 case 6:
-                    if(!checkUserAddress(fe.getValue().getString())) return 6;
+                    if(!checkUserAddress((String)fe.getValue().getItem())) return 6;
                     break;
                 case 7:
-                    if(!checkUserPhoneNumber(fe.getValue().getString())) return 7;
+                    if(!checkUserPhoneNumber((String)fe.getValue().getItem())) return 7;
                     break;
                 case 8:
-                    if(!checkUserSurname(fe.getValue().getString())) return 8;
+                    if(!checkUserSurname((String)fe.getValue().getItem())) return 8;
                     break;
                 case 9:
-                    if(!checkUserEmail(fe.getValue().getString())) return 9;
+                    if(!checkUserEmail((String)fe.getValue().getItem())) return 9;
                     break;
                 case 10:
-                    if(!checkUserState(fe.getValue().getString())) return 10;
+                    if(!checkUserState(((Province)(fe.getValue().getItem())).getName())) return 10;
                     break;
                 case 11:
-                    if(!checkUserDocumentType(fe.getValue().getString())) return 11;
+                    if(!checkUserDocumentType((String)fe.getValue().getItem())) return 11;
                     break;
                 case 12:
-                    if(!checkUserDocument(fe.getValue().getString())) return 12;
+                    if(!checkUserDocument((String)(fe.getValue().getItem()))) return 12;
                     break;
                 case 13:
-                    if(!checkUserBirthDate(fe.getValue().getString())) return 13;
+                    if(!checkUserBirthDate((String)fe.getValue().getItem())) return 13;
                     break;
                 case 14:
-                    if(!checkUserPostalCode(fe.getValue().getString())) return 14;
+                    if(!checkUserPostalCode((String)fe.getValue().getItem())) return 14;
                     break;
                 case 15:
-                    if(!checkUserPassword(fe.getValue().getString())) return 15;
+                    if(!checkUserPassword((String)fe.getValue().getItem())) return 15;
                     if(password==null) {
-                        password = fe.getValue().getString();
+                        password = (String)fe.getValue().getItem();
                     }else{
-                        if(!password.equals(fe.getValue().getString())) return 15;
+                        if(!password.equals(fe.getValue().getItem())) return 15;
                     }
                 case 21:
-                    if(!checkProductTitle(fe.getValue().getString())) return 21;
+                    if(!checkProductTitle((String)fe.getValue().getItem())) return 21;
                     break;
                 case 22:
-                    if(!checkProductAmount(fe.getValue().getString())) return 22;
+                    if(!checkProductAmount((String)fe.getValue().getItem())) return 22;
                     break;
                 case 23:
-                    if(!checkProductPrice(fe.getValue().getString())) return 23;
+                    if(!checkProductPrice((String)fe.getValue().getItem())) return 23;
                     break;
                 case 24:
-                    if(!checkProductDescription(fe.getValue().getString())) return 24;
+                    if(!checkProductDescription((String)fe.getValue().getItem())) return 24;
                     break;
                 case 31:
-                    if(!checkCardName(fe.getValue().getString())) return 31;
+                    if(!checkCardName((String)fe.getValue().getItem())) return 31;
                     break;
                 case 32:
-                    if(!checkCardSurname(fe.getValue().getString())) return 32;
+                    if(!checkCardSurname((String)fe.getValue().getItem())) return 32;
                     break;
                 case 33:
-                    if(!checkCardExpMonth(fe.getValue().getString())) return 33;
+                    if(!checkCardExpMonth((String)fe.getValue().getItem())) return 33;
                     break;
                 case 34:
-                    if(!checkCardExpYear(fe.getValue().getString())) return 34;
+                    if(!checkCardExpYear((String)fe.getValue().getItem())) return 34;
                     break;
                 case 35:
-                    if(!checkCardSecurityNumber(fe.getValue().getString())) return 35;
+                    if(!checkCardSecurityNumber((String)fe.getValue().getItem())) return 35;
                     break;
                 case 36:
-                    if(!checkCardNumber(fe.getValue().getString())) return 36;
+                    if(!checkCardNumber((String)fe.getValue().getItem())) return 36;
                     break;
                 default:
                     throw new NotImplementedException();
@@ -172,20 +172,20 @@ public class InputController {
     }
 
     public User addUser(UserCreationStruct userCreationStruct){
-        String name= userCreationStruct.getFormEntries().get(1).getString();
-        String userName= userCreationStruct.getFormEntries().get(2).getString();
-        String password = userCreationStruct.getFormEntries().get(3).getString();
-        Country country = null;// Country country = new Country(userCreationStruct.getFormEntries().get(4);
-        City city = null;// City city = userCreationStruct.getFormEntries().get(5);
-        String address = userCreationStruct.getFormEntries().get(6).getString();
-        String phoneNumber = userCreationStruct.getFormEntries().get(7).getString();
-        String surname = userCreationStruct.getFormEntries().get(8).getString();
-        String email = userCreationStruct.getFormEntries().get(9).getString();
-        Province province = null;// Province province= userCreationStruct.getFormEntries().get(10);
-        DocType doctype = null;// DocType doctype = userCreationStruct.getFormEntries().get(11);
-        String docNumber = userCreationStruct.getFormEntries().get(12).getString();
-        String postalcode = userCreationStruct.getFormEntries().get(14).getString();
-        String telephone2 = userCreationStruct.getFormEntries().get(16).getString();
+        String name= (String)userCreationStruct.getFormEntries().get(1).getItem();
+        String userName= (String)userCreationStruct.getFormEntries().get(2).getItem();
+        String password = (String)userCreationStruct.getFormEntries().get(3).getItem();
+        Country country = (Country)userCreationStruct.getFormEntries().get(4).getItem();// Country country = new Country(userCreationStruct.getFormEntries().get(4);
+        City city = (City)userCreationStruct.getFormEntries().get(5).getItem();
+        String address = (String)userCreationStruct.getFormEntries().get(6).getItem();
+        String phoneNumber = (String)userCreationStruct.getFormEntries().get(7).getItem();
+        String surname = (String)userCreationStruct.getFormEntries().get(8).getItem();
+        String email = (String)userCreationStruct.getFormEntries().get(9).getItem();
+        Province province = (Province) userCreationStruct.getFormEntries().get(10).getItem();
+        DocType doctype =  DocType.list().get(0);
+        String docNumber = (String)userCreationStruct.getFormEntries().get(12).getItem();
+        String postalcode = (String)userCreationStruct.getFormEntries().get(14).getItem();
+        String telephone2 = (String)userCreationStruct.getFormEntries().get(16).getItem();
         boolean enabled = true;
         boolean confirmado = true;
         boolean admin = false;
@@ -303,12 +303,12 @@ public class InputController {
 
     public void addCard(CardStruct cardStruct) {
         User user = null;
-        String name = cardStruct.getFormEntries().get(31).getString();
-        String surname = cardStruct.getFormEntries().get(32).getString();
-        String number = cardStruct.getFormEntries().get(36).getString();
-        int month = Integer.parseInt(cardStruct.getFormEntries().get(33).getString());
-        int year = Integer.parseInt(cardStruct.getFormEntries().get(34).getString());
-        int code = Integer.parseInt(cardStruct.getFormEntries().get(35).getString());
+        String name = (String)cardStruct.getFormEntries().get(31).getItem();
+        String surname = (String)cardStruct.getFormEntries().get(32).getItem();
+        String number = (String)cardStruct.getFormEntries().get(36).getItem();
+        int month = Integer.parseInt((String)cardStruct.getFormEntries().get(33).getItem());
+        int year = Integer.parseInt((String)cardStruct.getFormEntries().get(34).getItem());
+        int code = Integer.parseInt((String)cardStruct.getFormEntries().get(35).getItem());
 
         Card.create(user, name, surname, number, month, year, code);
     }

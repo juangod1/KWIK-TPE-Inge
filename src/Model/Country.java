@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Country {
-    private int id;
+public class Country extends Area {
     private String name;
 
     private static final String select = "SELECT * FROM country ";
@@ -51,8 +50,8 @@ public class Country {
         return null;
     }
 
-    public int getId() {
-        return id;
+    public String toString(){
+        return getName();
     }
 
     public String getName() {

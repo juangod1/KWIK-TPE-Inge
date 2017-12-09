@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Province {
-    private int id;
+public class Province extends Area {
     private String name;
     private int countryId;
     private Country country;
@@ -59,8 +58,8 @@ public class Province {
         return null;
     }
 
-    public int getId() {
-        return id;
+    public String toString(){
+        return getName();
     }
 
     public String getName() {
