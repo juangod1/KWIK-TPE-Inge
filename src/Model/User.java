@@ -1,6 +1,10 @@
 package Model;
 
 
+import Service.DatabaseService;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class User implements Persistent{
@@ -13,8 +17,12 @@ public class User implements Persistent{
     private Country country;
     private City city;
     private Province province;
-    private String address,  postalCode, phone, phone2;
+    private String address,  postCode, phone, phone2;
     private ArrayList<Card> cards;
+
+    private static final String select = "SELECT u.*, d.name as docName, c.name as countryName, p.name as provinceName, city.name as cityName " +
+            "FROM client u JOIN doctype d ON d.id = u.iddoctype JOIN country c ON c.id = u.idcountry " +
+            "JOIN province p ON p.id = u.idprovince JOIN city ON city.id = u.idcity ";
 
 
     private User(){}
@@ -22,7 +30,7 @@ public class User implements Persistent{
     // TODO: inicializar cards con la BD
     private User(int id, String doc, String username, String password, String name, String surname, String email, boolean enabled,
                 boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
-                 String postalCode, String phone, String phone2) {
+                 String postCode, String phone, String phone2) {
         this.id = id;
         this.doc = doc;
         this.username = username;
@@ -38,7 +46,7 @@ public class User implements Persistent{
         this.city = city;
         this.province = province;
         this.address = address;
-        this.postalCode = postalCode;
+        this.postCode = postCode;
         this.phone = phone;
         this.phone2 = phone2;
         this.admin = admin;
@@ -46,18 +54,61 @@ public class User implements Persistent{
 
     public static User create(String doc, String username, String password, String name, String surname, String email, boolean enabled,
                               boolean confirmed, boolean admin, DocType docType, Cart cart, Country country, City city, Province province, String address,
-                              String postalCode, String phone, String phone2) { //Factory :wink:
+                              String postCode, String phone, String phone2) { //Factory :wink:
 
         return new User(0, doc, username, password, name, surname, email, enabled, confirmed, admin, docType, cart, country, city,
-                        province, address, postalCode, phone, phone2);
+                        province, address, postCode, phone, phone2);
     }
 
     public static User get(int id) {
-        return new User();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery( select +
+                    "WHERE u.id = "+ id);
+            if(rs.next()) {
+                return fromResultSet(rs);
+            }
+            else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
     }
 
     public static User login(String username, String password) {
-        return new User();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery( select +
+                    "WHERE username = '"+ username +"' AND password = '"+ password +"'");
+            if(rs.next()) {
+                return fromResultSet(rs);
+            }
+            else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
+    private static User fromResultSet(ResultSet rs) {
+        try {
+            DocType docType = new DocType(rs.getInt("iddoctype"), rs.getString("docName"));
+            Country country = new Country(rs.getInt("idcountry"), rs.getString("countryName"));
+            Province province = new Province(rs.getInt("idprovince"), rs.getString("provinceName"), country);
+            City city = new City(rs.getInt("idcity"), rs.getString("cityName"), province);
+
+            return new User(rs.getInt("id"), rs.getString("doc"), rs.getString("username"),
+                    rs.getString("password"), rs.getString("name"), rs.getString("surname"),
+                    rs.getString("email"), rs.getBoolean("enabled"), rs.getBoolean("confirmed"),
+                    rs.getBoolean("admin"), docType, null, country, city, province, rs.getString("address"),
+                    rs.getString("postCode"), rs.getString("phone"), rs.getString("phone2"));
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -211,12 +262,12 @@ public class User implements Persistent{
         return address;
     }
 
-    public String getPostalCode() {
-        return postalCode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
     public String getPhone() {

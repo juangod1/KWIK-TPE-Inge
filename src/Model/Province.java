@@ -7,7 +7,7 @@ public class Province {
     private String name;
     private Country country;
 
-    private Province(int id, String name, Country country) {
+    public Province(int id, String name, Country country) {
         this.id = id;
         this.name = name;
         this.country = country;
