@@ -151,6 +151,7 @@
             </constraints>
             <properties>
               <background color="-1315861"/>
+              <editable value="false"/>
               <font size="16" style="1"/>
               <foreground color="-8733824"/>
               <text value=""/>
@@ -182,6 +183,7 @@
             </constraints>
             <properties>
               <background color="-1"/>
+              <editable value="false"/>
               <font style="1"/>
             </properties>
           </component>
