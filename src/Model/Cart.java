@@ -11,7 +11,6 @@ public class Cart implements Persistent {
     private int id;
     private User user;
     private boolean closed;
-    private double subTotal;
     private Card card;
 
     private int userId;
@@ -19,22 +18,20 @@ public class Cart implements Persistent {
 
     private Cart() {}
 
-    private Cart(int id, User user, boolean closed, double subTotal, Card card){
+    private Cart(int id, User user, boolean closed, Card card){
         this.id = id;
         this.closed = closed;
         this.card = card;
         this.user = user;
-        this.subTotal = subTotal;
     }
 
-    private Cart(int id, int userId, boolean closed, double subTotal, int cardId){
+    private Cart(int id, int userId, boolean closed, int cardId){
         this.id = id;
         this.closed = closed;
         this.cardId = cardId;
         this.card = null;
         this.userId = userId;
         this.user = null;
-        this.subTotal = subTotal;
     }
 
     private static final String select = "SELECT * FROM cart ";
@@ -48,7 +45,7 @@ public class Cart implements Persistent {
             ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO cart (idclient) " +
                     "VALUES ("+user.getId()+") RETURNING id");
             if(rs.next())
-                return new Cart(rs.getInt(1), user, false, 0, null);
+                return new Cart(rs.getInt(1), user, false, null);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,7 +89,7 @@ public class Cart implements Persistent {
     private static Cart fromResultSet(ResultSet rs) {
         try {
             return new Cart(rs.getInt("id"), rs.getInt("idClient"), rs.getBoolean("closed"),
-                    rs.getDouble("subtotal"), rs.getInt("idCard"));
+                    rs.getInt("idCard"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -178,11 +175,14 @@ public class Cart implements Persistent {
     }
 
     public double getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("SELECT sum(amount * price) FROM cartproducts cp JOIN product p ON p.id = cp.idproduct WHERE idcart = "+id);
+            if(rs.next())
+                return rs.getDouble(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     public Card getCard() {
