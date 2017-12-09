@@ -71,10 +71,8 @@ public class ResultsPanel {
         this.controller = controller;
         }
 
-    public void printResults(String query){
+    public void printResults(ArrayList<Product> prods){
         cleanPanel();
-
-        final ArrayList<Product> prods = Product.search(query);
 
         if(prods.size()>=1)
         textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
@@ -117,39 +115,6 @@ public class ResultsPanel {
                 System.out.println("add item to cart");
             }
         });
-
-
-
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("go to product "+prods.get(0).getName());
-            }
-        });
-        viewButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("go to product "+prods.get(1).getName());
-            }
-        });
-        viewButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("go to product "+prods.get(2).getName());
-            }
-        });
-        viewButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("go to product "+prods.get(3).getName());
-            }
-        });
-        viewButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("go to product "+prods.get(4).getName());
-            }
-        });
      }
 
      private void cleanPanel(){
@@ -190,4 +155,24 @@ public class ResultsPanel {
          if(button5.getActionListeners().length>0)
          button5.removeActionListener(button5.getActionListeners()[0]);
      }
+
+    public JButton getViewButton() {
+        return viewButton;
+    }
+
+    public JButton getViewButton1() {
+        return viewButton1;
+    }
+
+    public JButton getViewButton2() {
+        return viewButton2;
+    }
+
+    public JButton getViewButton3() {
+        return viewButton3;
+    }
+
+    public JButton getViewButton4() {
+        return viewButton4;
+    }
 }

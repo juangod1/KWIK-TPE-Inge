@@ -1,5 +1,7 @@
 package View;
 
+import Model.Product;
+
 import javax.swing.*;
 
 /**
@@ -19,8 +21,9 @@ public class ViewProduct {
     private JTextPane description;
     private JLabel photo;
     private JLabel photo2;
-    private JTextField nombre;
+    private JTextField thumbnail;
     private JTextField precio;
+    private JTextField name;
 
     public JButton getSEARCHbutton() {
         return SEARCHbutton;
@@ -43,6 +46,21 @@ public class ViewProduct {
     }
     public JPanel getMainpanel() {
         return mainpanel;
+    }
+
+    public void printProduct(Product product){
+        cleanProduct();
+        name.setText(product.getName());
+        thumbnail.setText(product.getThumbnail());
+        precio.setText("$" + ((Double)product.getPrice()).toString());
+        description.setText(product.getDescription());
+    }
+
+    public void cleanProduct(){
+        name.setText("");
+        thumbnail.setText("");
+        precio.setText("");
+        description.setText("");
     }
 
 }
