@@ -225,7 +225,7 @@
             </constraints>
             <properties>
               <icon value="View/cart_icon.png"/>
-              <text value="Button"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="3f682" class="javax.swing.JButton" binding="button2" default-binding="true">
@@ -234,7 +234,7 @@
             </constraints>
             <properties>
               <icon value="View/cart_icon.png"/>
-              <text value="Button"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="57092" class="javax.swing.JButton" binding="button3" default-binding="true">
@@ -243,7 +243,7 @@
             </constraints>
             <properties>
               <icon value="View/cart_icon.png"/>
-              <text value="Button"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="a590c" class="javax.swing.JButton" binding="button4" default-binding="true">
@@ -252,7 +252,7 @@
             </constraints>
             <properties>
               <icon value="View/cart_icon.png"/>
-              <text value="Button"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="c0bd8" class="javax.swing.JButton" binding="button5" default-binding="true">
@@ -261,7 +261,7 @@
             </constraints>
             <properties>
               <icon value="View/cart_icon.png"/>
-              <text value="Button"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
