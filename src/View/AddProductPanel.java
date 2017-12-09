@@ -1,8 +1,15 @@
 package View;
 
+import Controller.Controller;
+import Model.Product;
+import Model.User;
+
+import javax.naming.ldap.Control;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseMotionAdapter;
+
 
 /**
  * Created by cderienzo on 12/9/2017.
@@ -19,15 +26,18 @@ public class AddProductPanel {
     private JPanel footnote;
     private JPanel middle;
     private JTextField nombre;
-    private JTextField textField1;
-    private JTextPane textPane1;
-    private JTextField textField2;
+    private JTextField cantidad;
+    private JTextPane descripcion;
+    private JTextField precio;
     private JButton foto2;
     private JButton foto1;
     private JButton publishButton;
     private JButton cancelButton;
+    private View.ViewSwapper vs;
 
-    public AddProductPanel() {
+
+    public AddProductPanel(final View.ViewSwapper vs) {
+        this.vs = vs;
         foto1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,6 +48,32 @@ public class AddProductPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+        publishButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = nombre.getText();
+                Double price = Double.parseDouble(precio.getText());
+                Integer stock = Integer.parseInt(cantidad.getText());
+                String description = descripcion.getText();
+                User user = Controller.getInstance().getModel().getUser();
+                Product product = Product.create(name,description,price,user,"thumbnail",stock);
+                if(product!=null){
+                    JOptionPane.showMessageDialog(null,"El producto fue publicado");
+                    vs.changeView("profileMenuPanel",null);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Hubo un error");
+                    vs.changeView("profileMenuPanel",null);
+
+                }
+            }
+        });
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vs.changeView("profilePanel",null);
             }
         });
     }

@@ -29,6 +29,7 @@ public class View {
     VisionPanel visionPanel;
     AddProductPanel addProductPanel;
     ViewProduct viewProduct;
+    ProfileMenuPanel profileMenuPanel;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
     Controller controller;
@@ -65,7 +66,8 @@ public class View {
         profilePanel = new ProfilePanel(viewSwapper, controller);
         visionPanel = new VisionPanel();
         viewProduct = new ViewProduct();
-        addProductPanel = new AddProductPanel();
+        addProductPanel = new AddProductPanel(viewSwapper);
+        profileMenuPanel = new ProfileMenuPanel(viewSwapper);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(teamPanel.getMainpanel(),"teamPanel");
@@ -77,6 +79,7 @@ public class View {
         cards.add(visionPanel.getMainpanel(),"visionPanel");
         cards.add(viewProduct.getMainpanel(),"viewProductPanel");
         cards.add(addProductPanel.getMainpanel(),"addProductPanel");
+        cards.add(profileMenuPanel.getMainpanel(),"profileMenuPanel");
         loggedIn = false;
         run();
     }
@@ -141,6 +144,12 @@ public class View {
                 cardLayout.show(cards,"teamPanel");
             }
         });
+        profileMenuPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"teamPanel");
+            }
+        });
 
         //VISION
         searchPanel.getVISIONButton().addActionListener(new ActionListener() {
@@ -197,13 +206,20 @@ public class View {
                 cardLayout.show(cards,"visionPanel");
             }
         });
+        profileMenuPanel.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"visionPanel");
+            }
+        });
+
 
         //PERFIL
         searchPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -214,7 +230,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -225,7 +241,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -236,7 +252,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -247,7 +263,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -258,7 +274,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -269,7 +285,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -280,7 +296,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -291,7 +307,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -302,7 +318,18 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        profileMenuPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -370,6 +397,13 @@ public class View {
                 cardLayout.show(cards,"shoppingcartPanel");
             }
         });
+        profileMenuPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+            }
+        });
+
 
         //SEARCH
         newUser.getSEARCHbutton().addActionListener(new ActionListener() {
@@ -421,6 +455,12 @@ public class View {
             }
         });
         profilePanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        profileMenuPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");
