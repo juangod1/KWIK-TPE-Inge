@@ -73,16 +73,45 @@ public class ResultsPanel {
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
         prods.add(Product.create("Tornillo","lo encontre en mi cajon", 5.0, User.get(0), "thumbnail", 7));
 
+        if(prods.size()>=1)
         textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
+        if(prods.size()>=2)
         textArea2.setText(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
+        if(prods.size()>=3)
         textArea3.setText(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
+        if(prods.size()>=4)
         textArea4.setText(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
+        if(prods.size()>=5)
         textArea5.setText(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
 
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("asdfasdf");
+                System.out.println("add item to cart");
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("add item to cart");
+            }
+        });
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("add item to cart");
+            }
+        });
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("add item to cart");
+            }
+        });
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("add item to cart");
             }
         });
      }
