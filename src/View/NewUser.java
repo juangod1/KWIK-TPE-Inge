@@ -122,7 +122,7 @@ public class NewUser {
                     document.getText(), secondaryPhone.getText());
             int errorcode=inputController.checkAll(userCreationStruct);
             if(errorcode==0){
-                inputController.addUser(userCreationStruct);
+                inputController.modifyUser(userCreationStruct, inputController.getController().getCurrentUser());
                 JOptionPane.showMessageDialog(null, "User Modified Successfully!");
             }else{
                 createUserErrorMessage(errorcode);

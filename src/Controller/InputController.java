@@ -314,5 +314,12 @@ public class InputController {
 
         Card.create(user, name, surname, number, month, year, code);
     }
+
+    public User modifyUser(UserCreationStruct userCreationStruct, User currentUser) {
+        currentUser.delete();
+        User u =addUser(userCreationStruct);
+        getController().setUser(u);
+        return u;
+    }
 }
 

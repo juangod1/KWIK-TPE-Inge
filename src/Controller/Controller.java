@@ -65,7 +65,7 @@ public class Controller {
     }
 
 
-    public Model getModel(){
+    public static Model getModel(){
         return model;
     }
 
@@ -88,5 +88,9 @@ public class Controller {
 
     public User getCurrentUser() {
         return model.user;
+    }
+
+    public static void setUser(User user) {
+        getModel().setUser(user);
     }
 }
