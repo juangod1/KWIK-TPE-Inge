@@ -219,6 +219,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
+                    profilePanel.updateValues();
                     cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
@@ -231,6 +232,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -242,6 +244,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -253,6 +256,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -264,6 +268,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -275,6 +280,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -286,6 +292,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");
@@ -296,6 +303,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
+                    profilePanel.updateValues();
                     cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
@@ -308,7 +316,7 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
                     profilePanel.updateValues();
-                    cardLayout.show(cards, "profilePanel");
+                    cardLayout.show(cards, "profileMenuPanel");
                 }
                 else{
                     cardLayout.show(cards, "profileLoginPanel");

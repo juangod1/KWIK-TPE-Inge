@@ -295,7 +295,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="2220a" class="javax.swing.JTextArea" binding="username">
             <constraints>
@@ -305,7 +307,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="971a9" class="javax.swing.JTextArea" binding="email">
             <constraints>
@@ -316,6 +320,7 @@
               </grid>
             </constraints>
             <properties>
+              <editable value="false"/>
               <text value=""/>
             </properties>
           </component>
@@ -327,7 +332,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="c854c" class="javax.swing.JTextArea" binding="neighborhood">
             <constraints>
@@ -338,6 +345,7 @@
               </grid>
             </constraints>
             <properties>
+              <editable value="false"/>
               <text value=""/>
             </properties>
           </component>
@@ -349,7 +357,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="53af8" class="javax.swing.JTextArea" binding="postalCode">
             <constraints>
@@ -359,7 +369,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="3c53d" class="javax.swing.JTextArea" binding="mainPhone">
             <constraints>
@@ -369,7 +381,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="4bc6e" class="javax.swing.JTextArea" binding="secondaryPhone">
             <constraints>
@@ -379,7 +393,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="bd72a" class="javax.swing.JTextArea" binding="docType">
             <constraints>
@@ -389,7 +405,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="e8451" class="javax.swing.JTextArea" binding="document">
             <constraints>
@@ -399,7 +417,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="c4fdf" class="javax.swing.JTextArea" binding="province">
             <constraints>
@@ -409,7 +429,9 @@
                 <maximum-size width="-1" height="25"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
         </children>
       </grid>
