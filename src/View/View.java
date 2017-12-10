@@ -105,92 +105,6 @@ public class View {
         configureSearchButtons();
     }
 
-    public void configureSearchView(){
-        searchPanel.getSearchBox().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Mandar a realizar la busqueda con el input
-                String input = searchPanel.getSearchBox().getText();
-                final ArrayList<Product> prods = Product.search(input);
-
-                cardLayout.show(cards,"resultsPanel");
-
-                resultsPanel.printResults(prods);
-                searchPanel.getSearchBox().setText("");
-
-
-
-                //config de view product
-                resultsPanel.getViewButton().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-
-                        if(prods.size()>=1) {
-                            viewProduct.printProduct(prods.get(0));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton1().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=2) {
-                            viewProduct.printProduct(prods.get(1));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton2().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=3) {
-                            viewProduct.printProduct(prods.get(2));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton3().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=4) {
-                            viewProduct.printProduct(prods.get(3));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton4().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=5) {
-                            viewProduct.printProduct(prods.get(4));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-
-            }
-        });
-    }
 
     public void initialize(Controller controller) {
         JFrame frame = new JFrame("KWIK");
@@ -739,19 +653,5 @@ public class View {
         });
     }
 
-    public void initialize(Controller controller) {
-        JFrame frame = new JFrame("KWIK");
-        frame.setContentPane(this.cards);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        Dimension dimension = new Dimension(1067,600);
-        frame.setMinimumSize(dimension);
-        frame.setPreferredSize(dimension);
-        frame.setMaximumSize(dimension);
-    }
-
-    public void setViewsAsLoggedIn(){
-        profilePanel.updateValues();
-    }
 
 }
