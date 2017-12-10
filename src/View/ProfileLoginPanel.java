@@ -39,6 +39,7 @@ public class ProfileLoginPanel {
                 System.out.println("user: "+ name.getText()+" pw: "+password.getText());
                 if(!Controller.getInstance().isLoggedIn()) {
                     if (Controller.getInstance().logInUser(name.getText(), password.getText())) {
+                        Controller.getView().setViewsAsLoggedIn();
                         vs.changeView("searchPanel", null);
                     } else {
                         JOptionPane.showMessageDialog(null, "invalid username or password");

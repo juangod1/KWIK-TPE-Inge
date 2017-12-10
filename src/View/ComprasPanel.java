@@ -45,9 +45,6 @@ public class ComprasPanel {
 
     public ComprasPanel(final View.ViewSwapper vs, final Controller controller) {
         this.vs = vs;
-        this.offset = 0;
-        this.ids = Product.listBoughtProducts(controller.getCurrentUser());
-        this.products = new ArrayList<>(ids.keySet());
         anteriorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,10 +55,11 @@ public class ComprasPanel {
                 if(offset < PAGESIZE) {
                     anteriorButton.setEnabled(false);
                 }
-                refresh();
+                drawListItems();
 
             }
         });
+
         siguienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,108 +71,173 @@ public class ComprasPanel {
                 if(size - offset <= PAGESIZE) {
                     siguienteButton.setEnabled(false);
                 }
-                refresh();
+                drawListItems();
 
-            }
-        });
-        configureCommentsAction();
-
-    }
-    public void configureCommentsAction(){
-
-        comentarButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(products.size()>=1) {
-                    Product curr = products.get(offset);
-                    RateProduct rateProduct = View.getRateProduct();
-                    rateProduct.setUpReview(curr,ids.get(curr));
-                    vs.changeView("rateProductPanel",null);
-
-                }
-            }
-        });
-        comentarButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(products.size()>=2) {
-                    Product curr = products.get(offset+1);
-                    RateProduct rateProduct = View.getRateProduct();
-                    rateProduct.setUpReview(curr,ids.get(curr));
-                    vs.changeView("rateProductPanel",null);
-
-                }
-            }
-        });
-        comentarButton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(products.size()>=3) {
-                    Product curr = products.get(offset+2);
-                    RateProduct rateProduct = View.getRateProduct();
-                    rateProduct.setUpReview(curr,ids.get(curr));
-                    vs.changeView("rateProductPanel",null);
-
-                }
-            }
-        });
-        comentarButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(products.size()>=4) {
-                    Product curr = products.get(offset+3);
-                    RateProduct rateProduct = View.getRateProduct();
-                    rateProduct.setUpReview(curr,ids.get(curr));
-                    vs.changeView("rateProductPanel",null);
-
-                }
-            }
-        });
-        comentarButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(products.size()>=5) {
-                    Product curr = products.get(offset+4);
-                    RateProduct rateProduct = View.getRateProduct();
-                    rateProduct.setUpReview(curr,ids.get(curr));
-                    vs.changeView("rateProductPanel",null);
-
-                }
             }
         });
     }
-    public void printResults(final ArrayList<Product> prods){
-        cleanPanel();
-        offset=0;
-        if(prods.size()>PAGESIZE){
+
+    public void setLoggedInConfigurations(){
+        offset = 0;
+        this.ids = Product.listBoughtProducts(Controller.getInstance().getCurrentUser());
+        this.products = new ArrayList<>(ids.keySet());
+        System.out.println(products);
+
+        anteriorButton.setEnabled(false);
+        if(products.size() > PAGESIZE) {
             siguienteButton.setEnabled(true);
         }
-        refresh();
+        else{
+            siguienteButton.setEnabled(false);
+        }
+        drawListItems();
     }
-    private void refresh(){
-        ArrayList<Product> productList = new ArrayList<>();
+
+    public void drawListItems(){
         cleanPanel();
-        int size = prods.size();
-        if(size >= 1 + offset) {
-            Product prod = prods.get(offset);
 
+        if(products.size()>offset) {
+            comentarButton1.setEnabled(true);
+            textArea1.setText(products.get(offset).getName());
+            if(comentarButton1.getActionListeners().length >0){
+                comentarButton1.removeActionListener(comentarButton1.getActionListeners()[0]);
+            }
+            comentarButton1.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product curr = products.get(offset);
+                    RateProduct rateProduct = View.getRateProduct();
+                    rateProduct.setUpReview(curr, ids.get(curr));
+                    vs.changeView("rateProductPanel", null);
+                }
+            });
+        }else {
+            comentarButton1.setEnabled(false);
         }
-        if(size>=2+offset) {
-            Product prod = prods.get(offset+1);
+        if(products.size()>1+offset) {
+            comentarButton2.setEnabled(true);
+            textArea2.setText(products.get(1+offset).getName());
+            if(comentarButton2.getActionListeners().length >0){
+                comentarButton2.removeActionListener(comentarButton2.getActionListeners()[0]);
+            }
+            comentarButton2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product curr = products.get(1+offset);
+                    RateProduct rateProduct = View.getRateProduct();
+                    rateProduct.setUpReview(curr, ids.get(curr));
+                    vs.changeView("rateProductPanel", null);
+                }
+            });
+        }else {
+            comentarButton2.setEnabled(false);
         }
-        if(size>=3+offset) {
-            Product prod = prods.get(offset+2);
+        if(products.size()>2+offset) {
+            comentarButton3.setEnabled(true);
+            textArea3.setText(products.get(offset+2).getName());
+            if(comentarButton3.getActionListeners().length >0){
+                comentarButton3.removeActionListener(comentarButton3.getActionListeners()[0]);
+            }
+            comentarButton3.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product curr = products.get(offset+2);
+                    RateProduct rateProduct = View.getRateProduct();
+                    rateProduct.setUpReview(curr, ids.get(curr));
+                    vs.changeView("rateProductPanel", null);
 
+                }
+            });
+        }else {
+            comentarButton3.setEnabled(false);
         }
-        if(size>=4+offset) {
-            Product prod = prods.get(offset+3);
+        if(products.size()>3+offset) {
+            comentarButton4.setEnabled(true);
+            textArea4.setText(products.get(offset+3).getName());
+            if(comentarButton4.getActionListeners().length >0){
+                comentarButton4.removeActionListener(comentarButton4.getActionListeners()[0]);
+            }
+            comentarButton4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product curr = products.get(offset+3);
+                    RateProduct rateProduct = View.getRateProduct();
+                    rateProduct.setUpReview(curr, ids.get(curr));
+                    vs.changeView("rateProductPanel", null);
+                }
+            });
+        }else {
+            comentarButton4.setEnabled(false);
+        }
+        if(products.size()>4+offset) {
+            comentarButton5.setEnabled(true);
+            textArea5.setText(products.get(offset+4).getName());
+            if(comentarButton5.getActionListeners().length >0){
+                comentarButton5.removeActionListener(comentarButton5.getActionListeners()[0]);
+            }
+            comentarButton5.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Product curr = products.get(offset+4);
+                    RateProduct rateProduct = View.getRateProduct();
+                    rateProduct.setUpReview(curr, ids.get(curr));
+                    vs.changeView("rateProductPanel", null);
+                }
+            });
+        }else {
+            comentarButton5.setEnabled(false);
+        }
 
-        }
-        if(size>=5+offset) {
-            Product prod = prods.get(offset+4);
-
-        }
     }
+
+
+
+//    public void printResults(final ArrayList<Product> prods){
+//        cleanPanel();
+//        offset=0;
+//        if(prods.size()>PAGESIZE){
+//            siguienteButton.setEnabled(true);
+//        }
+//        refresh();
+//    }
+//    private void refresh(){
+//        ArrayList<Product> productList = new ArrayList<>();
+//        cleanPanel();
+//        int size = products.size();
+//        if(size >= 1 + offset) {
+//            Product prod = products.get(offset);
+//            comentarButton1.setVisible(true);
+//
+//        }
+//        if(size>=2+offset) {
+//            Product prod = products.get(offset+1);
+//            comentarButton2.setVisible(true);
+//        }
+//        if(size>=3+offset) {
+//            Product prod = products.get(offset+2);
+//            comentarButton3.setVisible(true);
+//        }
+//        if(size>=4+offset) {
+//            Product prod = products.get(offset+3);
+//            comentarButton4.setVisible(true);
+//
+//        }
+//        if(size>=5+offset) {
+//            Product prod = products.get(offset+4);
+//            comentarButton5.setVisible(true);
+//
+//        }
+//    }
+
+    private void cleanPanel(){
+        textArea1.setText("");
+        textArea2.setText("");
+        textArea3.setText("");
+        textArea4.setText("");
+        textArea5.setText("");
+
+    }
+
     public JPanel getMainpanel() {
         return mainpanel;
     }

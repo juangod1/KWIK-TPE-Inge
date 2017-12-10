@@ -127,10 +127,17 @@ public class View {
 
     public void setViewsAsLoggedIn(){
         profilePanel.updateValues();
+        comprasPanel.setLoggedInConfigurations();
     }
 
     public void configureSearchButtons(){
         //SEARCH
+        comprasPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
         rateProduct.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -213,6 +220,16 @@ public class View {
 
     public void configureCarritoButtons(){
         //CARRITO
+        comprasPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }
+            }
+        });
+
         rateProduct.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -326,6 +343,19 @@ public class View {
 
     public void configurePerfilButtons(){
         //PERFIL
+
+        comprasPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
         rateProduct.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -495,7 +525,14 @@ public class View {
     }
 
     public void configureEquipoButtons(){
-        //
+        //EQUIPO
+        comprasPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
+                cardLayout.show(cards,"adminPanel");
+            }
+        });
         rateProduct.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -503,7 +540,6 @@ public class View {
                 cardLayout.show(cards,"adminPanel");
             }
         });
-
         addProductPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -603,6 +639,13 @@ public class View {
 
     public void configureVisionButtons(){
         //VISION
+        comprasPanel.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"misProductosPanel");
+                misProductosPanel.printItems();
+            }
+        });
         rateProduct.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -823,6 +866,7 @@ public class View {
     public static RateProduct getRateProduct() {
         return rateProduct;
     }
+
 }
 
 
