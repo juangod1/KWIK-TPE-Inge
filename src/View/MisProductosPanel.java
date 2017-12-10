@@ -42,8 +42,13 @@ public class MisProductosPanel {
     private JButton removerButton2;
     private JButton removerButton3;
     private JButton removerButton4;
+    private JButton anteriorButton;
+    private JButton siguienteButton;
     private ArrayList<JTextArea> textAreas;
     private Iterator<Product> productIterator;
+    private int offset;
+    private static final int PAGESIZE = 5;
+    private ArrayList<Product> list;
     private ArrayList<JButton> viewButtons;
     private ArrayList<JButton> removeButtons;
     private View view;
@@ -51,6 +56,7 @@ public class MisProductosPanel {
 
     public MisProductosPanel(Controller controller, View view){
         this.view = view;
+        this.offset=0;
         this.controller=controller;
         textAreas= new ArrayList<>();
         textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
@@ -61,22 +67,54 @@ public class MisProductosPanel {
         removeButtons= new ArrayList<>();
         removeButtons.add(removerButton);removeButtons.add(removerButton1);removeButtons.add(removerButton2);removeButtons.add(removerButton3);
         removeButtons.add(removerButton4);
+        anteriorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(offset >= PAGESIZE) {
+                    offset -= PAGESIZE;
+                    siguienteButton.setEnabled(true);
+                }
+                if(offset < PAGESIZE) {
+                    anteriorButton.setEnabled(false);
+                }
+                printItems();
+            }
+        });
+        siguienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int size = list.size();
+                if(size - offset > PAGESIZE) {
+                    offset += PAGESIZE;
+                    anteriorButton.setEnabled(true);
+                }
+                if(size - offset <= PAGESIZE) {
+                    siguienteButton.setEnabled(false);
+                }
+                printItems();
+            }
+        });
     }
     public void printItems(){
         clearItems();
         if(productIterator==null) {
             User user = controller.getCurrentUser();
             if(user!=null) {
-                ArrayList<Product> list = Product.getByUser(user);
+                list = Product.getByUser(user);
                 productIterator=(!list.isEmpty())?list.iterator():null;
+            }
+            if(list.size()>PAGESIZE){
+                siguienteButton.setEnabled(true);
+            } else {
+                siguienteButton.setEnabled(false);
             }
         }
         if(productIterator!=null) {
             Iterator<JButton> viewButtonIterator = viewButtons.iterator();
             Iterator<JButton> removeButtonIterator = removeButtons.iterator();
             Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
-            for (int i = 0; i < 5 && productIterator.hasNext(); i++) {
-                final Product curr = productIterator.next();
+            for (int i = offset; i < 5 + offset && i < list.size(); i++) {
+                final Product curr = list.get(i);
                 JButton currViewButton = viewButtonIterator.next();
                 JButton currRemoveButton = removeButtonIterator.next();
                 jTextAreaIterator.next().setText(curr.getName() + "    -    " + curr.getPrice() + "    -    " + curr.getVisits());

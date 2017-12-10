@@ -83,9 +83,14 @@ public class AdminPanel {
             if (user != null && user.isAdmin()) {
                 list = User.search(criteria);
             }
+            else{
+                JOptionPane.showMessageDialog(null,"Access denied");
+                return;
+            }
         } else{
             list=User.search("");
         }
+
         if(list.size()>PAGESIZE){
             siguienteButton.setEnabled(true);
         } else {
@@ -97,7 +102,6 @@ public class AdminPanel {
     public AdminPanel(final Controller controller){
         this.controller=controller;
         this.offset=0;
-        list = User.search("");
         buttons=new ArrayList<>();
         buttons.add(desactivarButton);buttons.add(desactivarButton1);buttons.add(desactivarButton2);buttons.add(desactivarButton3);
         buttons.add(desactivarButton4);
