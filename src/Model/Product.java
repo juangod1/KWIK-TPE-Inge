@@ -5,6 +5,7 @@ import Service.DatabaseService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class Product implements Persistent{
@@ -100,6 +101,10 @@ public class Product implements Persistent{
 
     public static ArrayList<Product> search(String text) {
         return listByCriteria("WHERE stock > 0 AND name ILIKE '%"+text+"%'");
+    }
+
+    public static HashMap<Product, Integer> listBoughtProducts(User user) {
+        return new HashMap<Product, Integer>();
     }
 
     public static Product fromResultSet(ResultSet rs) {
