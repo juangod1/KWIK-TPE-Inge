@@ -121,10 +121,17 @@ public class Cart implements Persistent {
         try {
             Statement st = DatabaseService.getInstance().getSt();
             ResultSet rs = st.executeQuery("SELECT amount FROM cartproducts WHERE idcart = "+id+" AND idproduct = "+product.getId());
-            if(rs.next())
-                st.execute("UPDATE cartproducts SET amount = amount + "+amount+" WHERE idcart = "+id);
-            else
-                st.execute("INSERT INTO cartproducts (idcart, idproduct, amount) VALUES ("+id+", "+product.getId()+", "+amount+")");
+            if(rs.next()) {
+                int prevAmount = rs.getInt(1);
+                if(prevAmount + amount > product.getStock())
+                    return false;
+                st.execute("UPDATE cartproducts SET amount = amount + " + amount + " WHERE idcart = " + id);
+            }
+            else {
+                if(amount > product.getStock())
+                    return false;
+                st.execute("INSERT INTO cartproducts (idcart, idproduct, amount) VALUES (" + id + ", " + product.getId() + ", " + amount + ")");
+            }
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -189,9 +196,19 @@ public class Cart implements Persistent {
     }
 
     public boolean close(){
-        if(card != null)
+        if(card != null) {
+            HashMap<Product, Integer> products = getProducts();
+            for (Product prod : products.keySet()) {
+                if(!prod.removeStock(products.get(prod)))
+                    return false;
+            }
+            for (Product prod : products.keySet()) {
+                prod.save();
+            }
             closed = true;
-        return closed;
+            return save();
+        }
+        return false;
     }
 
     public double getSubTotal() {

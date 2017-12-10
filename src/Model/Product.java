@@ -171,6 +171,14 @@ public class Product implements Persistent{
         this.stock = stock;
     }
 
+    public boolean removeStock(int amount) {
+        if(stock >= amount) {
+            stock -= amount;
+            return true;
+        }
+        return false;
+    }
+
     public User getUser() {
         if(user == null)
             user = User.get(userId);
