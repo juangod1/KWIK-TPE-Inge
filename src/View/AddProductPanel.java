@@ -24,7 +24,6 @@ public class AddProductPanel {
     private JButton VISIONButton;
     private JButton EQUIPObutton;
     private JButton PERFILButton;
-    private JLabel KWIKlabel;
     private JButton CARRITObutton;
     private JButton SEARCHbutton;
     private JPanel footnote;
