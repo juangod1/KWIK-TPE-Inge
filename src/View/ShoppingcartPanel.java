@@ -123,6 +123,7 @@ public class ShoppingcartPanel {
 
             }
         });
+        cleanCart();
     }
 
     public JPanel getMainpanel() {
@@ -283,21 +284,21 @@ public class ShoppingcartPanel {
         textArea4.setText("");
         total.setText("");
 
+        button1.setVisible(false);
         if(button1.getActionListeners().length>0) {
             button1.removeActionListener(button1.getActionListeners()[0]);
-            button1.setVisible(false);
         }
+        button2.setVisible(false);
         if(button2.getActionListeners().length>0) {
             button2.removeActionListener(button2.getActionListeners()[0]);
-            button2.setVisible(false);
         }
+        button3.setVisible(false);
         if(button3.getActionListeners().length>0) {
             button3.removeActionListener(button3.getActionListeners()[0]);
-            button3.setVisible(false);
         }
+        button4.setVisible(false);
         if(button4.getActionListeners().length>0) {
             button4.removeActionListener(button4.getActionListeners()[0]);
-            button4.setVisible(false);
         }
     }
 }
