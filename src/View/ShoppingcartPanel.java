@@ -39,6 +39,11 @@ public class ShoppingcartPanel {
     private JButton button4;
     private JButton anteriorButton;
     private JButton siguienteButton;
+    private JLabel stock1;
+    private JLabel stock2;
+    private JLabel stock3;
+    private JLabel stock4;
+    private JLabel totalStock;
     private JTextArea textArea;
     private View.ViewSwapper vs;
     private Controller controller;
@@ -47,6 +52,7 @@ public class ShoppingcartPanel {
     private int offset;
     private HashMap<Product, Integer> amounts;
     private ArrayList<Product> products;
+    private Integer totalStockValue=0;
 
     private static final int PAGESIZE = 4;
 
@@ -205,6 +211,8 @@ public class ShoppingcartPanel {
                 final Product product = products.get(offset);
                 textArea1.setText(product.getName());
                 button1.setVisible(true);
+                stock1.setText("x " + amounts.get(product).toString());
+                totalStockValue+=amounts.get(product);
                 button1.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -222,6 +230,8 @@ public class ShoppingcartPanel {
                 final Product product = products.get(offset + 1);
                 textArea2.setText(product.getName());
                 button2.setVisible(true);
+                stock2.setText("x " + amounts.get(product).toString());
+                totalStockValue+=amounts.get(product);
                 button2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -240,6 +250,8 @@ public class ShoppingcartPanel {
                 final Product product = products.get(offset + 2);
                 textArea3.setText(product.getName());
                 button3.setVisible(true);
+                stock3.setText("x " + amounts.get(product).toString());
+                totalStockValue+=amounts.get(product);
                 button3.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -256,7 +268,10 @@ public class ShoppingcartPanel {
             if (size >= 4 + offset) {
                 final Product product = products.get(offset + 3);
                 textArea4.setText(product.getName());
+                System.out.println();
                 button4.setVisible(true);
+                stock4.setText("x " + amounts.get(product).toString());
+                totalStockValue+=amounts.get(product);
                 button4.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -270,7 +285,7 @@ public class ShoppingcartPanel {
             else
                 textArea4.setText("");
 
-
+            totalStock.setText("x " + totalStockValue.toString() + "    ");
             total.setText("The total is:    $" + cart.getSubTotal());
         }
         else
@@ -300,5 +315,12 @@ public class ShoppingcartPanel {
         if(button4.getActionListeners().length>0) {
             button4.removeActionListener(button4.getActionListeners()[0]);
         }
+
+        stock1.setText("");
+        stock2.setText("");
+        stock3.setText("");
+        stock4.setText("");
+        totalStock.setText("");
+        totalStockValue=0;
     }
 }
