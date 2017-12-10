@@ -40,14 +40,13 @@ public class ComprasPanel {
     private static final int PAGESIZE = 5;
     private ArrayList<Product> products;
     private HashMap<Product,Integer> ids;
+    private Controller controller;
 
 
 
     public ComprasPanel(final View.ViewSwapper vs, final Controller controller) {
         this.vs = vs;
-        this.offset = 0;
-        this.ids = Product.listBoughtProducts(controller.getCurrentUser());
-        this.products = new ArrayList<>(ids.keySet());
+        this.controller = controller;
         anteriorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,8 +144,10 @@ public class ComprasPanel {
     }
     public void printResults(final ArrayList<Product> prods){
         cleanPanel();
-        offset=0;
-        if(prods.size()>PAGESIZE){
+        offset = 0;
+        ids = Product.listBoughtProducts(controller.getCurrentUser());
+        products = new ArrayList<>(ids.keySet());
+        if(products.size()>PAGESIZE){
             siguienteButton.setEnabled(true);
         }
         refresh();
@@ -154,27 +155,30 @@ public class ComprasPanel {
     private void refresh(){
         ArrayList<Product> productList = new ArrayList<>();
         cleanPanel();
-        int size = prods.size();
+        int size = products.size();
         if(size >= 1 + offset) {
-            Product prod = prods.get(offset);
+            Product prod = products.get(offset);
 
         }
         if(size>=2+offset) {
-            Product prod = prods.get(offset+1);
+            Product prod = products.get(offset+1);
         }
         if(size>=3+offset) {
-            Product prod = prods.get(offset+2);
+            Product prod = products.get(offset+2);
 
         }
         if(size>=4+offset) {
-            Product prod = prods.get(offset+3);
+            Product prod = products.get(offset+3);
 
         }
         if(size>=5+offset) {
-            Product prod = prods.get(offset+4);
+            Product prod = products.get(offset+4);
 
         }
     }
+
+    private void cleanPanel(){}
+
     public JPanel getMainpanel() {
         return mainpanel;
     }
