@@ -39,66 +39,101 @@ public class AdminPanel {
     private JButton desactivarButton4;
     private JButton searchButton;
     private JTextField textField1;
+    private JButton anteriorButton;
+    private JButton siguienteButton;
     private ArrayList<JButton> buttons;
     private ArrayList<JTextArea> textAreas;
-    private Iterator<User> userIterator;
+    private int offset;
+    private ArrayList<User> list;
+    private static final int PAGESIZE = 5;
 
-    public void printUsers(String criteria){
-        clearItems();
-        if(userIterator==null) {
-            User user = controller.getCurrentUser();
-            if(user!=null && user.isAdmin()) {
-                ArrayList<User> list=User.search(criteria);
-                System.out.println(list.isEmpty());
-                userIterator=(!list.isEmpty())?list.iterator():null;
-            }
-        }
-        if(userIterator!=null) {
-            Iterator<JButton> buttonIterator = buttons.iterator();
-            Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
-            for (int i = 0; i < 5 && userIterator.hasNext(); i++) {
-                final User curr = userIterator.next();
-                final JButton currButton = buttonIterator.next();
-                jTextAreaIterator.next().setText(curr.getUsername() + "    -    " + curr.getEmail() + "    -    " + curr.getName()+
-                curr.getSurname());
-                if(curr.isEnabled()){currButton.setText("Desactivar");
-                }else{currButton.setText("Activar");}
-                currButton.setVisible(true);
+    private void printNoCriteria(ArrayList<User> currlist){
+        Iterator<JButton> buttonIterator = buttons.iterator();
+        Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
+        for (int i = offset; i < 5+offset && i<list.size(); i++) {
+            final User curr = currlist.get(i);
+            final JButton currButton = buttonIterator.next();
+            jTextAreaIterator.next().setText(curr.getUsername() + "    -    " + curr.getEmail() + "    -    " + curr.getName()+
+                    curr.getSurname());
+            if(curr.isEnabled()){currButton.setText("Desactivar");
+            }else{currButton.setText("Activar");}
+            currButton.setVisible(true);
 
-                currButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        curr.setEnabled(!curr.isEnabled());
-                        if(curr.isEnabled()){
-                            currButton.setText("Desactivar");
-                            JOptionPane.showMessageDialog(null, "Usuario Activado!");
-                        }else{
-                            currButton.setText("Activar");
-                            JOptionPane.showMessageDialog(null, "Usuario Desactivado!");
-                        }
-                        curr.save();
+            currButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    curr.setEnabled(!curr.isEnabled());
+                    if(curr.isEnabled()){
+                        currButton.setText("Desactivar");
+                        JOptionPane.showMessageDialog(null, "Usuario Activado!");
+                    }else{
+                        currButton.setText("Activar");
+                        JOptionPane.showMessageDialog(null, "Usuario Desactivado!");
                     }
-                });
-            }
-            if (!userIterator.hasNext()) {
-                userIterator = null;
-            }
+                    curr.save();
+                }
+            });
         }
     }
+    public void printUsers(String criteria){
+        clearItems();
+        offset=0;
+        if(criteria!=null) {
+            User user = controller.getCurrentUser();
+            if (user != null && user.isAdmin()) {
+                list = User.search(criteria);
+            }
+        } else{
+            list=User.search("");
+        }
+        if(list.size()>PAGESIZE){
+            siguienteButton.setEnabled(true);
+        } else {
+            siguienteButton.setEnabled(false);
+        }
+        printNoCriteria(list);
+    }
 
-    public AdminPanel(Controller controller){
+    public AdminPanel(final Controller controller){
         this.controller=controller;
+        this.offset=0;
+        list = User.search("");
         buttons=new ArrayList<>();
         buttons.add(desactivarButton);buttons.add(desactivarButton1);buttons.add(desactivarButton2);buttons.add(desactivarButton3);
         buttons.add(desactivarButton4);
         textAreas= new ArrayList<>();
         textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
-        userIterator=null;
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userIterator=null;
                 printUsers(textField1.getText());
+            }
+        });
+        anteriorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(offset >= PAGESIZE) {
+                    offset -= PAGESIZE;
+                    siguienteButton.setEnabled(true);
+                }
+                if(offset < PAGESIZE) {
+                    anteriorButton.setEnabled(false);
+                }
+                printNoCriteria(list);
+            }
+        });
+        siguienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int size = list.size();
+                if(size - offset > PAGESIZE) {
+                    offset += PAGESIZE;
+                    anteriorButton.setEnabled(true);
+                }
+                if(size - offset <= PAGESIZE) {
+                    siguienteButton.setEnabled(false);
+                }
+                printNoCriteria(list);
             }
         });
     }
