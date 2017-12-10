@@ -75,6 +75,7 @@ public class ShoppingcartPanel {
                         System.out.println("Sent to payment with cart:"+cart.getId());
                         cs.swapCard(cart);
 
+
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "No hay articulos en el carrito");

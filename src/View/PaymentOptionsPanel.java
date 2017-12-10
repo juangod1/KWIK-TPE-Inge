@@ -54,6 +54,7 @@ public class PaymentOptionsPanel {
                 }
                 else{
                     System.out.println("Closed with cart:"+cart.getId());
+                    setCards();
                     cart.close();
                 }
             }
@@ -98,6 +99,8 @@ public class PaymentOptionsPanel {
     }
 
     public void setCards(){
+        cardSelector.removeAllItems();
+        cards.clear();
         for(Card card : Controller.getInstance().getCurrentUser().getCards()){
             cards.add(card);
             cardSelector.addItem(card.getNumber());
