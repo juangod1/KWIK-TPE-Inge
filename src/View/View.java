@@ -30,6 +30,7 @@ public class View {
     ViewProduct viewProduct;
     ReviewsPanel reviewsPanel;
     ProfileMenuPanel profileMenuPanel;
+    RateProduct rateProduct;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
     CartSwapper cartSwapper = new CartSwapper();
@@ -76,6 +77,7 @@ public class View {
         viewProduct = new ViewProduct();
         addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
         profileMenuPanel = new ProfileMenuPanel(viewSwapper, controller);
+        rateProduct = new RateProduct(viewSwapper);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(adminPanel.getMainpanel(),"adminPanel");
@@ -89,6 +91,7 @@ public class View {
         cards.add(reviewsPanel.getMainpanel(),"reviewsPanel");
         cards.add(addProductPanel.getMainpanel(),"addProductPanel");
         cards.add(profileMenuPanel.getMainpanel(),"profileMenuPanel");
+        cards.add(rateProduct.getMainpanel(),"rateProductPanel");
         loggedIn = false;
         run();
     }
@@ -125,6 +128,12 @@ public class View {
 
     public void configureSearchButtons(){
         //SEARCH
+        rateProduct.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
         reviewsPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -201,6 +210,15 @@ public class View {
 
     public void configureCarritoButtons(){
         //CARRITO
+        rateProduct.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }
+            }
+        });
         reviewsPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -305,6 +323,18 @@ public class View {
 
     public void configurePerfilButtons(){
         //PERFIL
+        rateProduct.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
         reviewsPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -462,7 +492,15 @@ public class View {
     }
 
     public void configureEquipoButtons(){
-        //EQUIPO
+        //
+        rateProduct.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
+                cardLayout.show(cards,"adminPanel");
+            }
+        });
+
         addProductPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -562,6 +600,13 @@ public class View {
 
     public void configureVisionButtons(){
         //VISION
+        rateProduct.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"misProductosPanel");
+                misProductosPanel.printItems();
+            }
+        });
         addProductPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
