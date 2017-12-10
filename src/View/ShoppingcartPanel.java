@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -36,11 +37,18 @@ public class ShoppingcartPanel {
     private JButton button2;
     private JButton button3;
     private JButton button4;
+    private JButton anteriorButton;
+    private JButton siguienteButton;
     private JTextArea textArea;
     private View.ViewSwapper vs;
     private Controller controller;
     private Cart cart;
     private CartSwapper cs;
+    private int offset;
+    private HashMap<Product, Integer> amounts;
+    private ArrayList<Product> products;
+
+    private static final int PAGESIZE = 4;
 
 
     public ShoppingcartPanel(final View.ViewSwapper vs, Controller controller, final CartSwapper cs) {
@@ -48,10 +56,40 @@ public class ShoppingcartPanel {
         this.cs = cs;
         this.controller = controller;
 
+
         mainpanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 super.componentShown(e);
+                System.out.println("asdadadasas");
+                loadCart();
+                writeCart();
+            }
+        });
+        anteriorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(offset >= PAGESIZE) {
+                    offset -= PAGESIZE;
+                    siguienteButton.setEnabled(true);
+                }
+                if(offset < PAGESIZE) {
+                    anteriorButton.setEnabled(false);
+                }
+                writeCart();
+            }
+        });
+        siguienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int size = products.size();
+                if(size - offset > PAGESIZE) {
+                    offset += PAGESIZE;
+                    anteriorButton.setEnabled(true);
+                }
+                if(size - offset <= PAGESIZE) {
+                    siguienteButton.setEnabled(false);
+                }
                 writeCart();
             }
         });
@@ -114,79 +152,113 @@ public class ShoppingcartPanel {
     public JTextArea getTextArea() {
         return textArea;
     }
+
     public void write(String string){
         System.out.println(string);
         textArea.append(string);
     }
 
-    public void writeCart(){
-        if(controller.getCurrentUser()!=null) {
-
-            this.cart = Cart.getUserCart(controller.getCurrentUser());
-            cleanCart();
-
-            if (cart != null) {
-
-                if (cart.getProducts().size() >= 1) {
-                    textArea1.setText(cart.getProducts().get(0).getName());
-                    button1.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            cart.removeProduct(cart.getProducts().get(0));
-                            writeCart();
-                        }
-                    });
+    private void loadCart() {
+        offset = 0;
+        if(controller.getCurrentUser() != null) {
+            cart = Cart.getUserCart(controller.getCurrentUser());
+            if(cart != null) {
+                amounts = cart.getProducts();
+                if (amounts == null) {
+                    cart = null;
+                    return;
                 }
-                else
-                    textArea1.setText("");
-
-                if (cart.getProducts().size() >= 2) {
-                    textArea2.setText(cart.getProducts().get(1).getName());
-                    button2.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            cart.removeProduct(cart.getProducts().get(1));
-                            writeCart();
-                        }
-                    });
+                products = new ArrayList<>(amounts.keySet());
+                if(products.size() > PAGESIZE) {
+                    siguienteButton.setEnabled(true);
                 }
-
-                else
-                    textArea2.setText("");
-
-                if (cart.getProducts().size() >= 3) {
-                    textArea3.setText(cart.getProducts().get(2).getName());
-                    button3.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            cart.removeProduct(cart.getProducts().get(2));
-                            writeCart();
-                        }
-                    });
-                }
-                else
-                    textArea3.setText("");
-
-                if (cart.getProducts().size() >= 4) {
-                    textArea4.setText(cart.getProducts().get(3).getName());
-                    button4.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            cart.removeProduct(cart.getProducts().get(3));
-                            writeCart();
-                        }
-                    });
-                }
-                else
-                    textArea4.setText("");
-
-                double moneh = 0;
-                for (Product p : cart.getProducts()) {
-                    moneh += p.getPrice();
-                }
-
-                total.setText("The total is:    $" + moneh);
             }
+        }
+        else {
+            cart = null;
+        }
+    }
+
+    private void removeProduct(Product product) {
+        products.remove(product);
+    }
+
+    private void writeCart(){
+        cleanCart();
+
+        if (cart != null) {
+
+            int size = products.size();
+
+            if (size >= 1 + offset) {
+                final Product product = products.get(offset);
+                textArea1.setText(product.getName());
+                button1.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cart.removeProduct(product)) {
+                            removeProduct(product);
+                            writeCart();
+                        }
+                    }
+                });
+            }
+            else
+                textArea1.setText("");
+
+            if (size >= 2 + offset) {
+                final Product product = products.get(offset + 1);
+                textArea2.setText(product.getName());
+                button2.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println("removing");
+                        if(cart.removeProduct(product)) {
+                            System.out.println("removed");
+                            removeProduct(product);
+                            writeCart();
+                        }
+                    }
+                });
+            }
+
+            else
+                textArea2.setText("");
+
+            if (size >= 3 + offset) {
+                final Product product = products.get(offset + 2);
+                textArea3.setText(product.getName());
+                button3.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cart.removeProduct(product)) {
+                            removeProduct(product);
+                            writeCart();
+                        }
+                    }
+                });
+            }
+            else
+                textArea3.setText("");
+
+            if (size >= 4 + offset) {
+                final Product product = products.get(offset + 3);
+                textArea4.setText(product.getName());
+                button4.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if(cart.removeProduct(product)) {
+                            removeProduct(product);
+                            writeCart();
+                        }
+                    }
+                });
+            }
+            else
+                textArea4.setText("");
+
+
+            total.setText("The total is:    $" + cart.getSubTotal());
         }
         else
             total.setText("There is no cart");

@@ -2,10 +2,12 @@ package Model;
 
 import Service.DatabaseService;
 
+import javax.sql.rowset.serial.SerialRef;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Cart implements Persistent {
     private int id;
@@ -98,13 +100,13 @@ public class Cart implements Persistent {
         return null;
     }
 
-    public ArrayList<Product> getProducts() {
-        ArrayList<Product> products = new ArrayList<>();
+    public HashMap<Product, Integer> getProducts() {
+        HashMap<Product, Integer> products = new HashMap<>();
         try {
-            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("SELECT p.* FROM cart c " +
-                    "JOIN cartproducts cp ON cp.idcart = c.id JOIN product p ON p.id = cp.idproduct");
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("SELECT p.*, amount FROM cart c " +
+                    "JOIN cartproducts cp ON cp.idcart = c.id JOIN product p ON p.id = cp.idproduct WHERE c.id = "+id);
             while (rs.next()) {
-                products.add(Product.fromResultSet(rs));
+                products.put(Product.fromResultSet(rs), rs.getInt("amount"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,10 +135,11 @@ public class Cart implements Persistent {
     public boolean removeProduct(Product product) {
         try {
             Statement st = DatabaseService.getInstance().getSt();
-            ResultSet rs = st.executeQuery("SELECT amount FROM cartproducts WHERE idcart = "+id+" AND idproduct = "+product.getId());
+            ResultSet rs = st.executeQuery("SELECT id FROM cartproducts WHERE idcart = "+id+" AND idproduct = "+product.getId());
             if(rs.next()) {
-                st.execute("DELETE FROM cartproducts WHERE id = "+rs.getInt(1));
-                return true;
+                if(st.executeUpdate("DELETE FROM cartproducts WHERE id = "+rs.getInt(1)) > 0) {
+                    return true;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
