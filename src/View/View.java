@@ -70,7 +70,7 @@ public class View {
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller, cartSwapper);
         profileLoginPanel = new ProfileLoginPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper, controller);
-        misProductosPanel = new MisProductosPanel();
+        misProductosPanel = new MisProductosPanel(controller);
         viewProduct = new ViewProduct();
         addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
         profileMenuPanel = new ProfileMenuPanel(viewSwapper);
@@ -162,6 +162,7 @@ public class View {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"misProductosPanel");
+                misProductosPanel.printItems();
             }
         });
         adminPanel.getVISIONButton().addActionListener(new ActionListener() {
