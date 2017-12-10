@@ -181,6 +181,16 @@ public class ShoppingcartPanel {
 
     private void removeProduct(Product product) {
         products.remove(product);
+        int size = products.size();
+        if(offset >= PAGESIZE && size - offset <= 0) {
+            offset -= PAGESIZE;
+        }
+        if(offset < PAGESIZE) {
+            anteriorButton.setEnabled(false);
+        }
+        if(size - offset <= PAGESIZE) {
+            siguienteButton.setEnabled(false);
+        }
     }
 
     private void writeCart(){
@@ -212,9 +222,7 @@ public class ShoppingcartPanel {
                 button2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println("removing");
                         if(cart.removeProduct(product)) {
-                            System.out.println("removed");
                             removeProduct(product);
                             writeCart();
                         }
