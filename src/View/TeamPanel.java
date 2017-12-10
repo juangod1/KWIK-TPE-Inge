@@ -27,6 +27,8 @@ public class TeamPanel {
     private JButton desactivarButton2;
     private JButton desactivarButton3;
     private JButton desactivarButton4;
+    private JButton searchButton;
+    private JTextField textField1;
 
     public JPanel getMainpanel() {
         return mainpanel;
