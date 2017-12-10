@@ -709,9 +709,6 @@ public class View {
 
     public void updateViewProductButtons(final ArrayList<Product> products){
         System.out.println(products);
-        System.out.println(products.get(0).getName());
-        System.out.println(products.get(1).getName());
-        System.out.println(products.get(2).getName());
 
         if(resultsPanel.getViewButton().getActionListeners().length > 0)
             resultsPanel.getViewButton().removeActionListener(resultsPanel.getViewButton().getActionListeners()[0]);
