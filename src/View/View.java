@@ -168,54 +168,63 @@ public class View {
         adminPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         resultsPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         newUser.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         profileLoginPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         shoppingcartPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         misProductosPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         viewProduct.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         profilePanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
         profileMenuPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
                 cardLayout.show(cards,"misProductosPanel");
             }
         });

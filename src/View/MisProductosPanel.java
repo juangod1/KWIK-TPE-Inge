@@ -59,7 +59,7 @@ public class MisProductosPanel {
             User user = controller.getCurrentUser();
             if(user!=null) {
                 ArrayList<Product> list = Product.getByUser(user);
-                productIterator=list.iterator();
+                productIterator=(!list.isEmpty())?list.iterator():null;
             }
         }
         if(productIterator!=null) {
