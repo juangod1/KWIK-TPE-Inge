@@ -12,6 +12,7 @@ public class Review implements Persistent{
     private Product product;
     private String comment;
     private int rating;
+    private int idCP;
 
     private int productId;
 
@@ -20,19 +21,21 @@ public class Review implements Persistent{
 
     private Review() {}
 
-    private Review(int id, Product product, String comment, int rating) {
+    private Review(int id, int idCP, Product product, String comment, int rating) {
         this.id = id;
         this.product = product;
         this.comment = comment;
         this.rating = rating;
+        this.idCP = idCP;
     }
 
-    private Review(int id, int productId, String comment, int rating) {
+    private Review(int id, int idCP, int productId, String comment, int rating) {
         this.id = id;
         this.productId = productId;
         this.product = null;
         this.comment = comment;
         this.rating = rating;
+        this.idCP = idCP;
     }
 
     public static Review create(int idCP, Product product, String comment, int rating) {
@@ -40,7 +43,7 @@ public class Review implements Persistent{
             ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO review (idproduct, idcartproduct, comment, rating) " +
                     "VALUES ("+product.getId()+", "+idCP+", '"+comment+"', "+rating+") RETURNING id");
             if(rs.next())
-                return new Review(rs.getInt(1), product, comment, rating);
+                return new Review(rs.getInt(1), idCP, product, comment, rating);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -72,7 +75,7 @@ public class Review implements Persistent{
 
     private static Review fromResultSet(ResultSet rs) {
         try {
-            return new Review(rs.getInt("id"), rs.getInt("idProduct"), rs.getString("comment"),
+            return new Review(rs.getInt("id"), rs.getInt("idCartProduct"), rs.getInt("idProduct"), rs.getString("comment"),
                     rs.getInt("rating"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,6 +108,10 @@ public class Review implements Persistent{
 
     public int getId() {
         return id;
+    }
+
+    public int getIdCP() {
+        return idCP;
     }
 
     public Product getProduct() {
