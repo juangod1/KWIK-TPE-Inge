@@ -3,10 +3,8 @@ package View;
 import Controller.Controller;
 import Model.Cart;
 import Model.Product;
-import Model.User;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +41,11 @@ public class ResultsPanel {
     private JButton viewButton4;
     private JButton anteriorButton;
     private JButton siguienteButton;
+    private JTextArea textArea7;
+    private JTextArea textArea8;
+    private JTextArea textArea9;
+    private JTextArea textArea10;
+    private JTextArea textArea6;
     private JTable table1;
     private Controller controller;
     private static final int PAGESIZE = 5;
@@ -122,68 +125,78 @@ public class ResultsPanel {
         cleanPanel();
         int size = prods.size();
         if(size>=1 + offset) {
-            textArea1.setText(prods.get(offset).getName() + "              -              $" + prods.get(offset).getPrice());
-            productList.add(prods.get(offset));
+            Product prod = prods.get(offset);
+            textArea1.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
+            textArea6.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            productList.add(prod);
             button1.setVisible(true);
             viewButton.setVisible(true);
             button1.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prod,1);
                 }
             });
 
         }
         if(size>=2+offset) {
-            textArea2.setText(prods.get(offset+1).getName() + "              -              $" + prods.get(offset+1).getPrice());
-            productList.add(prods.get(offset+1));
+            Product prod = prods.get(offset+1);
+            textArea2.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
+            textArea7.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            productList.add(prod);
             button2.setVisible(true);
             viewButton1.setVisible(true);
             button2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+1),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prod,1);
                 }
             });
         }
         if(size>=3+offset) {
-            textArea3.setText(prods.get(offset+2).getName() + "              -              $" + prods.get(offset+2).getPrice());
-            productList.add(prods.get(offset+2));
+            Product prod = prods.get(offset+2);
+            textArea3.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
+            textArea8.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            productList.add(prod);
             button3.setVisible(true);
             viewButton2.setVisible(true);
             button3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+2),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prod,1);
                 }
             });
         }
         if(size>=4+offset) {
-            textArea4.setText(prods.get(offset+3).getName() + "              -              $" + prods.get(offset+3).getPrice());
-            productList.add(prods.get(offset+3));
+            Product prod = prods.get(offset+3);
+            textArea4.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
+            textArea9.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            productList.add(prod);
             button4.setVisible(true);
             viewButton3.setVisible(true);
             button4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+3),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prod,1);
                 }
             });
         }
         if(size>=5+offset) {
-            textArea5.setText(prods.get(offset+4).getName() + "              -              $" + prods.get(offset+4).getPrice());
-            productList.add(prods.get(offset+4));
+            Product prod = prods.get(offset+4);
+            textArea5.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
+            textArea10.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            productList.add(prod);
             button5.setVisible(true);
             viewButton4.setVisible(true);
             button5.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+4),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prod,1);
                 }
             });
         }
@@ -197,6 +210,11 @@ public class ResultsPanel {
         textArea3.setText("");
         textArea4.setText("");
         textArea5.setText("");
+        textArea6.setText("");
+        textArea7.setText("");
+        textArea8.setText("");
+        textArea9.setText("");
+        textArea10.setText("");
 
         if(viewButton.getActionListeners().length>0)
         viewButton.removeActionListener(viewButton.getActionListeners()[0]);

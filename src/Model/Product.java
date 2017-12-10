@@ -214,6 +214,17 @@ public class Product implements Persistent{
         this.sold = sold;
     }
 
+    public float getRating() {
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("SELECT avg(rating) FROM review WHERE idproduct = "+id);
+            if(rs.next())
+                return rs.getFloat(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public ArrayList<Review> getReviews() {
         return Review.list(this);
     }
