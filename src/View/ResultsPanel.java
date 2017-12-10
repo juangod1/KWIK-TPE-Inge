@@ -50,6 +50,11 @@ public class ResultsPanel {
     private JLabel resultsLabel;
     private JButton ordenarPorPrecioButton;
     private JButton ordenarPorPuntuaciónButton;
+    private JTextArea textArea11;
+    private JTextArea textArea12;
+    private JTextArea textArea13;
+    private JTextArea textArea14;
+    private JTextArea textArea15;
     private JTable table1;
     private Controller controller;
     private static final int PAGESIZE = 5;
@@ -162,7 +167,8 @@ public class ResultsPanel {
         if(size >= 1 + offset) {
             Product prod = prods.get(offset);
             textArea1.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
-            textArea6.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            textArea6.setText("$" + prod.getPrice());
+            textArea11.setText(prod.getStock()+" en stock");
             productList.add(prod);
             button1.setVisible(true);
             viewButton.setVisible(true);
@@ -178,7 +184,8 @@ public class ResultsPanel {
         if(size>=2+offset) {
             Product prod = prods.get(offset+1);
             textArea2.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
-            textArea7.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            textArea7.setText("$" + prod.getPrice());
+            textArea12.setText(prod.getStock()+" en stock");
             productList.add(prod);
             button2.setVisible(true);
             viewButton1.setVisible(true);
@@ -193,7 +200,8 @@ public class ResultsPanel {
         if(size>=3+offset) {
             Product prod = prods.get(offset+2);
             textArea3.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
-            textArea8.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            textArea8.setText("$" + prod.getPrice());
+            textArea13.setText(prod.getStock()+" en stock");
             productList.add(prod);
             button3.setVisible(true);
             viewButton2.setVisible(true);
@@ -208,7 +216,8 @@ public class ResultsPanel {
         if(size>=4+offset) {
             Product prod = prods.get(offset+3);
             textArea4.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
-            textArea9.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            textArea9.setText("$" + prod.getPrice());
+            textArea14.setText(prod.getStock()+" en stock");
             productList.add(prod);
             button4.setVisible(true);
             viewButton3.setVisible(true);
@@ -223,7 +232,8 @@ public class ResultsPanel {
         if(size>=5+offset) {
             Product prod = prods.get(offset+4);
             textArea5.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
-            textArea10.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
+            textArea10.setText("$" + prod.getPrice());
+            textArea15.setText(prod.getStock()+" en stock");
             productList.add(prod);
             button5.setVisible(true);
             viewButton4.setVisible(true);
