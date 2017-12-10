@@ -89,6 +89,7 @@ public class MisProductosPanel {
                         curr.delete();
                         curr.save();
                         JOptionPane.showMessageDialog(null, "Producto eliminado!");
+                        printItems();
                     }
                 });
                 currViewButton.addActionListener(new ActionListener() {
