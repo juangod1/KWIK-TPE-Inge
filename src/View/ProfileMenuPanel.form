@@ -33,7 +33,7 @@
               <foreground color="-1"/>
               <hideActionText value="false"/>
               <opaque value="false"/>
-              <text value="VISION"/>
+              <text value="MIS PRODUCTOS"/>
               <visible value="true"/>
             </properties>
           </component>
@@ -47,8 +47,8 @@
               <font name="DialogInput" style="0"/>
               <foreground color="-1"/>
               <horizontalTextPosition value="0"/>
-              <label value="EQUIPO"/>
-              <text value="EQUIPO"/>
+              <label value="ADMINISTRACIÓN"/>
+              <text value="ADMINISTRACIÓN"/>
             </properties>
           </component>
           <component id="b7b48" class="javax.swing.JButton" binding="PERFILButton">

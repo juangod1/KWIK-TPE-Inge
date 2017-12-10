@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by cderienzo on 12/7/2017.
  */
-public class VisionPanel {
+public class MisProductosPanel {
     private JPanel mainpanel;
     private JPanel header;
     private JButton VISIONButton;
@@ -22,16 +22,19 @@ public class VisionPanel {
     private JTextArea textArea3;
     private JTextArea textArea4;
     private JTextArea textArea5;
-    private JButton button1;
     private JButton viewButton;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
     private JButton viewButton1;
     private JButton viewButton2;
     private JButton viewButton3;
     private JButton viewButton4;
+
+
+    public MisProductosPanel(){
+
+    }
+    public void printItems(){
+        
+    }
 
     public JPanel getMainpanel() {
         return mainpanel;

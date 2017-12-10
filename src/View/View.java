@@ -1,10 +1,8 @@
 package View;
 
 import Controller.Controller;
-import Model.Card;
 import Model.Cart;
 import Model.Product;
-import Model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,13 +19,13 @@ public class View {
      JPanel cards;
     SearchPanel searchPanel;
     ResultsPanel resultsPanel;
-    TeamPanel teamPanel;
+    AdminPanel adminPanel;
     NewUser newUser;
     PaymentOptionsPanel paymentOptions;
     ProfileLoginPanel profileLoginPanel;
     ProfilePanel profilePanel;
     ShoppingcartPanel shoppingcartPanel;
-    VisionPanel visionPanel;
+    MisProductosPanel misProductosPanel;
     AddProductPanel addProductPanel;
     ViewProduct viewProduct;
     ProfileMenuPanel profileMenuPanel;
@@ -66,25 +64,25 @@ public class View {
         cards = new JPanel(cardLayout);
         searchPanel = new SearchPanel();
         resultsPanel = new ResultsPanel(controller);
-        teamPanel = new TeamPanel();
+        adminPanel = new AdminPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller, cartSwapper);
         profileLoginPanel = new ProfileLoginPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper, controller);
-        visionPanel = new VisionPanel();
+        misProductosPanel = new MisProductosPanel();
         viewProduct = new ViewProduct();
         addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
         profileMenuPanel = new ProfileMenuPanel(viewSwapper);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
-        cards.add(teamPanel.getMainpanel(),"teamPanel");
+        cards.add(adminPanel.getMainpanel(),"adminPanel");
         cards.add(newUser.getMainpanel(),"newUser");
         cards.add(paymentOptions.getMainpanel(),"paymentOptionsPanel");
         cards.add(profileLoginPanel.getMainpanel(),"profileLoginPanel");
         cards.add(profilePanel.getMainpanel(), "profilePanel");
         cards.add(shoppingcartPanel.getMainpanel(),"shoppingcartPanel");
-        cards.add(visionPanel.getMainpanel(),"visionPanel");
+        cards.add(misProductosPanel.getMainpanel(),"misProductosPanel");
         cards.add(viewProduct.getMainpanel(),"viewProductPanel");
         cards.add(addProductPanel.getMainpanel(),"addProductPanel");
         cards.add(profileMenuPanel.getMainpanel(),"profileMenuPanel");
@@ -100,62 +98,62 @@ public class View {
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
         newUser.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
         resultsPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
-        teamPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+        adminPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
         profileLoginPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
         shoppingcartPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
-        visionPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+        misProductosPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
         viewProduct.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
 
         profilePanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
         profileMenuPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"teamPanel");
+                cardLayout.show(cards,"adminPanel");
             }
         });
 
@@ -163,61 +161,61 @@ public class View {
         searchPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
-        teamPanel.getVISIONButton().addActionListener(new ActionListener() {
+        adminPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         resultsPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         newUser.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         profileLoginPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         shoppingcartPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
-        visionPanel.getVISIONButton().addActionListener(new ActionListener() {
+        misProductosPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         viewProduct.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         profilePanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
         profileMenuPanel.getVISIONButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"visionPanel");
+                cardLayout.show(cards,"misProductosPanel");
             }
         });
 
@@ -235,7 +233,7 @@ public class View {
                 }
             }
         });
-        teamPanel.getPERFILButton().addActionListener(new ActionListener() {
+        adminPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
@@ -295,7 +293,7 @@ public class View {
                 }
             }
         });
-        visionPanel.getPERFILButton().addActionListener(new ActionListener() {
+        misProductosPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
@@ -365,7 +363,7 @@ public class View {
                 }
             }
         });
-        teamPanel.getCARRITObutton().addActionListener(new ActionListener() {
+        adminPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
@@ -405,7 +403,7 @@ public class View {
                     paymentOptions.setCards();
                 }            }
         });
-        visionPanel.getCARRITObutton().addActionListener(new ActionListener() {
+        misProductosPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
@@ -452,7 +450,7 @@ public class View {
                 cardLayout.show(cards,"searchPanel");
             }
         });
-        teamPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+        adminPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");
@@ -476,7 +474,7 @@ public class View {
                 cardLayout.show(cards,"searchPanel");
             }
         });
-        visionPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+        misProductosPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"searchPanel");

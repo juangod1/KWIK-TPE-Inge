@@ -70,14 +70,14 @@ public class PaymentOptionsPanel {
         EQUIPObutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vs.changeView("teamPanel",null);
+                vs.changeView("adminPanel",null);
             }
         });
 
         VISIONButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //vs.changeView("visionPanel");
+                //vs.changeView("misProductosPanel");
                 JOptionPane.showMessageDialog(null,"Vision under development");
             }
         });

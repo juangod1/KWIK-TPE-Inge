@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Created by cderienzo on 12/7/2017.
  */
-public class TeamPanel {
+public class AdminPanel {
     private JPanel mainpanel;
     private JPanel header;
     private JButton VISIONButton;
