@@ -41,8 +41,14 @@ public class ResultsPanel {
     private JButton viewButton2;
     private JButton viewButton3;
     private JButton viewButton4;
+    private JButton anteriorButton;
+    private JButton siguienteButton;
     private JTable table1;
     private Controller controller;
+    private static final int PAGESIZE = 5;
+    private int offset;
+    private ArrayList<Product> prods;
+
 
     public JPanel getMainpanel() {
         return mainpanel;
@@ -70,64 +76,100 @@ public class ResultsPanel {
 
     public ResultsPanel(Controller controller){
         this.controller = controller;
-        }
+        anteriorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(offset >= PAGESIZE) {
+                    offset -= PAGESIZE;
+                    siguienteButton.setEnabled(true);
+                }
+                if(offset < PAGESIZE) {
+                    anteriorButton.setEnabled(false);
+                }
+                refresh();
+            }
+        });
+        siguienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int size = prods.size();
+                if(size - offset > PAGESIZE) {
+                    offset += PAGESIZE;
+                    anteriorButton.setEnabled(true);
+                }
+                if(size - offset <= PAGESIZE) {
+                    siguienteButton.setEnabled(false);
+                }
+                refresh();
+            }
+        });
+    }
 
     public void printResults(final ArrayList<Product> prods){
         cleanPanel();
-
-        if(prods.size()>=1) {
-            textArea1.setText(prods.get(0).getName() + "              -              $" + prods.get(0).getPrice());
+        this.prods = prods;
+        offset=0;
+        if(prods.size()>PAGESIZE){
+            siguienteButton.setEnabled(true);
+        }
+        refresh();
+     }
+    private void refresh(){
+        cleanPanel();
+        int size = prods.size();
+        if(size>=1 + offset) {
+            textArea1.setText(prods.get(offset).getName() + "              -              $" + prods.get(offset).getPrice());
             button1.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(0),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset),1);
                 }
             });
         }
-        if(prods.size()>=2) {
-            textArea2.setText(prods.get(1).getName() + "              -              $" + prods.get(1).getPrice());
+        if(size>=2+offset) {
+            textArea2.setText(prods.get(offset+1).getName() + "              -              $" + prods.get(offset+1).getPrice());
             button2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(1),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+1),1);
                 }
             });
         }
-        if(prods.size()>=3) {
-            textArea3.setText(prods.get(2).getName() + "              -              $" + prods.get(2).getPrice());
+        if(size>=3+offset) {
+            textArea3.setText(prods.get(offset+2).getName() + "              -              $" + prods.get(offset+2).getPrice());
             button3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(2),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+2),1);
                 }
             });
         }
-        if(prods.size()>=4) {
-            textArea4.setText(prods.get(3).getName() + "              -              $" + prods.get(3).getPrice());
+        if(size>=4+offset) {
+            textArea4.setText(prods.get(offset+3).getName() + "              -              $" + prods.get(offset+3).getPrice());
             button4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(3),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+3),1);
                 }
             });
         }
-        if(prods.size()>=5) {
-            textArea5.setText(prods.get(4).getName() + "              -              $" + prods.get(4).getPrice());
+        if(size>=5+offset) {
+            textArea5.setText(prods.get(offset+4).getName() + "              -              $" + prods.get(offset+4).getPrice());
             button5.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (controller.getCurrentUser()==null) return;
-                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(4),1);
+                    Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset+4),1);
                 }
             });
         }
-     }
+    }
 
-     private void cleanPanel(){
+    private void cleanPanel(){
         textArea1.setText("");
         textArea2.setText("");
         textArea3.setText("");
