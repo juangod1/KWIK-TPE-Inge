@@ -3,6 +3,8 @@ package View;
 import Model.Product;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by cderienzo on 12/9/2017.
@@ -24,6 +26,8 @@ public class ViewProduct {
     private JTextField thumbnail;
     private JTextField precio;
     private JTextField name;
+    private JButton verOpinionesButton;
+    private Product product;
 
     public JButton getSEARCHbutton() {
         return SEARCHbutton;
@@ -53,12 +57,18 @@ public class ViewProduct {
         name.setText(product.getName());
         precio.setText("$" + ((Double)product.getPrice()).toString());
         description.setText(product.getDescription());
+        this.product = product;
+
     }
 
     public void cleanProduct(){
         name.setText("");
         precio.setText("");
         description.setText("");
+    }
+
+    public JButton getREVIEWSButton(){
+        return verOpinionesButton;
     }
 
 }

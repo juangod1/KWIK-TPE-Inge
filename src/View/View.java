@@ -28,6 +28,7 @@ public class View {
     MisProductosPanel misProductosPanel;
     AddProductPanel addProductPanel;
     ViewProduct viewProduct;
+    ReviewsPanel reviewsPanel;
     ProfileMenuPanel profileMenuPanel;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
@@ -65,6 +66,7 @@ public class View {
         searchPanel = new SearchPanel();
         resultsPanel = new ResultsPanel(controller);
         adminPanel = new AdminPanel(controller);
+        reviewsPanel = new ReviewsPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller, cartSwapper);
@@ -84,6 +86,7 @@ public class View {
         cards.add(shoppingcartPanel.getMainpanel(),"shoppingcartPanel");
         cards.add(misProductosPanel.getMainpanel(),"misProductosPanel");
         cards.add(viewProduct.getMainpanel(),"viewProductPanel");
+        cards.add(reviewsPanel.getMainpanel(),"reviewsPanel");
         cards.add(addProductPanel.getMainpanel(),"addProductPanel");
         cards.add(profileMenuPanel.getMainpanel(),"profileMenuPanel");
         loggedIn = false;
@@ -634,4 +637,121 @@ public class View {
             }
         });
     }
+
+
+    public void configureSearchView(){
+        searchPanel.getSearchBox().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Mandar a realizar la busqueda con el input
+                String input = searchPanel.getSearchBox().getText();
+                final ArrayList<Product> prods = Product.search(input);
+
+                cardLayout.show(cards,"resultsPanel");
+
+                resultsPanel.printResults(prods);
+                searchPanel.getSearchBox().setText("");
+
+
+
+                //config de view product
+                if(viewProduct.getREVIEWSButton().getActionListeners().length > 0)
+                    viewProduct.getREVIEWSButton().removeActionListener(viewProduct.getREVIEWSButton().getActionListeners()[0]);
+                viewProduct.getREVIEWSButton().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        cardLayout.show(cards,"reviewsPanel");
+                    }
+                });
+                resultsPanel.getViewButton().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        if(prods.size()>=1) {
+                            viewProduct.printProduct(prods.get(0));
+                            cardLayout.show(cards,"viewProductPanel");
+                            reviewsPanel.setProduct(prods.get(0));
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton1().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=2) {
+                            viewProduct.printProduct(prods.get(1));
+                            cardLayout.show(cards,"viewProductPanel");
+                            reviewsPanel.setProduct(prods.get(1));
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton2().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=3) {
+                            viewProduct.printProduct(prods.get(2));
+                            cardLayout.show(cards,"viewProductPanel");
+                            reviewsPanel.setProduct(prods.get(2));
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton3().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=4) {
+                            viewProduct.printProduct(prods.get(3));
+                            cardLayout.show(cards,"viewProductPanel");
+                            reviewsPanel.setProduct(prods.get(3));
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton4().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=5) {
+                            viewProduct.printProduct(prods.get(4));
+                            cardLayout.show(cards,"viewProductPanel");
+                            reviewsPanel.setProduct(prods.get(4));
+                        }
+
+                    }
+
+                });
+
+            }
+        });
+    }
+
+    public void initialize(Controller controller) {
+        JFrame frame = new JFrame("KWIK");
+        frame.setContentPane(this.cards);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        Dimension dimension = new Dimension(1067,600);
+        frame.setMinimumSize(dimension);
+        frame.setPreferredSize(dimension);
+        frame.setMaximumSize(dimension);
+    }
+
+    public void setViewsAsLoggedIn(){
+        profilePanel.updateValues();
+    }
+
 }
