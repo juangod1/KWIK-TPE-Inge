@@ -93,7 +93,402 @@ public class View {
     public void run(){
         configureSearchView();
 
+        configureEquipoButtons();
 
+        configurePerfilButtons();
+
+        configureCarritoButtons();
+
+        configureSearchButtons();
+    }
+
+    public void configureSearchView(){
+        searchPanel.getSearchBox().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Mandar a realizar la busqueda con el input
+                String input = searchPanel.getSearchBox().getText();
+                final ArrayList<Product> prods = Product.search(input);
+
+                cardLayout.show(cards,"resultsPanel");
+
+                resultsPanel.printResults(prods);
+                searchPanel.getSearchBox().setText("");
+
+
+
+                //config de view product
+                resultsPanel.getViewButton().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+
+                        if(prods.size()>=1) {
+                            viewProduct.printProduct(prods.get(0));
+                            cardLayout.show(cards,"viewProductPanel");
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton1().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=2) {
+                            viewProduct.printProduct(prods.get(1));
+                            cardLayout.show(cards,"viewProductPanel");
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton2().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=3) {
+                            viewProduct.printProduct(prods.get(2));
+                            cardLayout.show(cards,"viewProductPanel");
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton3().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=4) {
+                            viewProduct.printProduct(prods.get(3));
+                            cardLayout.show(cards,"viewProductPanel");
+                        }
+
+                    }
+
+                });
+                resultsPanel.getViewButton4().addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        if(prods.size()>=5) {
+                            viewProduct.printProduct(prods.get(4));
+                            cardLayout.show(cards,"viewProductPanel");
+                        }
+
+                    }
+
+                });
+
+            }
+        });
+    }
+
+    public void initialize(Controller controller) {
+        JFrame frame = new JFrame("KWIK");
+        frame.setContentPane(this.cards);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        Dimension dimension = new Dimension(1067,600);
+        frame.setMinimumSize(dimension);
+        frame.setPreferredSize(dimension);
+        frame.setMaximumSize(dimension);
+    }
+
+    public void setViewsAsLoggedIn(){
+        profilePanel.updateValues();
+    }
+
+    public void configureSearchButtons(){
+        //SEARCH
+        newUser.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        resultsPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        adminPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        searchPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        profileLoginPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        shoppingcartPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        misProductosPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        viewProduct.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        profilePanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+        profileMenuPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
+    }
+
+    public void configureCarritoButtons(){
+        //CARRITO
+        searchPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //JOptionPane.showMessageDialog(null,"Messages under development");
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }
+            }
+        });
+        adminPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        resultsPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        newUser.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        profileLoginPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        shoppingcartPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        misProductosPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        viewProduct.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+        profileMenuPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
+        });
+    }
+
+    public void configurePerfilButtons(){
+        //PERFIL
+        searchPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    profilePanel.updateValues();
+                    cardLayout.show(cards, "profileMenuPanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        adminPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        resultsPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        newUser.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        profileLoginPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        shoppingcartPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        misProductosPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        paymentOptions.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    profilePanel.updateValues();
+                    cardLayout.show(cards, "profileMenuPanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        profilePanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    profilePanel.updateValues();
+                    cardLayout.show(cards, "profileMenuPanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        viewProduct.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+        profileMenuPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
+    }
+
+    public void configureEquipoButtons(){
         //EQUIPO
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
@@ -238,390 +633,5 @@ public class View {
                 cardLayout.show(cards,"misProductosPanel");
             }
         });
-
-
-        //PERFIL
-        searchPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    profilePanel.updateValues();
-                    cardLayout.show(cards, "profileMenuPanel");
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        adminPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                    profilePanel.updateValues();
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        resultsPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                    profilePanel.updateValues();
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        newUser.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                    profilePanel.updateValues();
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        profileLoginPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                    profilePanel.updateValues();
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        shoppingcartPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                    profilePanel.updateValues();
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        misProductosPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                    profilePanel.updateValues();
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        paymentOptions.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    profilePanel.updateValues();
-                    cardLayout.show(cards, "profileMenuPanel");
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        profilePanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    profilePanel.updateValues();
-                    cardLayout.show(cards, "profileMenuPanel");
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        viewProduct.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-        profileMenuPanel.getPERFILButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(Controller.getInstance().isLoggedIn()) {
-                    cardLayout.show(cards, "profileMenuPanel");
-                }
-                else{
-                    cardLayout.show(cards, "profileLoginPanel");
-                }
-            }
-        });
-
-        //CARRITO
-        searchPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //JOptionPane.showMessageDialog(null,"Messages under development");
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }
-            }
-        });
-        adminPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        resultsPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        newUser.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        profileLoginPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        shoppingcartPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        misProductosPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        viewProduct.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-        profileMenuPanel.getCARRITObutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"shoppingcartPanel");
-                if(Controller.getInstance().isLoggedIn()) {
-                    paymentOptions.setCards();
-                }            }
-        });
-
-
-        //SEARCH
-        newUser.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        resultsPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        adminPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        searchPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        profileLoginPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        shoppingcartPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        misProductosPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        viewProduct.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        profilePanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-        profileMenuPanel.getSEARCHbutton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cards,"searchPanel");
-            }
-        });
-
-
     }
-
-    public void configureSearchView(){
-        searchPanel.getSearchBox().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Mandar a realizar la busqueda con el input
-                String input = searchPanel.getSearchBox().getText();
-                final ArrayList<Product> prods = Product.search(input);
-
-                cardLayout.show(cards,"resultsPanel");
-
-                resultsPanel.printResults(prods);
-                searchPanel.getSearchBox().setText("");
-
-
-
-                //config de view product
-                resultsPanel.getViewButton().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-
-                        if(prods.size()>=1) {
-                            viewProduct.printProduct(prods.get(0));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton1().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=2) {
-                            viewProduct.printProduct(prods.get(1));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton2().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=3) {
-                            viewProduct.printProduct(prods.get(2));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton3().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=4) {
-                            viewProduct.printProduct(prods.get(3));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-                resultsPanel.getViewButton4().addActionListener(new ActionListener() {
-
-                    @Override
-
-                    public void actionPerformed(ActionEvent e) {
-                        if(prods.size()>=5) {
-                            viewProduct.printProduct(prods.get(4));
-                            cardLayout.show(cards,"viewProductPanel");
-                        }
-
-                    }
-
-                });
-
-            }
-        });
-    }
-
-    public void initialize(Controller controller) {
-        JFrame frame = new JFrame("KWIK");
-        frame.setContentPane(this.cards);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        Dimension dimension = new Dimension(1067,600);
-        frame.setMinimumSize(dimension);
-        frame.setPreferredSize(dimension);
-        frame.setMaximumSize(dimension);
-    }
-
-    public void setViewsAsLoggedIn(){
-        profilePanel.updateValues();
-    }
-
 }
