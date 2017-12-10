@@ -14,9 +14,19 @@ public class TeamPanel {
     private JLabel KWIKlabel;
     private JButton CARRITObutton;
     private JPanel footnote;
-    private JPanel middle;
-    private JLabel teamLabel;
     private JButton SEARCHbutton;
+    private JPanel middle;
+    private JLabel resultsLabel;
+    private JTextArea textArea1;
+    private JTextArea textArea2;
+    private JTextArea textArea3;
+    private JTextArea textArea4;
+    private JTextArea textArea5;
+    private JButton desactivarButton;
+    private JButton desactivarButton1;
+    private JButton desactivarButton2;
+    private JButton desactivarButton3;
+    private JButton desactivarButton4;
 
     public JPanel getMainpanel() {
         return mainpanel;
