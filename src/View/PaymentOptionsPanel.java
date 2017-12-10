@@ -57,6 +57,7 @@ public class PaymentOptionsPanel {
                     cart.setCard(card);
                     cart.close();
                     setCards();
+                    vs.changeView("searchPanel",null);
                 }
             }
         });
