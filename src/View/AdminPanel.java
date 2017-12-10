@@ -68,7 +68,7 @@ public class AdminPanel {
                         currButton.setText("Desactivar");
                         JOptionPane.showMessageDialog(null, "Usuario Activado!");
                     }else{
-                        currButton.setText("Activar");
+                        currButton.setText("  Activar  ");
                         JOptionPane.showMessageDialog(null, "Usuario Desactivado!");
                     }
                     curr.save();
@@ -76,7 +76,7 @@ public class AdminPanel {
             });
         }
     }
-    public void printUsers(String criteria){
+    public boolean printUsers(String criteria){
         clearItems();
         offset=0;
         if(criteria!=null) {
@@ -86,7 +86,7 @@ public class AdminPanel {
             }
             else{
                 JOptionPane.showMessageDialog(null,"Access denied");
-                return;
+                return false;
             }
         } else{
             list=User.search("");
@@ -98,6 +98,7 @@ public class AdminPanel {
             siguienteButton.setEnabled(false);
         }
         printNoCriteria(list);
+        return true;
     }
 
     public AdminPanel(final Controller controller){

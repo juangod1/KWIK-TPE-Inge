@@ -446,72 +446,82 @@ public class View {
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         newUser.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         resultsPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         adminPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         profileLoginPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         shoppingcartPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         misProductosPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         viewProduct.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
 
         profilePanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
         profileMenuPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminPanel.printUsers("");
-                cardLayout.show(cards,"adminPanel");
+                if(adminPanel.printUsers("")) {
+                    cardLayout.show(cards, "adminPanel");
+                }
             }
         });
     }

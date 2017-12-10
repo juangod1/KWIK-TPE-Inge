@@ -103,7 +103,7 @@ public class MisProductosPanel {
                 list = Product.getByUser(user);
                 productIterator=(!list.isEmpty())?list.iterator():null;
             }
-            if(list.size()>PAGESIZE){
+            if(list!=null && list.size()>PAGESIZE){
                 siguienteButton.setEnabled(true);
             } else {
                 siguienteButton.setEnabled(false);

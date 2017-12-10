@@ -181,7 +181,7 @@
             </constraints>
             <properties>
               <background color="-8198050"/>
-              <text value="Log out"/>
+              <text value="Cerrar sesión"/>
             </properties>
           </component>
         </children>
