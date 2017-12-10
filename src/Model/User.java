@@ -107,6 +107,19 @@ public class User implements Persistent{
         return users;
     }
 
+    public static ArrayList<User> search(String text) {
+        ArrayList<User> users = new ArrayList<>();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE username ILIKE '%"+text+"%'");
+            while (rs.next()) {
+                users.add(fromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
     private static User fromResultSet(ResultSet rs) {
         try {
             DocType docType = new DocType(rs.getInt("iddoctype"), rs.getString("docName"));
