@@ -203,6 +203,7 @@ public class ShoppingcartPanel {
             if (size >= 1 + offset) {
                 final Product product = products.get(offset);
                 textArea1.setText(product.getName());
+                button1.setVisible(true);
                 button1.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -219,6 +220,7 @@ public class ShoppingcartPanel {
             if (size >= 2 + offset) {
                 final Product product = products.get(offset + 1);
                 textArea2.setText(product.getName());
+                button2.setVisible(true);
                 button2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -236,6 +238,7 @@ public class ShoppingcartPanel {
             if (size >= 3 + offset) {
                 final Product product = products.get(offset + 2);
                 textArea3.setText(product.getName());
+                button3.setVisible(true);
                 button3.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -252,6 +255,7 @@ public class ShoppingcartPanel {
             if (size >= 4 + offset) {
                 final Product product = products.get(offset + 3);
                 textArea4.setText(product.getName());
+                button4.setVisible(true);
                 button4.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -279,13 +283,21 @@ public class ShoppingcartPanel {
         textArea4.setText("");
         total.setText("");
 
-        if(button1.getActionListeners().length>0)
-        button1.removeActionListener(button1.getActionListeners()[0]);
-        if(button2.getActionListeners().length>0)
-        button2.removeActionListener(button2.getActionListeners()[0]);
-        if(button3.getActionListeners().length>0)
-        button3.removeActionListener(button3.getActionListeners()[0]);
-        if(button4.getActionListeners().length>0)
-        button4.removeActionListener(button4.getActionListeners()[0]);
+        if(button1.getActionListeners().length>0) {
+            button1.removeActionListener(button1.getActionListeners()[0]);
+            button1.setVisible(false);
+        }
+        if(button2.getActionListeners().length>0) {
+            button2.removeActionListener(button2.getActionListeners()[0]);
+            button2.setVisible(false);
+        }
+        if(button3.getActionListeners().length>0) {
+            button3.removeActionListener(button3.getActionListeners()[0]);
+            button3.setVisible(false);
+        }
+        if(button4.getActionListeners().length>0) {
+            button4.removeActionListener(button4.getActionListeners()[0]);
+            button4.setVisible(false);
+        }
     }
 }

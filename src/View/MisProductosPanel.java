@@ -66,7 +66,7 @@ public class MisProductosPanel {
             Iterator<JButton> buttonIterator = buttons.iterator();
             Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
             for (int i = 0; i < 5 && productIterator.hasNext(); i++) {
-                Product curr = productIterator.next();
+                final Product curr = productIterator.next();
                 JButton currButton = buttonIterator.next();
                 jTextAreaIterator.next().setText(curr.getName() + "    " + curr.getPrice() + "     " + curr.getVisits());
                 currButton.setVisible(true);
