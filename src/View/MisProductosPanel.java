@@ -101,7 +101,6 @@ public class MisProductosPanel {
             User user = controller.getCurrentUser();
             if(user!=null) {
                 list = Product.getByUser(user);
-                productIterator=(!list.isEmpty())?list.iterator():null;
             }
             if(list!=null && list.size()>PAGESIZE){
                 siguienteButton.setEnabled(true);
@@ -109,7 +108,7 @@ public class MisProductosPanel {
                 siguienteButton.setEnabled(false);
             }
         }
-        if(productIterator!=null) {
+        if(!list.isEmpty()) {
             Iterator<JButton> viewButtonIterator = viewButtons.iterator();
             Iterator<JButton> removeButtonIterator = removeButtons.iterator();
             Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
@@ -134,14 +133,11 @@ public class MisProductosPanel {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         view.viewProduct.printProduct(curr);
-                        view.cardLayout=(CardLayout)view.cards.getLayout();
+                        view.cardLayout = (CardLayout) view.cards.getLayout();
                         view.cardLayout.show(view.cards, "viewProductPanel");
                         view.cards.revalidate();
                     }
                 });
-            }
-            if (!productIterator.hasNext()) {
-                productIterator = null;
             }
         }
     }
