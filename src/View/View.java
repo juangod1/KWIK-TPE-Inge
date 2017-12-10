@@ -70,7 +70,7 @@ public class View {
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller, cartSwapper);
         profileLoginPanel = new ProfileLoginPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper, controller);
-        misProductosPanel = new MisProductosPanel(controller);
+        misProductosPanel = new MisProductosPanel(controller, this);
         viewProduct = new ViewProduct();
         addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
         profileMenuPanel = new ProfileMenuPanel(viewSwapper);
@@ -611,7 +611,7 @@ public class View {
 
     public void initialize(Controller controller) {
         JFrame frame = new JFrame("KWIK");
-        frame.setContentPane(new View(controller).cards);
+        frame.setContentPane(this.cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         Dimension dimension = new Dimension(1067,600);

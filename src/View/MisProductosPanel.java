@@ -44,8 +44,8 @@ public class MisProductosPanel {
     private View view;
 
 
-    public MisProductosPanel(Controller controller){
-        this.view=controller.getView();
+    public MisProductosPanel(Controller controller, View view){
+        this.view = view;
         this.controller=controller;
         textAreas= new ArrayList<>();
         textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
