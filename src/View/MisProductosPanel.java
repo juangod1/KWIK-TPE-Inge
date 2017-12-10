@@ -41,9 +41,11 @@ public class MisProductosPanel {
     private ArrayList<JTextArea> textAreas;
     private Iterator<Product> productIterator;
     private ArrayList<JButton> buttons;
+    private View view;
 
 
     public MisProductosPanel(Controller controller){
+        this.view=controller.getView();
         this.controller=controller;
         textAreas= new ArrayList<>();
         textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
@@ -60,22 +62,30 @@ public class MisProductosPanel {
                 productIterator=list.iterator();
             }
         }
-        Iterator<JButton> buttonIterator = buttons.iterator();
-        Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
-        for (int i=0; i<5 && productIterator.hasNext(); i++){
-            Product curr = productIterator.next();
-            JButton currButton = buttonIterator.next();
-            jTextAreaIterator.next().setText(curr.getName()+"    "+curr.getPrice()+"     "+curr.getVisits());
-            currButton.setVisible(true);
-            currButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+        if(productIterator!=null) {
+            Iterator<JButton> buttonIterator = buttons.iterator();
+            Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
+            for (int i = 0; i < 5 && productIterator.hasNext(); i++) {
+                Product curr = productIterator.next();
+                JButton currButton = buttonIterator.next();
+                jTextAreaIterator.next().setText(curr.getName() + "    " + curr.getPrice() + "     " + curr.getVisits());
+                currButton.setVisible(true);
 
-                }
-            });
-        }
-        if(!productIterator.hasNext()){
-            productIterator=null;
+                currButton.addActionListener(new ActionListener() {
+
+                    @Override
+
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println("clicked");
+                        view.viewProduct.printProduct(curr);
+                        view.cardLayout.show(view.cards, "viewProductPanel");
+
+                    }
+                });
+            }
+            if (!productIterator.hasNext()) {
+                productIterator = null;
+            }
         }
     }
     private void clearItems(){

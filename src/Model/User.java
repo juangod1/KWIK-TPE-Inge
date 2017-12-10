@@ -313,4 +313,8 @@ public class User implements Persistent{
     public void setPhone2(String phone) {
         this.phone2 = phone;
     }
+
+    public String toString(){
+        return name;
+    }
 }

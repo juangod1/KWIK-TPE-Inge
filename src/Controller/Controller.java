@@ -16,6 +16,10 @@ public class Controller {
     private  Model model;
     private static View view;
 
+    public static View getView(){
+        return view;
+    }
+
     public static void main(String[] args){
         view = new View(getInstance());
         view.initialize(getInstance());
