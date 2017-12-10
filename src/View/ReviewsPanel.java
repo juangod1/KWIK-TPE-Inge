@@ -12,12 +12,37 @@ import java.util.ArrayList;
 
 public class ReviewsPanel {
     private JPanel header;
-    private JButton VISIONButton;
+    private JButton MISPRODUCTOSButton;
     private JButton EQUIPObutton;
     private JButton PERFILButton;
     private JLabel KWIKlabel;
     private JButton CARRITObutton;
     private JButton SEARCHbutton;
+
+    public JButton getMISPRODUCTOSButton() {
+        return MISPRODUCTOSButton;
+    }
+
+    public JButton getEQUIPObutton() {
+        return EQUIPObutton;
+    }
+
+    public JButton getPERFILButton() {
+        return PERFILButton;
+    }
+
+    public JLabel getKWIKlabel() {
+        return KWIKlabel;
+    }
+
+    public JButton getCARRITObutton() {
+        return CARRITObutton;
+    }
+
+    public JButton getSEARCHbutton() {
+        return SEARCHbutton;
+    }
+
     private JPanel footnote;
     private JPanel middle;
     private JTextArea textArea1;

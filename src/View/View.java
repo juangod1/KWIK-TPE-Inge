@@ -125,6 +125,12 @@ public class View {
 
     public void configureSearchButtons(){
         //SEARCH
+        reviewsPanel.getSEARCHbutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"searchPanel");
+            }
+        });
         addProductPanel.getSEARCHbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -195,6 +201,15 @@ public class View {
 
     public void configureCarritoButtons(){
         //CARRITO
+        reviewsPanel.getCARRITObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cards,"shoppingcartPanel");
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }
+            }
+        });
         addProductPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -290,6 +305,18 @@ public class View {
 
     public void configurePerfilButtons(){
         //PERFIL
+        reviewsPanel.getPERFILButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Controller.getInstance().isLoggedIn()) {
+                    cardLayout.show(cards, "profileMenuPanel");
+                    profilePanel.updateValues();
+                }
+                else{
+                    cardLayout.show(cards, "profileLoginPanel");
+                }
+            }
+        });
         addProductPanel.getPERFILButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -437,6 +464,13 @@ public class View {
     public void configureEquipoButtons(){
         //EQUIPO
         addProductPanel.getEQUIPObutton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
+                cardLayout.show(cards,"adminPanel");
+            }
+        });
+        reviewsPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 adminPanel.printUsers("");
@@ -599,6 +633,13 @@ public class View {
             }
         });
         profileMenuPanel.getVISIONButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                misProductosPanel.printItems();
+                cardLayout.show(cards,"misProductosPanel");
+            }
+        });
+        reviewsPanel.getMISPRODUCTOSButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 misProductosPanel.printItems();

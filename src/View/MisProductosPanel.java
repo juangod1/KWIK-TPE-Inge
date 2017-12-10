@@ -108,7 +108,7 @@ public class MisProductosPanel {
                 siguienteButton.setEnabled(false);
             }
         }
-        if(!list.isEmpty()) {
+        if(list!=null && !list.isEmpty()) {
             Iterator<JButton> viewButtonIterator = viewButtons.iterator();
             Iterator<JButton> removeButtonIterator = removeButtons.iterator();
             Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
