@@ -79,7 +79,7 @@ public class AddProductPanel {
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vs.changeView("profilePanel",null);
+                vs.changeView("profileMenuPanel",null);
             }
         });
     }

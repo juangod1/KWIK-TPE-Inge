@@ -1,8 +1,10 @@
 package View;
 
 import Controller.CardStruct;
+import Controller.Controller;
 import Controller.InputController;
 import Model.Card;
+import Model.Cart;
 import jdk.internal.util.xml.impl.Input;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -11,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 
 public class PaymentOptionsPanel {
     private InputController inputController;
@@ -31,12 +34,14 @@ public class PaymentOptionsPanel {
     private JPanel mainpanel;
     private JButton confirmPaymentButton;
     private View.ViewSwapper vs;
+    private ArrayList<Card> cards = new ArrayList<>();
+    private Cart cart;
+
+
 
     public PaymentOptionsPanel(final View.ViewSwapper vs, final InputController inputController){
         this.vs = vs;
-//        for(Card card : ){
-//            cardSelector.addItem()
-//        }
+
         confirmPaymentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,7 +53,8 @@ public class PaymentOptionsPanel {
                             JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    //pay with Card y decirle a controller que vacie el carrito
+                    System.out.println("Closed with cart:"+cart.getId());
+                    cart.close();
                 }
             }
         });
@@ -89,6 +95,14 @@ public class PaymentOptionsPanel {
         });
         KWIKlabel.addMouseListener(new MouseAdapter() {
         });
+    }
+
+    public void setCards(){
+        for(Card card : Controller.getInstance().getCurrentUser().getCards()){
+            cards.add(card);
+            cardSelector.addItem(card.getNumber());
+
+        }
     }
 
     private static void displayCardCreator(InputController inputController) {
@@ -159,7 +173,9 @@ public class PaymentOptionsPanel {
     }
 
     public Card getCard() {
-        return (Card)cardSelector.getSelectedItem();
+        if(cardSelector.getSelectedIndex() > cards.size())
+            return null;
+        return cards.get(cardSelector.getSelectedIndex());
     }
 
     public JPanel getMainpanel() {
@@ -201,5 +217,9 @@ public class PaymentOptionsPanel {
 
     public JButton getPERFILButton() {
         return PERFILButton;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

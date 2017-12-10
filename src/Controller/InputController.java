@@ -302,13 +302,25 @@ public class InputController {
     }
 
     public void addCard(CardStruct cardStruct) {
-        User user = null;
+        User user = Controller.getInstance().getCurrentUser();
         String name = (String)cardStruct.getFormEntries().get(31).getItem();
         String surname = (String)cardStruct.getFormEntries().get(32).getItem();
         String number = (String)cardStruct.getFormEntries().get(36).getItem();
         int month = Integer.parseInt((String)cardStruct.getFormEntries().get(33).getItem());
         int year = Integer.parseInt((String)cardStruct.getFormEntries().get(34).getItem());
         int code = Integer.parseInt((String)cardStruct.getFormEntries().get(35).getItem());
+        if(user == null){
+            System.out.println("user is null");
+        }
+        if(name == null){
+            System.out.println("name is null");
+        }
+        if(surname == null){
+            System.out.println("surname is null");
+        }
+        if(number == null){
+            System.out.println("number is null");
+        }
 
         Card.create(user, name, surname, number, month, year, code);
     }

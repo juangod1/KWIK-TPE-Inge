@@ -3,6 +3,7 @@ package View;
 import Controller.Controller;
 import Model.Cart;
 import Model.Product;
+import View.View.CartSwapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,10 +40,12 @@ public class ShoppingcartPanel {
     private View.ViewSwapper vs;
     private Controller controller;
     private Cart cart;
+    private CartSwapper cs;
 
 
-    public ShoppingcartPanel(final View.ViewSwapper vs, Controller controller) {
+    public ShoppingcartPanel(final View.ViewSwapper vs, Controller controller, final CartSwapper cs) {
         this.vs = vs;
+        this.cs = cs;
         this.controller = controller;
 
         mainpanel.addComponentListener(new ComponentAdapter() {
@@ -69,6 +72,9 @@ public class ShoppingcartPanel {
                 if( n == JOptionPane.YES_OPTION){
                     if(cart != null && cart.getProducts().size() > 0) {
                         vs.changeView("paymentOptionsPanel", null);
+                        System.out.println("Sent to payment with cart:"+cart.getId());
+                        cs.swapCard(cart);
+
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "No hay articulos en el carrito");

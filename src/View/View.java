@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.Card;
 import Model.Cart;
 import Model.Product;
 import Model.User;
@@ -32,6 +33,7 @@ public class View {
     ProfileMenuPanel profileMenuPanel;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
+    CartSwapper cartSwapper = new CartSwapper();
     Controller controller;
 
 
@@ -51,6 +53,12 @@ public class View {
         }
     }
 
+    public class CartSwapper{
+        public void swapCard(Cart cart){
+            paymentOptions.setCart(cart);
+        }
+    }
+
     public View(Controller controller){
 
         this.controller=controller;
@@ -61,7 +69,7 @@ public class View {
         teamPanel = new TeamPanel();
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
-        shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller);
+        shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller, cartSwapper);
         profileLoginPanel = new ProfileLoginPanel(viewSwapper);
         profilePanel = new ProfilePanel(viewSwapper, controller);
         visionPanel = new VisionPanel();
@@ -352,65 +360,82 @@ public class View {
             public void actionPerformed(ActionEvent e) {
                 //JOptionPane.showMessageDialog(null,"Messages under development");
                 cardLayout.show(cards,"shoppingcartPanel");
-
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }
             }
         });
         teamPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         resultsPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         newUser.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         profileLoginPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         shoppingcartPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         visionPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         viewProduct.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         profilePanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
         profileMenuPanel.getCARRITObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"shoppingcartPanel");
-            }
+                if(Controller.getInstance().isLoggedIn()) {
+                    paymentOptions.setCards();
+                }            }
         });
 
 
