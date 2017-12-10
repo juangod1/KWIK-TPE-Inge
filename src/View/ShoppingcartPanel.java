@@ -281,10 +281,10 @@ public class ShoppingcartPanel {
                 textArea4.setText("");
 
             totalStock.setText("x " + totalStockValue.toString() + "    ");
-            total.setText("The total is:    $" + cart.getSubTotal());
+            total.setText("El total es:    $" + cart.getSubTotal());
         }
         else
-            total.setText("There is no cart");
+            total.setText("No hay carro de compras");
     }
 
     public void cleanCart(){
