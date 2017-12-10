@@ -160,11 +160,6 @@ public class ShoppingcartPanel {
         return textArea;
     }
 
-    public void write(String string){
-        System.out.println(string);
-        textArea.append(string);
-    }
-
     private void loadCart() {
         offset = 0;
         if(controller.getCurrentUser() != null) {

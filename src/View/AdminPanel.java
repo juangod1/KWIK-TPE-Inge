@@ -57,8 +57,8 @@ public class AdminPanel {
             Iterator<JButton> buttonIterator = buttons.iterator();
             Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
             for (int i = 0; i < 5 && userIterator.hasNext(); i++) {
-                User curr = userIterator.next();
-                JButton currButton = buttonIterator.next();
+                final User curr = userIterator.next();
+                final JButton currButton = buttonIterator.next();
                 jTextAreaIterator.next().setText(curr.getUsername() + "    -    " + curr.getEmail() + "    -    " + curr.getName()+
                 curr.getSurname());
                 if(curr.isEnabled()){currButton.setText("Desactivar");

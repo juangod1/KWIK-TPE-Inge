@@ -48,7 +48,7 @@ public class ResultsPanel {
     private static final int PAGESIZE = 5;
     private int offset;
     private ArrayList<Product> prods;
-
+    private ArrayList<JButton> buttons;
 
     public JPanel getMainpanel() {
         return mainpanel;
@@ -75,6 +75,9 @@ public class ResultsPanel {
     }
 
     public ResultsPanel(Controller controller){
+        buttons = new ArrayList<>();
+        initButtons();
+
         this.controller = controller;
         anteriorButton.addActionListener(new ActionListener() {
             @Override
@@ -119,6 +122,8 @@ public class ResultsPanel {
         int size = prods.size();
         if(size>=1 + offset) {
             textArea1.setText(prods.get(offset).getName() + "              -              $" + prods.get(offset).getPrice());
+            button1.setVisible(true);
+            viewButton.setVisible(true);
             button1.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -129,6 +134,8 @@ public class ResultsPanel {
         }
         if(size>=2+offset) {
             textArea2.setText(prods.get(offset+1).getName() + "              -              $" + prods.get(offset+1).getPrice());
+            button2.setVisible(true);
+            viewButton1.setVisible(true);
             button2.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -139,6 +146,8 @@ public class ResultsPanel {
         }
         if(size>=3+offset) {
             textArea3.setText(prods.get(offset+2).getName() + "              -              $" + prods.get(offset+2).getPrice());
+            button3.setVisible(true);
+            viewButton2.setVisible(true);
             button3.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -149,6 +158,8 @@ public class ResultsPanel {
         }
         if(size>=4+offset) {
             textArea4.setText(prods.get(offset+3).getName() + "              -              $" + prods.get(offset+3).getPrice());
+            button4.setVisible(true);
+            viewButton3.setVisible(true);
             button4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -159,6 +170,8 @@ public class ResultsPanel {
         }
         if(size>=5+offset) {
             textArea5.setText(prods.get(offset+4).getName() + "              -              $" + prods.get(offset+4).getPrice());
+            button5.setVisible(true);
+            viewButton4.setVisible(true);
             button5.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -206,6 +219,10 @@ public class ResultsPanel {
 
          if(button5.getActionListeners().length>0)
          button5.removeActionListener(button5.getActionListeners()[0]);
+
+         for(JButton b : buttons){
+             b.setVisible(false);
+         }
      }
 
     public JButton getViewButton() {
@@ -226,5 +243,19 @@ public class ResultsPanel {
 
     public JButton getViewButton4() {
         return viewButton4;
+    }
+
+    public void initButtons(){
+        buttons.add(button1);
+        buttons.add(button2);
+        buttons.add(button3);
+        buttons.add(button4);
+        buttons.add(button5);
+
+        buttons.add(viewButton1);
+        buttons.add(viewButton2);
+        buttons.add(viewButton3);
+        buttons.add(viewButton4);
+        buttons.add(viewButton);
     }
 }
