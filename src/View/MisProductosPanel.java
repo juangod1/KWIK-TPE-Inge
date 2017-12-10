@@ -88,9 +88,14 @@ public class MisProductosPanel {
     }
     private void clearItems(){
         Iterator<JButton> buttonIterator = buttons.iterator();
+        JButton curr;
         for (JTextArea jTextArea: textAreas){
             jTextArea.setText("");
-            buttonIterator.next().setVisible(false);
+            curr=buttonIterator.next();
+            curr.setVisible(false);
+            if(curr.getActionListeners().length!=0){
+                curr.removeActionListener(curr.getActionListeners()[0]);
+            }
         }
     }
 
