@@ -128,6 +128,7 @@ public class Product implements Persistent{
     @Override
     public boolean delete() {
         try {
+            DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM cartproducts WHERE idproduct = "+id);
             int count = DatabaseService.getInstance().getSt().executeUpdate("DELETE FROM product WHERE id = "+id);
             return count > 0;
         } catch (SQLException e) {
