@@ -20,6 +20,8 @@ public class Product implements Persistent{
     private int sold;
 
     private int userId;
+    private float rating;
+    private boolean cached;
 
     private Product() {}
 
@@ -33,6 +35,7 @@ public class Product implements Persistent{
         this.stock = stock;
         this.visits=0;
         this.sold=0;
+        cached = false;
     }
 
     private Product(int id, String name, String description, double price, int userId, String thumbnail, int stock, int visits, int sold) {
@@ -46,6 +49,7 @@ public class Product implements Persistent{
         this.stock = stock;
         this.visits = visits;
         this.sold = sold;
+        cached = false;
     }
 
     private static final String select = "SELECT * FROM product ";
@@ -100,7 +104,7 @@ public class Product implements Persistent{
     }
 
     public static ArrayList<Product> search(String text) {
-        return listByCriteria("WHERE stock > 0 AND name ILIKE '%"+text+"%'");
+        return listByCriteria("WHERE stock > 0 AND name ILIKE '%"+text+"%' ORDER BY price");
     }
 
     public static HashMap<Product, Integer> listBoughtProducts(User user) {
@@ -231,10 +235,16 @@ public class Product implements Persistent{
     }
 
     public float getRating() {
+        if(cached)
+            return rating;
+
         try {
             ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("SELECT avg(rating) FROM review WHERE idproduct = "+id);
-            if(rs.next())
-                return rs.getFloat(1);
+            if(rs.next()) {
+                rating = rs.getFloat(1);
+                cached = true;
+                return rating;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

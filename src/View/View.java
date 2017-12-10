@@ -726,7 +726,6 @@ public class View {
     }
 
     public void updateViewProductButtons(final ArrayList<Product> products){
-        System.out.println(products);
 
         if(resultsPanel.getViewButton().getActionListeners().length > 0)
             resultsPanel.getViewButton().removeActionListener(resultsPanel.getViewButton().getActionListeners()[0]);

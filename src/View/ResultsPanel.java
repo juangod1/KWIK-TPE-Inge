@@ -9,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by cderienzo on 12/7/2017.
@@ -22,7 +24,6 @@ public class ResultsPanel {
     private JLabel KWIKlabel;
     private JButton CARRITObutton;
     private JPanel footnote;
-    private JLabel resultsLabel;
     private JButton SEARCHbutton;
     private JTextArea textArea1;
     private JTextArea textArea2;
@@ -46,6 +47,9 @@ public class ResultsPanel {
     private JTextArea textArea9;
     private JTextArea textArea10;
     private JTextArea textArea6;
+    private JLabel resultsLabel;
+    private JButton ordenarPorPrecioButton;
+    private JButton ordenarPorPuntuaciónButton;
     private JTable table1;
     private Controller controller;
     private static final int PAGESIZE = 5;
@@ -109,17 +113,48 @@ public class ResultsPanel {
                 refresh();
             }
         });
+        ordenarPorPrecioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                prods.sort(new Comparator<Product>() {
+                    @Override
+                    public int compare(Product o1, Product o2) {
+                        return (int)Math.round(o1.getPrice() - o2.getPrice());
+                    }
+                });
+                resetOffset();
+                refresh();
+            }
+        });
+        ordenarPorPuntuaciónButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                prods.sort(new Comparator<Product>() {
+                    @Override
+                    public int compare(Product o1, Product o2) {
+                        return Math.round(o2.getRating() - o1.getRating());
+                    }
+                });
+                resetOffset();
+                refresh();
+            }
+        });
     }
 
     public void printResults(final ArrayList<Product> prods){
         cleanPanel();
         this.prods = prods;
-        offset=0;
-        if(prods.size()>PAGESIZE){
-            siguienteButton.setEnabled(true);
-        }
+        resetOffset();
         refresh();
      }
+
+    public void resetOffset() {
+        offset = 0;
+        if(prods.size() > PAGESIZE){
+            siguienteButton.setEnabled(true);
+        }
+        anteriorButton.setEnabled(false);
+    }
     private void refresh(){
         ArrayList<Product> productList = new ArrayList<>();
         cleanPanel();
