@@ -73,7 +73,7 @@ public class View {
         misProductosPanel = new MisProductosPanel(controller, this);
         viewProduct = new ViewProduct();
         addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
-        profileMenuPanel = new ProfileMenuPanel(viewSwapper);
+        profileMenuPanel = new ProfileMenuPanel(viewSwapper, controller);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
         cards.add(adminPanel.getMainpanel(),"adminPanel");

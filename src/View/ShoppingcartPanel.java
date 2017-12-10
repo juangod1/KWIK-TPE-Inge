@@ -67,7 +67,6 @@ public class ShoppingcartPanel {
             @Override
             public void componentShown(ComponentEvent e) {
                 super.componentShown(e);
-                System.out.println("asdadadasas");
                 loadCart();
                 writeCart();
             }
@@ -170,7 +169,7 @@ public class ShoppingcartPanel {
                     cart = null;
                     return;
                 }
-                products = new ArrayList<>(amounts.keySet());
+                    products = new ArrayList<>(amounts.keySet());
                 if(products.size() > PAGESIZE) {
                     siguienteButton.setEnabled(true);
                 }

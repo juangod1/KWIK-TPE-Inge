@@ -119,6 +119,7 @@ public class ResultsPanel {
      }
     private void refresh(){
         cleanPanel();
+        Controller.getView().configureSearchView();
         int size = prods.size();
         if(size>=1 + offset) {
             textArea1.setText(prods.get(offset).getName() + "              -              $" + prods.get(offset).getPrice());

@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +22,9 @@ public class ProfileMenuPanel {
     private JPanel middle;
     private JButton agregarProductoButton;
     private JButton verDatosButton;
+    private JButton logout;
     private View.ViewSwapper vs;
-    public ProfileMenuPanel(final View.ViewSwapper vs) {
+    public ProfileMenuPanel(final View.ViewSwapper vs, final Controller controller) {
         this.vs= vs;
         verDatosButton.addActionListener(new ActionListener() {
             @Override
@@ -33,6 +36,13 @@ public class ProfileMenuPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 vs.changeView("addProductPanel",null);
+            }
+        });
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.getModel().replaceUser(null);
+                vs.changeView("profileLoginPanel",null);
             }
         });
     }
