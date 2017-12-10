@@ -104,7 +104,18 @@ public class Product implements Persistent{
     }
 
     public static HashMap<Product, Integer> listBoughtProducts(User user) {
-        return new HashMap<Product, Integer>();
+        HashMap<Product, Integer> products = new HashMap<>();
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("SELECT p.*, cp.id as idcp FROM cart c " +
+                    "JOIN cartproducts cp ON cp.idcart = c.id JOIN product p ON p.id = cp.idproduct WHERE c.closed = TRUE " +
+                    "AND c.idclient = "+user.getId());
+            while (rs.next()) {
+                products.put(fromResultSet(rs), rs.getInt("idcp"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
     }
 
     public static Product fromResultSet(ResultSet rs) {

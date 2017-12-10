@@ -36,25 +36,25 @@ public class Review implements Persistent{
     }
 
     public static Review create(int idCP, Product product, String comment, int rating) {
-        /*try {
-            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO review (idproduct, comment, rating) " +
-                    "VALUES ("+product.getId()+", "+comment+", "+rating+") RETURNING id");
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO review (idproduct, idcartproduct, comment, rating) " +
+                    "VALUES ("+product.getId()+", "+idCP+", '"+comment+"', "+rating+") RETURNING id");
             if(rs.next())
                 return new Review(rs.getInt(1), product, comment, rating);
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
         return null;
     }
 
     public static Review get(int idCP) {
-        /*try {
-            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE id = "+idCP);
+        try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE idcartproduct = "+idCP);
             if(rs.next())
                 return fromResultSet(rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
         return null;
     }
 
@@ -111,10 +111,6 @@ public class Review implements Persistent{
         if(product == null)
             product = Product.get(productId);
         return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public String getComment() {
