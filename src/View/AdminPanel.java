@@ -48,6 +48,7 @@ public class AdminPanel {
     private static final int PAGESIZE = 5;
 
     private void printNoCriteria(ArrayList<User> currlist){
+        clearItems();
         Iterator<JButton> buttonIterator = buttons.iterator();
         Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
         for (int i = offset; i < 5+offset && i<list.size(); i++) {
