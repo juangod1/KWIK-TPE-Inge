@@ -23,6 +23,7 @@ public class ProfileMenuPanel {
     private JButton agregarProductoButton;
     private JButton verDatosButton;
     private JButton logout;
+    private JButton productosComprados;
     private View.ViewSwapper vs;
     public ProfileMenuPanel(final View.ViewSwapper vs, final Controller controller) {
         this.vs= vs;
@@ -43,6 +44,12 @@ public class ProfileMenuPanel {
             public void actionPerformed(ActionEvent e) {
                 controller.getModel().replaceUser(null);
                 vs.changeView("profileLoginPanel",null);
+            }
+        });
+        productosComprados.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vs.changeView("comprasPanel",null);
             }
         });
     }

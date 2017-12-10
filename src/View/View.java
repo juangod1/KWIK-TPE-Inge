@@ -30,7 +30,8 @@ public class View {
     ViewProduct viewProduct;
     ReviewsPanel reviewsPanel;
     ProfileMenuPanel profileMenuPanel;
-    RateProduct rateProduct;
+    ComprasPanel comprasPanel;
+    static RateProduct rateProduct;
     boolean loggedIn;
     ViewSwapper viewSwapper = new ViewSwapper();
     CartSwapper cartSwapper = new CartSwapper();
@@ -77,6 +78,7 @@ public class View {
         viewProduct = new ViewProduct();
         addProductPanel = new AddProductPanel(viewSwapper, controller.getInputController());
         profileMenuPanel = new ProfileMenuPanel(viewSwapper, controller);
+        comprasPanel = new ComprasPanel(viewSwapper,controller);
         rateProduct = new RateProduct(viewSwapper);
         cards.add(searchPanel.getMainpanel(),"searchPanel");
         cards.add(resultsPanel.getMainpanel(),"resultsPanel");
@@ -91,6 +93,7 @@ public class View {
         cards.add(reviewsPanel.getMainpanel(),"reviewsPanel");
         cards.add(addProductPanel.getMainpanel(),"addProductPanel");
         cards.add(profileMenuPanel.getMainpanel(),"profileMenuPanel");
+        cards.add(comprasPanel.getMainpanel(),"comprasPanel");
         cards.add(rateProduct.getMainpanel(),"rateProductPanel");
         loggedIn = false;
         run();
@@ -818,5 +821,9 @@ public class View {
 
     }
 
-
+    public static RateProduct getRateProduct() {
+        return rateProduct;
+    }
 }
+
+

@@ -124,7 +124,7 @@ public class ResultsPanel {
         ArrayList<Product> productList = new ArrayList<>();
         cleanPanel();
         int size = prods.size();
-        if(size>=1 + offset) {
+        if(size >= 1 + offset) {
             Product prod = prods.get(offset);
             textArea1.setText(prod.getName() + "\nPuntuación: " + prod.getRating());
             textArea6.setText("$" + prod.getPrice() + "\n" + prod.getStock()+" en stock");
