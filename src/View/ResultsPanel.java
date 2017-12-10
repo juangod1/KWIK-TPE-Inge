@@ -118,11 +118,13 @@ public class ResultsPanel {
         refresh();
      }
     private void refresh(){
+        ArrayList<Product> productList = new ArrayList<>();
         cleanPanel();
         Controller.getView().configureSearchView();
         int size = prods.size();
         if(size>=1 + offset) {
             textArea1.setText(prods.get(offset).getName() + "              -              $" + prods.get(offset).getPrice());
+            productList.add(prods.get(offset));
             button1.setVisible(true);
             viewButton.setVisible(true);
             button1.addActionListener(new ActionListener() {
@@ -132,9 +134,11 @@ public class ResultsPanel {
                     Cart.getOrCreate(controller.getCurrentUser()).addProduct(prods.get(offset),1);
                 }
             });
+
         }
         if(size>=2+offset) {
             textArea2.setText(prods.get(offset+1).getName() + "              -              $" + prods.get(offset+1).getPrice());
+            productList.add(prods.get(offset+1));
             button2.setVisible(true);
             viewButton1.setVisible(true);
             button2.addActionListener(new ActionListener() {
@@ -147,6 +151,7 @@ public class ResultsPanel {
         }
         if(size>=3+offset) {
             textArea3.setText(prods.get(offset+2).getName() + "              -              $" + prods.get(offset+2).getPrice());
+            productList.add(prods.get(offset+2));
             button3.setVisible(true);
             viewButton2.setVisible(true);
             button3.addActionListener(new ActionListener() {
@@ -159,6 +164,7 @@ public class ResultsPanel {
         }
         if(size>=4+offset) {
             textArea4.setText(prods.get(offset+3).getName() + "              -              $" + prods.get(offset+3).getPrice());
+            productList.add(prods.get(offset+3));
             button4.setVisible(true);
             viewButton3.setVisible(true);
             button4.addActionListener(new ActionListener() {
@@ -171,6 +177,7 @@ public class ResultsPanel {
         }
         if(size>=5+offset) {
             textArea5.setText(prods.get(offset+4).getName() + "              -              $" + prods.get(offset+4).getPrice());
+            productList.add(prods.get(offset+4));
             button5.setVisible(true);
             viewButton4.setVisible(true);
             button5.addActionListener(new ActionListener() {
@@ -181,6 +188,8 @@ public class ResultsPanel {
                 }
             });
         }
+        Controller.getView().updateViewProductButtons(productList);
+
     }
 
     private void cleanPanel(){

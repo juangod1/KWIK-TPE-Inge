@@ -653,5 +653,104 @@ public class View {
         });
     }
 
+    public void updateViewProductButtons(final ArrayList<Product> products){
+        System.out.println(products);
+        System.out.println(products.get(0).getName());
+        System.out.println(products.get(1).getName());
+        System.out.println(products.get(2).getName());
+
+        if(resultsPanel.getViewButton().getActionListeners().length > 0)
+            resultsPanel.getViewButton().removeActionListener(resultsPanel.getViewButton().getActionListeners()[0]);
+
+        resultsPanel.getViewButton().addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+
+                if(products.size()>=1) {
+                    viewProduct.printProduct(products.get(0));
+                    cardLayout.show(cards,"viewProductPanel");
+                    reviewsPanel.setProduct(products.get(0));
+                }
+
+            }
+
+        });
+
+        if(resultsPanel.getViewButton1().getActionListeners().length > 0)
+            resultsPanel.getViewButton1().removeActionListener(resultsPanel.getViewButton1().getActionListeners()[0]);
+
+        resultsPanel.getViewButton1().addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                if(products.size()>=2) {
+                    viewProduct.printProduct(products.get(1));
+                    cardLayout.show(cards,"viewProductPanel");
+                    reviewsPanel.setProduct(products.get(1));
+                }
+
+            }
+
+        });
+
+        if(resultsPanel.getViewButton2().getActionListeners().length > 0)
+            resultsPanel.getViewButton2().removeActionListener(resultsPanel.getViewButton2().getActionListeners()[0]);
+
+        resultsPanel.getViewButton2().addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                if(products.size()>=3) {
+                    viewProduct.printProduct(products.get(2));
+                    cardLayout.show(cards,"viewProductPanel");
+                    reviewsPanel.setProduct(products.get(2));
+                }
+
+            }
+
+        });
+
+        if(resultsPanel.getViewButton3().getActionListeners().length > 0)
+            resultsPanel.getViewButton3().removeActionListener(resultsPanel.getViewButton3().getActionListeners()[0]);
+
+        resultsPanel.getViewButton3().addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                if(products.size()>=4) {
+                    viewProduct.printProduct(products.get(3));
+                    cardLayout.show(cards,"viewProductPanel");
+                    reviewsPanel.setProduct(products.get(3));
+                }
+
+            }
+
+        });
+
+        if(resultsPanel.getViewButton4().getActionListeners().length > 0)
+            resultsPanel.getViewButton4().removeActionListener(resultsPanel.getViewButton4().getActionListeners()[0]);
+
+        resultsPanel.getViewButton4().addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+                if(products.size()>=5) {
+                    viewProduct.printProduct(products.get(4));
+                    cardLayout.show(cards,"viewProductPanel");
+                    reviewsPanel.setProduct(products.get(4));
+                }
+
+            }
+
+        });
+
+    }
+
 
 }
