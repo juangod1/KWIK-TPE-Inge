@@ -38,6 +38,11 @@ public class MisProductosPanel {
     private JButton viewButton2;
     private JButton viewButton3;
     private JButton viewButton4;
+    private JButton removerButton;
+    private JButton removerButton1;
+    private JButton removerButton2;
+    private JButton removerButton3;
+    private JButton removerButton4;
     private ArrayList<JTextArea> textAreas;
     private Iterator<Product> productIterator;
     private ArrayList<JButton> buttons;

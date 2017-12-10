@@ -265,7 +265,7 @@
                   <text value="Ver"/>
                 </properties>
               </component>
-              <component id="57ed3" class="javax.swing.JButton" default-binding="true">
+              <component id="57ed3" class="javax.swing.JButton" binding="removerButton">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -273,7 +273,7 @@
                   <text value="Remover"/>
                 </properties>
               </component>
-              <component id="a0300" class="javax.swing.JButton" default-binding="true">
+              <component id="a0300" class="javax.swing.JButton" binding="removerButton1">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -281,7 +281,7 @@
                   <text value="Remover"/>
                 </properties>
               </component>
-              <component id="bbb0b" class="javax.swing.JButton" default-binding="true">
+              <component id="bbb0b" class="javax.swing.JButton" binding="removerButton2">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -289,7 +289,7 @@
                   <text value="Remover"/>
                 </properties>
               </component>
-              <component id="e549" class="javax.swing.JButton" default-binding="true">
+              <component id="e549" class="javax.swing.JButton" binding="removerButton3">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -297,7 +297,7 @@
                   <text value="Remover"/>
                 </properties>
               </component>
-              <component id="20fa9" class="javax.swing.JButton" default-binding="true">
+              <component id="20fa9" class="javax.swing.JButton" binding="removerButton4">
                 <constraints>
                   <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
