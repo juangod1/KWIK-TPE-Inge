@@ -65,6 +65,7 @@ public class PaymentOptionsPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 displayCardCreator(inputController);
+                setCards();
             }
         });
 
@@ -78,8 +79,7 @@ public class PaymentOptionsPanel {
         VISIONButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //vs.changeView("misProductosPanel");
-                JOptionPane.showMessageDialog(null,"Vision under development");
+                vs.changeView("misProductosPanel",null);
             }
         });
 
@@ -177,7 +177,7 @@ public class PaymentOptionsPanel {
     }
 
     public Card getCard() {
-        if(cardSelector.getSelectedIndex() > cards.size())
+        if(cardSelector.getSelectedIndex() > cards.size() || cardSelector.getSelectedIndex()<0)
             return null;
         return cards.get(cardSelector.getSelectedIndex());
     }
