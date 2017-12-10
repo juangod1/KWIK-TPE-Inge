@@ -54,8 +54,9 @@ public class PaymentOptionsPanel {
                 }
                 else{
                     System.out.println("Closed with cart:"+cart.getId());
-                    setCards();
+                    cart.setCard(card);
                     cart.close();
+                    setCards();
                 }
             }
         });
