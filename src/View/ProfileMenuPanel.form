@@ -177,7 +177,7 @@
             </constraints>
             <properties>
               <background color="-8198050"/>
-              <borderPainted value="false"/>
+              <borderPainted value="true"/>
               <text value="Compras"/>
             </properties>
           </component>
