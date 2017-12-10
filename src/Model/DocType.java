@@ -1,11 +1,13 @@
 package Model;
 
+import Controller.MyEntry;
 import Service.DatabaseService;
 
 import javax.print.Doc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.zip.DataFormatException;
 
 public class DocType extends Data{
     private int id;
@@ -60,5 +62,15 @@ public class DocType extends Data{
 
     public String getName() {
         return name;
+    }
+
+    public static DocType getFromString(String string) {
+        ArrayList<DocType> list = list();
+        for(DocType doctype: list){
+            if(doctype.getName().equals(string)){
+                return doctype;
+            }
+        }
+        throw new RuntimeException("wrong doctype");
     }
 }

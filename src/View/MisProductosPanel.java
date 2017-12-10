@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -45,7 +44,8 @@ public class MisProductosPanel {
     private JButton removerButton4;
     private ArrayList<JTextArea> textAreas;
     private Iterator<Product> productIterator;
-    private ArrayList<JButton> buttons;
+    private ArrayList<JButton> viewButtons;
+    private ArrayList<JButton> removeButtons;
     private View view;
 
 
@@ -55,8 +55,12 @@ public class MisProductosPanel {
         textAreas= new ArrayList<>();
         textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
         productIterator=null;
-        buttons= new ArrayList<>();
-        buttons.add(viewButton);buttons.add(viewButton1);buttons.add(viewButton2);buttons.add(viewButton3);buttons.add(viewButton4);
+        viewButtons = new ArrayList<>();
+        viewButtons.add(viewButton);viewButtons.add(viewButton1);viewButtons.add(viewButton2);viewButtons.add(viewButton3);
+        viewButtons.add(viewButton4);
+        removeButtons= new ArrayList<>();
+        removeButtons.add(removerButton);removeButtons.add(removerButton1);removeButtons.add(removerButton2);removeButtons.add(removerButton3);
+        removeButtons.add(removerButton4);
     }
     public void printItems(){
         clearItems();
@@ -68,15 +72,26 @@ public class MisProductosPanel {
             }
         }
         if(productIterator!=null) {
-            Iterator<JButton> buttonIterator = buttons.iterator();
+            Iterator<JButton> viewButtonIterator = viewButtons.iterator();
+            Iterator<JButton> removeButtonIterator = removeButtons.iterator();
             Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
             for (int i = 0; i < 5 && productIterator.hasNext(); i++) {
                 final Product curr = productIterator.next();
-                JButton currButton = buttonIterator.next();
+                JButton currViewButton = viewButtonIterator.next();
+                JButton currRemoveButton = removeButtonIterator.next();
                 jTextAreaIterator.next().setText(curr.getName() + "    -    " + curr.getPrice() + "    -    " + curr.getVisits());
-                currButton.setVisible(true);
+                currViewButton.setVisible(true);
+                currRemoveButton.setVisible(true);
 
-                currButton.addActionListener(new ActionListener() {
+                currRemoveButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        curr.delete();
+                        curr.save();
+                        JOptionPane.showMessageDialog(null, "Producto eliminado!");
+                    }
+                });
+                currViewButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         view.viewProduct.printProduct(curr);
@@ -92,14 +107,21 @@ public class MisProductosPanel {
         }
     }
     private void clearItems(){
-        Iterator<JButton> buttonIterator = buttons.iterator();
-        JButton curr;
+        Iterator<JButton> viewButtonIterator = viewButtons.iterator();
+        Iterator<JButton> removeButtonIterator = removeButtons.iterator();
+        JButton currView;
+        JButton currRemove;
         for (JTextArea jTextArea: textAreas){
             jTextArea.setText("");
-            curr=buttonIterator.next();
-            curr.setVisible(false);
-            if(curr.getActionListeners().length!=0){
-                curr.removeActionListener(curr.getActionListeners()[0]);
+            currRemove=removeButtonIterator.next();
+            currView=viewButtonIterator.next();
+            currRemove.setVisible(false);
+            currView.setVisible(false);
+            if(currRemove.getActionListeners().length!=0){
+                currRemove.removeActionListener(currRemove.getActionListeners()[0]);
+            }
+            if(currView.getActionListeners().length!=0){
+                currView.removeActionListener(currView.getActionListeners()[0]);
             }
         }
     }

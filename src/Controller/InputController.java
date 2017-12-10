@@ -3,6 +3,7 @@ package Controller;
 import Model.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import javax.print.Doc;
 import java.text.Normalizer;
 import java.util.*;
 import java.util.concurrent.SynchronousQueue;
@@ -36,10 +37,10 @@ public class InputController {
                     }
                     break;
                 case 4:
-                    if(!checkUserCountry(((Country)fe.getValue().getItem()).getName())) return 4;
+                    if(fe.getValue().getItem()==null || !checkUserCountry(((Country)fe.getValue().getItem()).getName())) return 4;
                     break;
                 case 5:
-                    if(!checkUserNeighbourhood(((City)(fe.getValue().getItem())).getName())) return 5;
+                    if(fe.getValue().getItem()==null||!checkUserNeighbourhood(((City)(fe.getValue().getItem())).getName())) return 5;
                     break;
                 case 6:
                     if(!checkUserAddress((String)fe.getValue().getItem())) return 6;
@@ -54,10 +55,10 @@ public class InputController {
                     if(!checkUserEmail((String)fe.getValue().getItem())) return 9;
                     break;
                 case 10:
-                    if(!checkUserState(((Province)(fe.getValue().getItem())).getName())) return 10;
+                    if(fe.getValue().getItem()==null||!checkUserState(((Province)(fe.getValue().getItem())).getName())) return 10;
                     break;
                 case 11:
-                    if(!checkUserDocumentType((DocType)fe.getValue().getItem())) return 11;
+                    if(fe .getValue().getItem()==null || !checkUserDocumentType((DocType)fe.getValue().getItem())) return 11;
                     break;
                 case 12:
                     if(!checkUserDocument((String)(fe.getValue().getItem()))) return 12;
@@ -266,7 +267,13 @@ public class InputController {
 
     }
     public boolean checkUserDocumentType(DocType documentType){
-        return documentType.toString().equals("DNI");
+        ArrayList<DocType> list= DocType.list();
+        for(DocType docType : list) {
+            if(docType.getName().equals(documentType.getName())){
+                return true;
+            }
+        }
+        return false;
     }
     public boolean checkUserBirthDate(String birthDate){
         String[] strs = birthDate.split("/");
@@ -337,7 +344,7 @@ public class InputController {
         currentUser.setSurname((String)userCreationStruct.getFormEntries().get(8).getItem());
         currentUser.setEmail((String)userCreationStruct.getFormEntries().get(9).getItem());
         currentUser.setProvince((Province) userCreationStruct.getFormEntries().get(10).getItem());
-        currentUser.setDocType( DocType.list().get(0)); // TODO: lewat get(0)
+        currentUser.setDocType( DocType.getFromString((String)userCreationStruct.formEntries.get(11).getItem())); // TODO: lewat get(0)
         currentUser.setdoc((String)userCreationStruct.getFormEntries().get(12).getItem());
         currentUser.setPostCode((String)userCreationStruct.getFormEntries().get(14).getItem());
         currentUser.setPhone2((String)userCreationStruct.getFormEntries().get(16).getItem());
