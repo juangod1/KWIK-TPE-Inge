@@ -83,7 +83,7 @@ public class Controller {
 
     public  boolean logInUser(String username, String password){
         User user = User.login(username, password);
-        if(user !=null){
+        if(user !=null && user.isEnabled()){
             model.setUser(user);
             view.setViewsAsLoggedIn();
             return true;
