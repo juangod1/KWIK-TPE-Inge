@@ -35,26 +35,26 @@ public class Review implements Persistent{
         this.rating = rating;
     }
 
-    public static Review create(Product product, String comment, int rating) {
-        try {
+    public static Review create(int idCP, Product product, String comment, int rating) {
+        /*try {
             ResultSet rs = DatabaseService.getInstance().getSt().executeQuery("INSERT INTO review (idproduct, comment, rating) " +
                     "VALUES ("+product.getId()+", "+comment+", "+rating+") RETURNING id");
             if(rs.next())
                 return new Review(rs.getInt(1), product, comment, rating);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
         return null;
     }
 
-    public static Review get(int id) {
-        try {
-            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE id = "+id);
+    public static Review get(int idCP) {
+        /*try {
+            ResultSet rs = DatabaseService.getInstance().getSt().executeQuery(select + "WHERE id = "+idCP);
             if(rs.next())
                 return fromResultSet(rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
         return null;
     }
 
