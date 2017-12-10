@@ -64,7 +64,7 @@ public class View {
         cards = new JPanel(cardLayout);
         searchPanel = new SearchPanel();
         resultsPanel = new ResultsPanel(controller);
-        adminPanel = new AdminPanel();
+        adminPanel = new AdminPanel(controller);
         newUser = new NewUser(controller.getInputController());
         paymentOptions = new PaymentOptionsPanel(viewSwapper, controller.getInputController());
         shoppingcartPanel = new ShoppingcartPanel(viewSwapper, controller, cartSwapper);
@@ -98,48 +98,56 @@ public class View {
         searchPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         newUser.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         resultsPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         adminPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         profileLoginPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         shoppingcartPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         misProductosPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         viewProduct.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
@@ -147,12 +155,14 @@ public class View {
         profilePanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });
         profileMenuPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                adminPanel.printUsers("");
                 cardLayout.show(cards,"adminPanel");
             }
         });

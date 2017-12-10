@@ -68,18 +68,16 @@ public class MisProductosPanel {
             for (int i = 0; i < 5 && productIterator.hasNext(); i++) {
                 final Product curr = productIterator.next();
                 JButton currButton = buttonIterator.next();
-                jTextAreaIterator.next().setText(curr.getName() + "    " + curr.getPrice() + "     " + curr.getVisits());
+                jTextAreaIterator.next().setText(curr.getName() + "    -    " + curr.getPrice() + "    -    " + curr.getVisits());
                 currButton.setVisible(true);
 
                 currButton.addActionListener(new ActionListener() {
-
                     @Override
-
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println("clicked");
                         view.viewProduct.printProduct(curr);
+                        view.cardLayout=(CardLayout)view.cards.getLayout();
                         view.cardLayout.show(view.cards, "viewProductPanel");
-
+                        view.cards.revalidate();
                     }
                 });
             }
