@@ -595,9 +595,11 @@ public class View {
         JFrame frame = new JFrame("KWIK");
         frame.setContentPane(new View(controller).cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
         frame.setVisible(true);
-        this.controller = controller;
+        Dimension dimension = new Dimension(1067,600);
+        frame.setMinimumSize(dimension);
+        frame.setPreferredSize(dimension);
+        frame.setMaximumSize(dimension);
     }
 
     public void setViewsAsLoggedIn(){
