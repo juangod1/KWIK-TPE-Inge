@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Cart implements Persistent {
     private int id;
@@ -125,7 +126,7 @@ public class Cart implements Persistent {
                 int prevAmount = rs.getInt(1);
                 if(prevAmount + amount > product.getStock())
                     return false;
-                st.execute("UPDATE cartproducts SET amount = amount + " + amount + " WHERE idcart = " + id);
+                st.execute("UPDATE cartproducts SET amount = amount + " + amount + " WHERE idcart = "+id+" AND idproduct = "+product.getId());
             }
             else {
                 if(amount > product.getStock())
@@ -157,7 +158,7 @@ public class Cart implements Persistent {
     @Override
     public boolean save() {
         try {
-            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, user == null ? userId : user.getId(),
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(Locale.ROOT, update, user == null ? userId : user.getId(),
                     closed, card == null ? (cardId == 0 ? null : cardId) : card.getId(), id));
             return count > 0;
         } catch (SQLException e) {

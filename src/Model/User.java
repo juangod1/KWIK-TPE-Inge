@@ -6,6 +6,7 @@ import Service.DatabaseService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class User implements Persistent{
 
@@ -142,7 +143,7 @@ public class User implements Persistent{
     @Override
     public boolean save() {
         try {
-            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, username, password, name, surname, email,
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(Locale.ROOT, update, username, password, name, surname, email,
                     docType.getId(), country.getId(), province.getId(), city.getId(), postCode, phone, enabled, confirmed, admin, doc, phone2, address, id));
             return count > 0;
         } catch (SQLException e) {

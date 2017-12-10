@@ -5,6 +5,7 @@ import Service.DatabaseService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Product implements Persistent{
     private int id;
@@ -98,7 +99,7 @@ public class Product implements Persistent{
     }
 
     public static ArrayList<Product> search(String text) {
-        return listByCriteria("WHERE name ILIKE '%"+text+"%'");
+        return listByCriteria("WHERE stock > 0 AND name ILIKE '%"+text+"%'");
     }
 
     public static Product fromResultSet(ResultSet rs) {
@@ -115,7 +116,7 @@ public class Product implements Persistent{
     @Override
     public boolean save() {
         try {
-            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, name, description, price,
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(Locale.ROOT, update, name, description, price,
                     user == null ? userId : user.getId(), thumbnail, stock, visits, sold, id));
             return count > 0;
         } catch (SQLException e) {

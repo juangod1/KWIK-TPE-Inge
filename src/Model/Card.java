@@ -5,6 +5,7 @@ import Service.DatabaseService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Card implements Persistent{
     private int id;
@@ -95,7 +96,7 @@ public class Card implements Persistent{
     @Override
     public boolean save() {
         try {
-            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update, user == null ? userId : user.getId(),
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(Locale.ROOT, update, user == null ? userId : user.getId(),
                     name, surname, number, year, month, code, id));
             return count > 0;
         } catch (SQLException e) {

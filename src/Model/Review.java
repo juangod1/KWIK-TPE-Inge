@@ -5,6 +5,7 @@ import Service.DatabaseService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Review implements Persistent{
     private int id;
@@ -82,7 +83,7 @@ public class Review implements Persistent{
     @Override
     public boolean save() {
         try {
-            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(update,
+            int count = DatabaseService.getInstance().getSt().executeUpdate(String.format(Locale.ROOT, update,
                     product == null ? productId : product.getId(), comment, rating, id));
             return count > 0;
         } catch (SQLException e) {
