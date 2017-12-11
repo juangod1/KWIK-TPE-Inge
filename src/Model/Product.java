@@ -195,6 +195,7 @@ public class Product implements Persistent{
     public boolean removeStock(int amount) {
         if(stock >= amount) {
             stock -= amount;
+            sold += amount;
             return true;
         }
         return false;
@@ -249,6 +250,16 @@ public class Product implements Persistent{
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public boolean incrementVisits() {
+        try {
+            int count = DatabaseService.getInstance().getSt().executeUpdate("UPDATE product SET visits = visits + 1 WHERE id = "+id);
+            return count > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public ArrayList<Review> getReviews() {
