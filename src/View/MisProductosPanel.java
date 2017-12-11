@@ -32,6 +32,16 @@ public class MisProductosPanel {
     private JTextArea textArea3;
     private JTextArea textArea4;
     private JTextArea textArea5;
+    private JTextArea textArea6;
+    private JTextArea textArea7;
+    private JTextArea textArea8;
+    private JTextArea textArea9;
+    private JTextArea textArea10;
+    private JTextArea textArea11;
+    private JTextArea textArea12;
+    private JTextArea textArea13;
+    private JTextArea textArea14;
+    private JTextArea textArea15;
     private JButton viewButton;
     private JButton viewButton1;
     private JButton viewButton2;
@@ -44,7 +54,9 @@ public class MisProductosPanel {
     private JButton removerButton4;
     private JButton anteriorButton;
     private JButton siguienteButton;
-    private ArrayList<JTextArea> textAreas;
+    private ArrayList<JTextArea> textAreas0;
+    private ArrayList<JTextArea> textAreas1;
+    private ArrayList<JTextArea> textAreas2;
     private Iterator<Product> productIterator;
     private int offset;
     private static final int PAGESIZE = 5;
@@ -58,8 +70,12 @@ public class MisProductosPanel {
         this.view = view;
         this.offset=0;
         this.controller=controller;
-        textAreas= new ArrayList<>();
-        textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
+        textAreas0 = new ArrayList<>();
+        textAreas0.add(textArea1);textAreas0.add(textArea2);textAreas0.add(textArea3);textAreas0.add(textArea4);textAreas0.add(textArea5);
+        textAreas1= new ArrayList<>();
+        textAreas1.add(textArea6);textAreas1.add(textArea7);textAreas1.add(textArea8);textAreas1.add(textArea9);textAreas1.add(textArea10);
+        textAreas2= new ArrayList<>();
+        textAreas2.add(textArea11);textAreas2.add(textArea12);textAreas2.add(textArea13);textAreas2.add(textArea14);textAreas2.add(textArea15);
         productIterator=null;
         viewButtons = new ArrayList<>();
         viewButtons.add(viewButton);viewButtons.add(viewButton1);viewButtons.add(viewButton2);viewButtons.add(viewButton3);
@@ -111,12 +127,16 @@ public class MisProductosPanel {
         if(list!=null && !list.isEmpty()) {
             Iterator<JButton> viewButtonIterator = viewButtons.iterator();
             Iterator<JButton> removeButtonIterator = removeButtons.iterator();
-            Iterator<JTextArea> jTextAreaIterator = textAreas.iterator();
+            Iterator<JTextArea> textAreas0Iterator = textAreas0.iterator();
+            Iterator<JTextArea> textAreas1Iterator = textAreas1.iterator();
+            Iterator<JTextArea> textAreas2Iterator = textAreas2.iterator();
             for (int i = offset; i < 5 + offset && i < list.size(); i++) {
                 final Product curr = list.get(i);
                 JButton currViewButton = viewButtonIterator.next();
                 JButton currRemoveButton = removeButtonIterator.next();
-                jTextAreaIterator.next().setText(curr.getName() + "    -    " + curr.getPrice() + "    -    " + curr.getVisits());
+                textAreas0Iterator.next().setText(curr.getName());
+                textAreas1Iterator.next().setText("Se vendieron "+curr.getSold()+" articulos!");
+                textAreas2Iterator.next().setText("Tuviste "+curr.getVisits()+" visitas");
                 currViewButton.setVisible(true);
                 currRemoveButton.setVisible(true);
 
@@ -158,10 +178,17 @@ public class MisProductosPanel {
     private void clearItems(){
         Iterator<JButton> viewButtonIterator = viewButtons.iterator();
         Iterator<JButton> removeButtonIterator = removeButtons.iterator();
+        Iterator<JTextArea> textArea1Iterator = textAreas1.iterator();
+        Iterator<JTextArea> textArea2Iterator = textAreas2.iterator();
         JButton currView;
         JButton currRemove;
-        for (JTextArea jTextArea: textAreas){
+        JTextArea currText;
+        for (JTextArea jTextArea: textAreas0){
             jTextArea.setText("");
+            currText=textArea1Iterator.next();
+            currText.setText("");
+            currText=textArea2Iterator.next();
+            currText.setText("");
             currRemove=removeButtonIterator.next();
             currView=viewButtonIterator.next();
             currRemove.setVisible(false);
