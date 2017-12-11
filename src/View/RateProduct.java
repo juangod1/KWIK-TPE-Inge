@@ -1,6 +1,5 @@
 package View;
 
-import Model.Cart;
 import Model.Product;
 import Model.Review;
 
@@ -22,7 +21,7 @@ public class RateProduct {
     private JButton SEARCHbutton;
     private JPanel footnote;
     private JPanel middle;
-    private JTextPane review;
+    private JTextPane comment;
     private JLabel photo;
     private JLabel photo2;
     private JTextField precio;
@@ -30,6 +29,7 @@ public class RateProduct {
     private JSlider slider1;
     private JButton Send;
     private Product product;
+    private Review review;
     private View.ViewSwapper vs;
 
     public JButton getSEARCHbutton() {
@@ -61,9 +61,14 @@ public class RateProduct {
 
     public void setUpReview(Product product, int idCP){
         this.product = product;
+        this.review = Review.get(idCP);
         cleanView();
         precio.setText(((Double)product.getPrice()).toString());
         name.setText(product.getName());
+        if(review != null) {
+            comment.setText(review.getComment());
+            slider1.setValue(review.getRating());
+        }
 
         Send.addActionListener(new ActionListener() {
             @Override
@@ -75,11 +80,18 @@ public class RateProduct {
     }
 
     public void sendReview(int idCP){
-        Review.create(idCP, product, review.getText(), slider1.getValue());
+        if(review == null) {
+            Review.create(idCP, product, comment.getText(), slider1.getValue());
+        }
+        else {
+            review.setComment(comment.getText());
+            review.setRating(slider1.getValue());
+            review.save();
+        }
     }
 
     public void cleanView(){
-        review.setText("");
+        comment.setText("");
         precio.setText("");
         name.setText("");
         if(Send.getActionListeners().length>0)
