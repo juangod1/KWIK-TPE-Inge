@@ -41,6 +41,16 @@ public class AdminPanel {
     private JTextField textField1;
     private JButton anteriorButton;
     private JButton siguienteButton;
+    private JTextArea textArea6;
+    private JTextArea textArea7;
+    private JTextArea textArea8;
+    private JTextArea textArea9;
+    private JTextArea textArea10;
+    private JTextArea textArea11;
+    private JTextArea textArea12;
+    private JTextArea textArea13;
+    private JTextArea textArea14;
+    private JTextArea textArea15;
     private ArrayList<JButton> buttons;
     private ArrayList<JTextArea> textAreas;
     private int offset;
@@ -54,8 +64,9 @@ public class AdminPanel {
         for (int i = offset; i < 5+offset && i<list.size(); i++) {
             final User curr = currlist.get(i);
             final JButton currButton = buttonIterator.next();
-            jTextAreaIterator.next().setText(curr.getUsername() + "    -    " + curr.getEmail() + "    -    " + curr.getName()+
-                    curr.getSurname());
+            jTextAreaIterator.next().setText(curr.getUsername());
+            jTextAreaIterator.next().setText(curr.getEmail());
+            jTextAreaIterator.next().setText(curr.getName() + curr.getSurname());
             if(curr.isEnabled()){currButton.setText("Desactivar");
             }else{currButton.setText("Activar");}
             currButton.setVisible(true);
@@ -108,7 +119,11 @@ public class AdminPanel {
         buttons.add(desactivarButton);buttons.add(desactivarButton1);buttons.add(desactivarButton2);buttons.add(desactivarButton3);
         buttons.add(desactivarButton4);
         textAreas= new ArrayList<>();
-        textAreas.add(textArea1);textAreas.add(textArea2);textAreas.add(textArea3);textAreas.add(textArea4);textAreas.add(textArea5);
+        textAreas.add(textArea1);textAreas.add(textArea6);textAreas.add(textArea11);
+        textAreas.add(textArea2);textAreas.add(textArea7);textAreas.add(textArea12);
+        textAreas.add(textArea3);textAreas.add(textArea8);textAreas.add(textArea13);
+        textAreas.add(textArea4);textAreas.add(textArea9);textAreas.add(textArea14);
+        textAreas.add(textArea5);textAreas.add(textArea10);textAreas.add(textArea15);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,14 +160,13 @@ public class AdminPanel {
     }
 
     private void clearItems(){
-        Iterator<JButton> buttonIterator = buttons.iterator();
-        JButton curr;
         for (JTextArea jTextArea: textAreas){
             jTextArea.setText("");
-            curr = buttonIterator.next();
+        }
+        for (JButton curr : buttons) {
             curr.setVisible(false);
-            if(curr.getActionListeners().length!=0)
-            curr.removeActionListener(curr.getActionListeners()[0]);
+            if (curr.getActionListeners().length != 0)
+                curr.removeActionListener(curr.getActionListeners()[0]);
         }
     }
 
