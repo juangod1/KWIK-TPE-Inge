@@ -5,6 +5,7 @@ import Model.Product;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 /**
  * Created by cderienzo on 12/9/2017.
@@ -21,12 +22,12 @@ public class ViewProduct {
     private JPanel footnote;
     private JPanel middle;
     private JTextPane description;
-    private JLabel photo;
-    private JLabel photo2;
     private JTextField thumbnail;
     private JTextField precio;
     private JTextField name;
     private JButton verOpinionesButton;
+    private JLabel rating;
+    private JLabel stock;
     private Product product;
 
     public JButton getSEARCHbutton() {
@@ -58,13 +59,18 @@ public class ViewProduct {
         precio.setText("$" + ((Double)product.getPrice()).toString());
         description.setText(product.getDescription());
         this.product = product;
-
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        stock.setText("Quedan " + product.getStock() + " unidades                        ");
+        rating.setText("Puntaje: " + (df.format(product.getRating())) + "/5               ");
     }
 
     public void cleanProduct(){
         name.setText("");
         precio.setText("");
         description.setText("");
+        stock.setText("");
+        rating.setText("");
     }
 
     public JButton getREVIEWSButton(){
