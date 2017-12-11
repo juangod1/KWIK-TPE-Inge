@@ -31,6 +31,7 @@ public class ProfileLoginPanel {
     private JButton loginButton;
     private View.ViewSwapper vs;
 
+
     public ProfileLoginPanel(final View.ViewSwapper vs) {
 
         loginButton.addActionListener(new ActionListener() {
