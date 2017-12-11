@@ -85,10 +85,15 @@ public class Controller {
         User user = User.login(username, password);
         if(user !=null && user.isEnabled()){
             model.setUser(user);
+            view.setAdminButtonVisible(user.isAdmin());
             view.setViewsAsLoggedIn();
             return true;
         }
         return false;
+    }
+
+    public void hideAdmin() {
+        view.setAdminButtonVisible(false);
     }
 
     public User getCurrentUser() {

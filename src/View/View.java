@@ -524,8 +524,34 @@ public class View {
         });
     }
 
+    public void setAdminButtonVisible(boolean visible) {
+        Color color;
+        if(visible)
+            color = Color.white;
+        else
+            color = new Color(130, 232, 94);
+
+        comprasPanel.getEQUIPObutton().setForeground(color);
+        rateProduct.getEQUIPObutton().setForeground(color);
+        addProductPanel.getEQUIPObutton().setForeground(color);
+        reviewsPanel.getEQUIPObutton().setForeground(color);
+        searchPanel.getEQUIPObutton().setForeground(color);
+        newUser.getEQUIPObutton().setForeground(color);
+        resultsPanel.getEQUIPObutton().setForeground(color);
+        adminPanel.getEQUIPObutton().setForeground(color);
+        profileLoginPanel.getEQUIPObutton().setForeground(color);
+        shoppingcartPanel.getEQUIPObutton().setForeground(color);
+        misProductosPanel.getEQUIPObutton().setForeground(color);
+        viewProduct.getEQUIPObutton().setForeground(color);
+        profilePanel.getEQUIPObutton().setForeground(color);
+        profileMenuPanel.getEQUIPObutton().setForeground(color);
+    }
+
     public void configureEquipoButtons(){
         //EQUIPO
+
+        setAdminButtonVisible(false);
+
         comprasPanel.getEQUIPObutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

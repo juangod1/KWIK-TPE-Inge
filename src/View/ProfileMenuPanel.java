@@ -43,6 +43,7 @@ public class ProfileMenuPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.getModel().replaceUser(null);
+                controller.hideAdmin();
                 vs.changeView("profileLoginPanel",null);
             }
         });
