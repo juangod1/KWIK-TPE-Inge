@@ -28,6 +28,7 @@ public class ViewProduct {
     private JButton verOpinionesButton;
     private JLabel rating;
     private JLabel stock;
+    private JLabel visitas;
     private Product product;
 
     public JButton getSEARCHbutton() {
@@ -61,6 +62,7 @@ public class ViewProduct {
         this.product = product;
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
+        visitas.setText("Visitas: "+product.getVisits()+"               ");
         stock.setText("Quedan " + product.getStock() + " unidades                        ");
         rating.setText("Puntaje: " + (df.format(product.getRating())) + "/5               ");
     }
@@ -71,6 +73,7 @@ public class ViewProduct {
         description.setText("");
         stock.setText("");
         rating.setText("");
+        visitas.setText("");
     }
 
     public JButton getREVIEWSButton(){
