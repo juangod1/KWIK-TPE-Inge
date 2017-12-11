@@ -1,7 +1,8 @@
 package View;
 
+import Model.Cart;
 import Model.Product;
-
+import Controller.Controller;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,12 +24,13 @@ public class ViewProduct {
     private JPanel middle;
     private JTextPane description;
     private JTextField thumbnail;
-    private JTextField precio;
+    private JLabel precio;
     private JTextField name;
     private JButton verOpinionesButton;
     private JLabel rating;
     private JLabel stock;
-    private JLabel visitas;
+    private JLabel vendidos;
+    private JButton addToCartButton;
     private Product product;
 
     public JButton getSEARCHbutton() {
@@ -58,11 +60,27 @@ public class ViewProduct {
         cleanProduct();
         name.setText(product.getName());
         precio.setText("$" + ((Double)product.getPrice()).toString());
+
+        if(addToCartButton.getActionListeners().length > 0) {
+            addToCartButton.removeActionListener(addToCartButton.getActionListeners()[0]);
+        }
+        addToCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Controller.getInstance().getCurrentUser()==null) {
+                    JOptionPane.showMessageDialog(null, "No esta loggeado");
+                    return;
+                }
+                Cart.getOrCreate(Controller.getInstance().getCurrentUser()).addProduct(product,1);
+                JOptionPane.showMessageDialog(null,"El producto fue agregado al carrito con exito");
+            }
+        });
+
         description.setText(product.getDescription());
+        vendidos.setText(product.getSold()+" Unidades vendidas");
         this.product = product;
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        visitas.setText("Visitas: "+product.getVisits()+"               ");
         stock.setText("Quedan " + product.getStock() + " unidades                        ");
         rating.setText("Puntaje: " + (df.format(product.getRating())) + "/5               ");
     }
@@ -73,7 +91,7 @@ public class ViewProduct {
         description.setText("");
         stock.setText("");
         rating.setText("");
-        visitas.setText("");
+        vendidos.setText("");
     }
 
     public JButton getREVIEWSButton(){
