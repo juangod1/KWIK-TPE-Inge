@@ -780,9 +780,11 @@ public class View {
             public void actionPerformed(ActionEvent e) {
 
                 if(products.size()>=1) {
-                    viewProduct.printProduct(products.get(0));
+                    Product prod = products.get(0);
+                    prod.incrementVisits();
+                    viewProduct.printProduct(prod);
                     cardLayout.show(cards,"viewProductPanel");
-                    reviewsPanel.setProduct(products.get(0));
+                    reviewsPanel.setProduct(prod);
                 }
 
             }
@@ -798,9 +800,11 @@ public class View {
 
             public void actionPerformed(ActionEvent e) {
                 if(products.size()>=2) {
-                    viewProduct.printProduct(products.get(1));
+                    Product prod = products.get(1);
+                    prod.incrementVisits();
+                    viewProduct.printProduct(prod);
                     cardLayout.show(cards,"viewProductPanel");
-                    reviewsPanel.setProduct(products.get(1));
+                    reviewsPanel.setProduct(prod);
                 }
 
             }
@@ -816,9 +820,11 @@ public class View {
 
             public void actionPerformed(ActionEvent e) {
                 if(products.size()>=3) {
-                    viewProduct.printProduct(products.get(2));
+                    Product prod = products.get(2);
+                    prod.incrementVisits();
+                    viewProduct.printProduct(prod);
                     cardLayout.show(cards,"viewProductPanel");
-                    reviewsPanel.setProduct(products.get(2));
+                    reviewsPanel.setProduct(prod);
                 }
 
             }
@@ -834,9 +840,11 @@ public class View {
 
             public void actionPerformed(ActionEvent e) {
                 if(products.size()>=4) {
-                    viewProduct.printProduct(products.get(3));
+                    Product prod = products.get(3);
+                    prod.incrementVisits();
+                    viewProduct.printProduct(prod);
                     cardLayout.show(cards,"viewProductPanel");
-                    reviewsPanel.setProduct(products.get(3));
+                    reviewsPanel.setProduct(prod);
                 }
 
             }
@@ -852,9 +860,11 @@ public class View {
 
             public void actionPerformed(ActionEvent e) {
                 if(products.size()>=5) {
-                    viewProduct.printProduct(products.get(4));
+                    Product prod = products.get(4);
+                    prod.incrementVisits();
+                    viewProduct.printProduct(prod);
                     cardLayout.show(cards,"viewProductPanel");
-                    reviewsPanel.setProduct(products.get(4));
+                    reviewsPanel.setProduct(prod);
                 }
 
             }
