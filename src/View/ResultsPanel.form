@@ -232,6 +232,7 @@
                   <editable value="false"/>
                   <font size="18" style="1"/>
                   <margin top="0" left="0" bottom="0" right="20"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
@@ -276,6 +277,7 @@
                   <editable value="false"/>
                   <font size="18" style="1"/>
                   <margin top="0" left="0" bottom="0" right="20"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>

@@ -260,6 +260,12 @@ public class ResultsPanel {
         textArea8.setText("");
         textArea9.setText("");
         textArea10.setText("");
+        textArea11.setText("");
+        textArea12.setText("");
+        textArea13.setText("");
+        textArea14.setText("");
+        textArea15.setText("");
+
 
         if(viewButton.getActionListeners().length>0)
         viewButton.removeActionListener(viewButton.getActionListeners()[0]);
