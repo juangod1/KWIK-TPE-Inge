@@ -120,6 +120,8 @@ public class MisProductosPanel {
                 currViewButton.setVisible(true);
                 currRemoveButton.setVisible(true);
 
+
+
                 currRemoveButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -134,6 +136,18 @@ public class MisProductosPanel {
                     public void actionPerformed(ActionEvent e) {
                         view.viewProduct.printProduct(curr);
                         view.cardLayout = (CardLayout) view.cards.getLayout();
+
+                        view.reviewsPanel.setProduct(curr);
+                        if(view.viewProduct.getREVIEWSButton().getActionListeners().length > 0){
+                            view.viewProduct.getREVIEWSButton().removeActionListener(
+                                    view.viewProduct.getREVIEWSButton().getActionListeners()[0]);
+                        }
+                        view.viewProduct.getREVIEWSButton().addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                view.cardLayout.show(view.cards, "reviewsPanel");
+                            }
+                        });
                         view.cardLayout.show(view.cards, "viewProductPanel");
                         view.cards.revalidate();
                     }
