@@ -106,8 +106,12 @@ public class NewUser {
                     (DocType)(docType.getSelectedItem()),document.getText(), secondaryPhone.getText());
             int errorcode=inputController.checkAll(userCreationStruct);
             if(errorcode==0){
-                inputController.addUser(userCreationStruct);
-                JOptionPane.showMessageDialog(null, "User Created Successfully!");
+                if(inputController.addUser(userCreationStruct) != null) {
+                    JOptionPane.showMessageDialog(null, "Usuario creado exitosamente!");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Ese nombre de usuario ya esta tomado :(");
+                }
             }else{
                 createUserErrorMessage(errorcode);
             }
