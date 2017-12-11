@@ -344,7 +344,7 @@ public class InputController {
         currentUser.setSurname((String)userCreationStruct.getFormEntries().get(8).getItem());
         currentUser.setEmail((String)userCreationStruct.getFormEntries().get(9).getItem());
         currentUser.setProvince((Province) userCreationStruct.getFormEntries().get(10).getItem());
-        currentUser.setDocType( DocType.getFromString((String)userCreationStruct.formEntries.get(11).getItem())); // TODO: lewat get(0)
+        currentUser.setDocType( (DocType)userCreationStruct.formEntries.get(11).getItem()); // TODO: lewat get(0)
         currentUser.setdoc((String)userCreationStruct.getFormEntries().get(12).getItem());
         currentUser.setPostCode((String)userCreationStruct.getFormEntries().get(14).getItem());
         currentUser.setPhone2((String)userCreationStruct.getFormEntries().get(16).getItem());

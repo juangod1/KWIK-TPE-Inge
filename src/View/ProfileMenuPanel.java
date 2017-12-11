@@ -49,6 +49,7 @@ public class ProfileMenuPanel {
         productosComprados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                controller.getView().comprasPanel.setLoggedInConfigurations();
                 vs.changeView("comprasPanel",null);
             }
         });
