@@ -14,11 +14,7 @@ import java.util.HashMap;
  * Created by cderienzo on 12/10/2017.
  */
 public class ComprasPanel {
-    private JPanel header;
-    private JButton VISIONButton;
     private JButton EQUIPObutton;
-    private JButton PERFILButton;
-    private JLabel KWIKlabel;
     private JButton CARRITObutton;
     private JButton SEARCHbutton;
     private JPanel mainpanel;
@@ -35,6 +31,11 @@ public class ComprasPanel {
     private JButton comentarButton5;
     private JButton anteriorButton;
     private JButton siguienteButton;
+    private JPanel footnote;
+    private JPanel middle;
+    private JPanel header;
+    private JButton VISIONbutton;
+    private JButton PERFILbutton;
     private View.ViewSwapper vs;
     private int offset;
     private static final int PAGESIZE = 5;
@@ -246,12 +247,12 @@ public class ComprasPanel {
         return EQUIPObutton;
     }
 
-    public JButton getVISIONButton() {
-        return VISIONButton;
+    public JButton getVISIONbutton() {
+        return VISIONbutton;
     }
 
-    public JButton getPERFILButton() {
-        return PERFILButton;
+    public JButton getPERFILbutton() {
+        return PERFILbutton;
     }
 
     public JButton getCARRITObutton() {

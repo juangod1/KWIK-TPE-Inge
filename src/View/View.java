@@ -344,7 +344,7 @@ public class View {
     public void configurePerfilButtons(){
         //PERFIL
 
-        comprasPanel.getPERFILButton().addActionListener(new ActionListener() {
+        comprasPanel.getPERFILbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(Controller.getInstance().isLoggedIn()) {
@@ -639,7 +639,7 @@ public class View {
 
     public void configureVisionButtons(){
         //VISION
-        comprasPanel.getVISIONButton().addActionListener(new ActionListener() {
+        comprasPanel.getVISIONbutton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cards,"misProductosPanel");
