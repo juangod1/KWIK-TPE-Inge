@@ -22,9 +22,6 @@ public class RateProduct {
     private JPanel footnote;
     private JPanel middle;
     private JTextPane comment;
-    private JLabel photo;
-    private JLabel photo2;
-    private JTextField precio;
     private JTextField name;
     private JSlider slider1;
     private JButton Send;
@@ -63,7 +60,6 @@ public class RateProduct {
         this.product = product;
         this.review = Review.get(idCP);
         cleanView();
-        precio.setText(((Double)product.getPrice()).toString());
         name.setText(product.getName());
         if(review != null) {
             comment.setText(review.getComment());
@@ -92,7 +88,6 @@ public class RateProduct {
 
     public void cleanView(){
         comment.setText("");
-        precio.setText("");
         name.setText("");
         if(Send.getActionListeners().length>0)
         Send.removeActionListener(Send.getActionListeners()[0]);
