@@ -118,7 +118,7 @@ public class MisProductosPanel {
             if(user!=null) {
                 list = Product.getByUser(user);
             }
-            if(list!=null && list.size()>PAGESIZE){
+            if(list!=null && list.size() - offset>PAGESIZE){
                 siguienteButton.setEnabled(true);
             } else {
                 siguienteButton.setEnabled(false);
